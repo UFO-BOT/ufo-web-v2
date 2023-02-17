@@ -4,18 +4,31 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
+    "roboto-fontface": "*",
     "vue": "^3.2.13",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vuetify": "^3.0.0-beta.0",
+    "vuex": "^4.0.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
+    "@intlify/vue-i18n-loader": "^3.0.0",
+    "@mdi/font": "^7.1.96",
+    "@types/vue-i18n": "^7.0.0",
+    "@types/webfontloader": "^1.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "typescript": "~4.5.5"
+    "material-design-icons-iconfont": "^6.7.0",
+    "typescript": "~4.5.5",
+    "vue-cli-plugin-i18n": "~2.3.1",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   }
 }

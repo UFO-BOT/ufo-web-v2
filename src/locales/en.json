@@ -1,0 +1,88 @@
+{
+  "Nav": {
+    "links": [
+      {
+        "name": "Home",
+        "path": "/",
+        "icon": "home"
+      },
+      {
+        "name": "Commands",
+        "path": "/commands",
+        "icon": "list"
+      },
+      {
+        "name": "Stats",
+        "path": "/stats",
+        "icon": "poll"
+      },
+      {
+        "name": "Donate",
+        "path": "/donate",
+        "icon": "volunteer_activism"
+      },
+      {
+        "name": "Support",
+        "path": "https://discord.gg/qPrqVwR",
+        "href": true,
+        "blank": true,
+        "icon": "discord"
+      }
+    ],
+    "login": {
+      "name": "Log in",
+      "icon": "login"
+    }
+  },
+  "Footer": {
+    "links": [
+      {
+        "name": "top.gg",
+        "path": "https://top.gg/bot/705372408281825350",
+        "blank": true,
+        "block": 1
+      },
+      {
+        "name": "SDC",
+        "path": "https://bots.server-discord.com/705372408281825350",
+        "blank": true,
+        "block": 1
+      },
+      {
+        "name": "boticord.top",
+        "path": "https://boticord.top/bot/705372408281825350",
+        "blank": true,
+        "block": 1
+      },
+      {
+        "name": "Commands",
+        "path": "/commands",
+        "block": 2
+      },
+      {
+        "name": "Statistics",
+        "path": "/stats",
+        "block": 2
+      },
+      {
+        "name": "Donate",
+        "path": "/donate",
+        "block": 2
+      },
+      {
+        "name": "Documentation",
+        "path": "https://docs.ufobot.ru",
+        "blank": true,
+        "block": 3
+      },
+      {
+        "name": "Support server",
+        "path": "https://discord.gg/qPrqVwR",
+        "blank": true,
+        "block": 3
+      }
+    ],
+    "darkTheme": "Dark theme",
+    "rights": "All rights were abducted"
+  }
+}
