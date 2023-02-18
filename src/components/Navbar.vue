@@ -10,10 +10,10 @@
         </v-btn>
       </v-toolbar-items>
       <v-spacer/>
-      <v-toolbar-items class="nav-links">
+      <v-toolbar-items>
         <v-btn @click="translate"><v-icon size="35" class="nav-icon">translate</v-icon></v-btn>
         <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=` +
-          `${encodeURIComponent(location + 'login')}&response_type=code&scope=identify%20guilds`"
+          `${encodeURIComponent(location + '/login')}&response_type=code&scope=identify%20guilds`"
                v-if="true">
           <v-icon size="20" class="nav-icon">{{ $t('Nav.login.icon') }}</v-icon>{{ $t('Nav.login.name') }}
         </v-btn>
@@ -36,13 +36,15 @@
 import i18n from "@/plugins/i18n";
 import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
+import {Language} from "@/types/Language"
 import {ref} from "vue";
 
-const location = window.location.href;
+const location = window.location.origin
+console.log(location)
 const mobileNav = ref(false);
 
 function translate() {
-  let language: "ru" | "en" = i18n.global.locale.value === "ru" ? "en" : "ru"
+  let language: Language = i18n.global.locale.value === "ru" ? "en" : "ru"
   localStorage.setItem("language", language);
   i18n.global.locale.value = language;
 }
@@ -70,6 +72,10 @@ function translate() {
   .mobileNav {
     display: none;
   }
+}
+
+.mobileNav {
+  margin-top: 10px;
 }
 
 .main-icon {
