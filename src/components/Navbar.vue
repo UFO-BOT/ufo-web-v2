@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-toolbar class="pr-3">
+    <v-toolbar class="pr-3" color="navbar">
       <v-app-bar-nav-icon class="nav-menu" @click="mobileNav = !mobileNav"></v-app-bar-nav-icon>
-      <router-link to="/"><img :src="UFOLogo" alt="UFO Logo" class="main-icon"></router-link>
+      <router-link to="/"><img class="main-icon" :src="UFOLogo" alt="UFO Logo"></router-link>
       <v-toolbar-items class="nav-links">
         <v-btn v-for="link in $tm('Nav.links')" :to="link.href ? '' : $rt(link.path)"
                :href="link.href ? $rt(link.path) : ''" :target="link.blank ? '_blank' : '_self'">
@@ -20,7 +20,7 @@
         <v-btn v-if="false" disabled class="login"><v-progress-circular indeterminate></v-progress-circular></v-btn>
       </v-toolbar-items>
     </v-toolbar>
-    <v-list v-if="mobileNav" class="mobileNav" color="primary">
+    <v-list v-if="mobileNav" class="mobileNav" bg-color="mobileNav" color="primary">
       <v-item-group @click="mobileNav = false">
         <v-list-item v-for="link in $tm('Nav.links')" :prepend-icon="$rt(link.icon)"
                      :to="link.href ? '' : $rt(link.path)" :href="link.href ? $rt(link.path) : ''"

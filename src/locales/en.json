@@ -84,5 +84,51 @@
     ],
     "darkTheme": "Dark theme",
     "rights": "All rights were abducted"
+  },
+  "Home": {
+    "title": "UFO",
+    "descriptions": [
+      "Unknown flying Discord bot",
+      "Flying plate for your server",
+      "Aliens will cooperate with your server",
+      "Don't show this to Ren TV",
+      "We managed to escape area 51"
+    ],
+    "invite": "Invite",
+    "featuresTitle": "Features",
+    "features": [
+      {
+        "name": "Economy",
+        "description": "Members can earn money and spend them in the shop. Who will become the most rich and experienced?"
+      },
+      {
+        "name": "Games",
+        "description": "In casino games you can have fun and bet your economy money. Please do not scream if you lose all your money!"
+      },
+      {
+        "name": "Utilities",
+        "description": "Bot contains several useful utilities that can help you in server management and communication"
+      },
+      {
+        "name": "Logs",
+        "description": "Bot can log messages deletions and edits and all server moderation actions"
+      },
+      {
+        "name": "Moderation",
+        "description": "Punish malicious violators of your server rules with warns, mutes, kicks and bans"
+      },
+      {
+        "name": "Automoderation",
+        "description": "And for some violations, the bot can punish members automatically!"
+      },
+      {
+        "name": "Greetings",
+        "description": "UFO will gladly greet new server members in channel and in DMs and give them roles"
+      },
+      {
+        "name": "Settings",
+        "description": "The bot has a convenient and intuitive control panel where you can customize the most of the features"
+      }
+    ]
   }
 }

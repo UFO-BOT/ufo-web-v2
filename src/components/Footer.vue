@@ -86,7 +86,7 @@ function updateTheme() {
 }
 
 .footer-link {
-  color: white;
+  color: rgb(var(--v-theme-footerLink));
   text-decoration: none;
   transition-duration: 200ms;
 }
