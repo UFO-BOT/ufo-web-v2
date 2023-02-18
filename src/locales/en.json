@@ -147,5 +147,19 @@
     "aliases": "Aliases",
     "permissions": "Required permissions",
     "close": "Close"
+  },
+  "Stats": {
+    "title": "Statistics",
+    "name": "Bot statistics",
+    "guilds": "Servers",
+    "users": "Users",
+    "channels": "Channels",
+    "emojis": "Emojis",
+    "ping": "Ping",
+    "bot": "Bot",
+    "database": "Database",
+    "shards": "Shards",
+    "status": "Status",
+    "ms": "ms"
   }
 }

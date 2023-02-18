@@ -40,7 +40,6 @@ import {Language} from "@/types/Language"
 import {ref} from "vue";
 
 const location = window.location.origin
-console.log(location)
 const mobileNav = ref(false);
 
 function translate() {

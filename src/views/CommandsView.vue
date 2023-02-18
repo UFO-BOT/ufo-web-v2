@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <div class="name"><b>{{ $t('Commands.name') }}</b></div>
+    <div class="header"><b>{{ $t('Commands.name') }}</b></div>
     <v-progress-circular v-if="!commands.length" size="60" width="5" indeterminate/>
     <v-expansion-panels v-if="commands.length" class="commands item-center" variant="accordion">
       <v-expansion-panel v-for="(category, i) of categories" bg-color="block">
@@ -73,7 +73,6 @@ import {Command} from "@/types/Command";
 import {ReactiveVariable} from "vue/macros";
 import GetUsage from "@/utils/GetUsage";
 import ParsePerms from "@/utils/ParsePerms";
-import i18n from "@/plugins/i18n";
 
 const categories = ['general', 'economy', 'games', 'utilities', 'moderation'];
 const icons = ['public', 'attach_money', 'phone_iphone', 'build', 'security'];
@@ -83,12 +82,11 @@ let dialogs: ReactiveVariable<Record<string, boolean>> = reactive({a: false});
 onMounted(async () => {
   let response = await fetch(config.API + '/public/commands');
   commands.value = await response.json();
-  console.log(commands.value)
 })
 </script>
 
 <style scoped>
-.name {
+.header {
   margin: 7px 0 12px 0;
   font-size: 2.5em;
 }
