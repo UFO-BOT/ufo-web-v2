@@ -1,10 +1,10 @@
 <template>
   <div class="center">
     <div class="name"><b>UFO</b></div>
-    <v-img :src="UFOLogo" class="img-center logo"></v-img>
+    <v-img :src="UFOLogo" class="item-center logo"></v-img>
     <span class="description"></span><br>
     <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=${encodeURIComponent
-    (location + 'landing')}&response_type=code&permissions=1515519995134&scope=bot`"
+    (location + '/landing')}&response_type=code&permissions=1515519995134&scope=bot`"
            size="x-large" color="primary" class="invite">
       <v-icon class="mr-2" size="large">discord</v-icon>{{ $t('Home.invite') }}
     </v-btn>
@@ -25,7 +25,7 @@ import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
 import i18n from "@/plugins/i18n";
 
-const location = window.location.href
+const location = window.location.origin
 let typed: Typed;
 function startTyped() {
   typed?.destroy();

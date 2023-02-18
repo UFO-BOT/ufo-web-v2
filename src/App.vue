@@ -38,8 +38,51 @@ img {
   -ms-user-select: none;
 }
 
-.img-center {
+.item-center {
   display: block!important;
   margin: 0 auto!important;
+}
+
+.tooltip {
+  background-color: rgb(var(--v-theme-tooltip))!important;
+  color: white!important;
+  opacity: 1!important;
+}
+
+code {
+  padding: .3rem .5rem!important;
+  font-size: .875em!important;
+  color: #c62f5a !important;
+  background-color: rgb(var(--v-theme-codeBG))!important;
+  box-shadow: 3px 3px 6px -3px rgb(var(--v-theme-shadow))!important;
+  border-radius: .25rem!important;
+  margin: 0 2px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::-moz-selection {
+  background: #4444ff;
+}
+
+::selection {
+  background: #4444ff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(var(--v-theme-scrollbarTrack));
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--v-theme-scrollbarThumb));
+  border-radius: 10px;
 }
 </style>

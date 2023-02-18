@@ -130,5 +130,22 @@
         "description": "The bot has a convenient and intuitive control panel where you can customize the most of the features"
       }
     ]
+  },
+  "Commands": {
+    "title": "Commands",
+    "name": "Commands",
+    "categories": {
+      "general": "General",
+      "economy": "Economy",
+      "games": "Games",
+      "utilities": "Utilities",
+      "moderation": "Moderation"
+    },
+    "boostRequired": "UFO Boost required",
+    "description": "Description",
+    "usage": "Usage",
+    "aliases": "Aliases",
+    "permissions": "Required permissions",
+    "close": "Close"
   }
 }
