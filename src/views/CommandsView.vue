@@ -4,7 +4,7 @@
     <v-progress-circular v-if="!commands.length" size="60" width="5" indeterminate/>
     <v-expansion-panels v-if="commands.length" class="commands item-center" variant="accordion">
       <v-expansion-panel v-for="(category, i) of categories" bg-color="block">
-        <v-expansion-panel-title class="category">
+        <v-expansion-panel-title class="category" ripple>
           <v-icon class="category-icon">{{ icons[i] }}</v-icon>
           {{ $t(`Commands.categories.${category}`) }}
         </v-expansion-panel-title>
@@ -73,11 +73,14 @@ import {Command} from "@/types/Command";
 import {ReactiveVariable} from "vue/macros";
 import GetUsage from "@/utils/GetUsage";
 import ParsePerms from "@/utils/ParsePerms";
+import i18n from "@/plugins/i18n";
 
 const categories = ['general', 'economy', 'games', 'utilities', 'moderation'];
 const icons = ['public', 'attach_money', 'phone_iphone', 'build', 'security'];
 let commands: Ref<Array<Command>> = ref([]);
 let dialogs: ReactiveVariable<Record<string, boolean>> = reactive({a: false});
+
+document.title = i18n.global.t('Commands.title')
 
 onMounted(async () => {
   let response = await fetch(config.API + '/public/commands');

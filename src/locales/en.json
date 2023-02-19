@@ -161,5 +161,60 @@
     "shards": "Shards",
     "status": "Status",
     "ms": "ms"
+  },
+  "Donate": {
+    "title": "Donate",
+    "name": "Donate",
+    "description": "Support us to get UFO Boosts! You can activate them on servers with command <code>boost</code><br>Activating the boost on the server opens bonus features on it:",
+    "features": [
+      {
+        "name": "Money for messages",
+        "description": "Set amount of money that will be given to members for messages with certain chance"
+      },
+      {
+        "name": "Punishments DM messages",
+        "description": "Set message with template variables that will be sent to kicked/banned members id DM"
+      },
+      {
+        "name": "Money bonuses",
+        "description": "Set daily and weekly bonuses on the server"
+      },
+      {
+        "name": "Increased limits",
+        "description": "Limit of items in the shop - 40 (instead of 15), giveaways - 25 (instead of 10), coupons - 25 (instead of 10)"
+      }
+    ],
+    "cards": {
+      "standard": {
+        "name": "Standard",
+        "perks": [
+          "Boosts for 2 servers",
+          "[R]on support server with permission to change nickname",
+          "Access to secret channel"
+        ],
+        "price": 39
+      },
+      "premium": {
+        "name": "Premium",
+        "perks": [
+          "Boosts for 4 servers",
+          "[R]role on support server with permission to view audit log",
+          "Access to secret channel"
+        ],
+        "price": 69
+      }
+    },
+    "perMonth": "/month",
+    "unauthorized": "Unauthorized",
+    "close": "Close"
+  },
+  "Login": {
+    "title": "Log in",
+    "name": "Logging in..."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "name": "You flew into outer space",
+    "home": "HOME"
   }
 }

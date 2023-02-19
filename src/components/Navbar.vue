@@ -14,10 +14,14 @@
         <v-btn @click="translate"><v-icon size="35" class="nav-icon">translate</v-icon></v-btn>
         <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=` +
           `${encodeURIComponent(location + '/login')}&response_type=code&scope=identify%20guilds`"
-               v-if="true">
+               v-if="!loadingUser && !user?.username">
           <v-icon size="20" class="nav-icon">{{ $t('Nav.login.icon') }}</v-icon>{{ $t('Nav.login.name') }}
         </v-btn>
-        <v-btn v-if="false" disabled class="login"><v-progress-circular indeterminate></v-progress-circular></v-btn>
+        <v-btn @click="mobileNav = false" to="/@me" v-if="user?.username">
+          <v-avatar class="mr-2"><img :src="user.avatarURL" class="user-avatar" alt="Avatar"></v-avatar>
+          <span class="user-username">{{ user.username }}</span>
+        </v-btn>
+        <v-btn v-if="loadingUser" disabled class="login"><v-progress-circular indeterminate/></v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-list v-if="mobileNav" class="mobileNav" bg-color="mobileNav" color="primary">
@@ -33,20 +37,31 @@
 </template>
 
 <script setup lang="ts">
+import {computed, onMounted, ref} from "vue";
+import {useStore} from "vuex";
 import i18n from "@/plugins/i18n";
 import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
 import {Language} from "@/types/Language"
-import {ref} from "vue";
 
 const location = window.location.origin
 const mobileNav = ref(false);
+const loadingUser = ref(false);
+const store = useStore();
 
 function translate() {
   let language: Language = i18n.global.locale.value === "ru" ? "en" : "ru"
   localStorage.setItem("language", language);
   i18n.global.locale.value = language;
 }
+
+let user = computed(() => store.getters.user)
+
+onMounted(async () => {
+  loadingUser.value = true;
+  await store.dispatch('getUser');
+  loadingUser.value = false;
+})
 </script>
 
 <style scoped>
@@ -96,5 +111,10 @@ function translate() {
 
 .login {
   opacity: 1;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
 }
 </style>
