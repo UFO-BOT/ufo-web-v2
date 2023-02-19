@@ -60,19 +60,10 @@
 import {onMounted, Ref, ref} from "vue";
 import config from "@/config.json";
 import {Stats} from "@/types/Stats";
-import i18n from "@/plugins/i18n";
 
 const values = ['guilds', 'users', 'channels', 'emojis'];
-const shardsHeaders = [
-  {title: '#', align: 'start', key: 'id'},
-  {title: i18n.global.t('Stats.status'), key: 'ready'},
-  {title: i18n.global.t('Stats.guilds'), key: 'guilds'},
-  {title: i18n.global.t('Stats.users'), key: 'users'},
-  {title: i18n.global.t('Stats.ping'), key: 'ping'},
-]
 let statistics: Ref<Stats> = ref({} as Stats);
 let shards: Ref<Record<string, any>> = ref([]);
-let itemsPerPage = 5;
 
 onMounted(async () => {
   let response = await fetch(config.API + '/public/stats');
@@ -84,7 +75,6 @@ onMounted(async () => {
     users: shard.users,
     ping: shard.ping + ' ms'
   }})
-  console.log(shards.value)
 })
 </script>
 
