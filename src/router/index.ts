@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue"
 import CommandsView from "@/views/CommandsView.vue"
 import StatsView from "@/views/StatsView.vue"
 import DonateView from "@/views/DonateView.vue"
+import MeView from "@/views/MeView.vue"
 import LoginView from "@/views/LoginView.vue"
 import NotFoundView from "@/views/NotFoundView.vue"
 
@@ -26,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/donate',
     name: 'donate',
     component: DonateView
+  },
+  {
+    path: '/@me',
+    name: 'me',
+    component: MeView
   },
   {
     path: '/login',

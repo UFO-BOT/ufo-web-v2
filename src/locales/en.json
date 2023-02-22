@@ -208,6 +208,23 @@
     "unauthorized": "Unauthorized",
     "close": "Close"
   },
+  "Me": {
+    "logout": "LOG OUT",
+    "invite": "Invite",
+    "settings": "Settings",
+    "leaders": "Leaders",
+    "show": "Show",
+    "noGuilds": "No servers to add or configure the bot",
+    "badges": {
+      "developer": "Developer",
+      "moderator": "Moderator",
+      "support": "Support",
+      "tester": "Tester",
+      "donator": "Donator",
+      "premium_donator": "Premium donator",
+      "bug_hunter": "Bug hunter"
+    }
+  },
   "Login": {
     "title": "Log in",
     "name": "Logging in..."

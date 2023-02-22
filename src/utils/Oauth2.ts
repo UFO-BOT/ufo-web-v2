@@ -32,6 +32,18 @@ export default class Oauth2 {
         return response.json();
     }
 
+    public static async revokeToken(accessToken: string): Promise<Oauth2Token | null> {
+        let response = await fetch(config.API + '/oauth2/token/revoke', {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: accessToken
+            }
+        });
+        if(!response.ok) return null;
+        return response.json();
+    }
+
     public static async getUser(token: string): Promise<User | null> {
         let response = await fetch(config.DiscordAPI + '/users/@me', {
             headers: {

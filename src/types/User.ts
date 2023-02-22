@@ -14,4 +14,6 @@ export interface User {
     flags?: number
     premium_type?: 0 | 1 | 2
     public_flags?: number
+
+    botBadges?: []
 }
