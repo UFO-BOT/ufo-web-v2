@@ -18,7 +18,7 @@
               <span>{{ leader.user.tag }}</span>
           </router-link>
         </td>
-        <td>{{ leader[sortBy] === null ? 'Infinity' : leader[sortBy] }}</td>
+        <td>{{ leader[sort] === null ? 'Infinity' : leader[sort] }}</td>
       </tr>
       </tbody>
     </v-table>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, onMounted, ref} from "vue";
 import config from "@/config.json";
 import {useRoute} from "vue-router";
 import i18n from "@/plugins/i18n";
@@ -47,6 +47,7 @@ let guildName = ref(i18n.global.t('Leaderboard.loading'))
 let pageCount = ref(0)
 let leaders = ref([])
 let sortBy = ref('balance')
+let sort = ref('balance')
 const sortItems = computed(() => [
   {title: i18n.global.t('Leaderboard.balance'), value: 'balance'},
   {title: i18n.global.t('Leaderboard.xp'), value: 'xp'}
@@ -73,6 +74,7 @@ async function loadLeaderboard() {
   pageCount.value = body.pageCount;
   leaders.value = body.leaders;
   loading.value = false;
+  sort.value = sortBy.value;
 }
 
 onMounted(async () => {
@@ -86,8 +88,9 @@ onMounted(async () => {
 }
 
 .leaderboard-table {
-  background-color: rgb(var(--v-theme-block))!important;
   width: 1200px;
+  background-color: rgb(var(--v-theme-block))!important;
+  box-shadow: 0 0 8px -3px rgb(var(--v-theme-shadow));
 }
 
 .user-link {

@@ -75,7 +75,7 @@ const showItems = computed(() => [
 ]);
 let leaders = ref(false);
 let loggingOut = ref(false);
-let loadingGuilds = ref(false);
+let loadingGuilds = ref(true);
 
 let user = computed(() => {
   document.title = store.getters.user.username ?? '';
