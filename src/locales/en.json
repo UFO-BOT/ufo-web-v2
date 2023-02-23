@@ -225,6 +225,14 @@
       "bug_hunter": "Bug hunter"
     }
   },
+  "Leaderboard": {
+    "title": "Leaderboard",
+    "loading": "Loading...",
+    "user": "User",
+    "sort": "Sort",
+    "balance": "Balance",
+    "xp": "XP"
+  },
   "Login": {
     "title": "Log in",
     "name": "Logging in..."

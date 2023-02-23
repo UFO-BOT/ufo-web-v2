@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="header">{{ $t('Stats.name') }}</div>
-    <div class="stats_container">
+    <div class="stats-container">
       <div class="stats-element" v-for="value of values">
         <v-progress-circular v-if="!statistics.shards?.length" :size="45" width="4" indeterminate></v-progress-circular>
         <div class="value" v-else>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="header">{{ $t('Stats.ping') }}</div>
-    <div class="stats_container">
+    <div class="stats-container">
       <div class="stats-element">
         <v-progress-circular v-if="!statistics.shards?.length" :size="45" width="4"  indeterminate></v-progress-circular>
         <div class="value" v-else :style="{color: statistics.ping.bot < 300 ?
@@ -87,7 +87,7 @@ onMounted(async () => {
   font-size: 2em;
 }
 
-.stats_container {
+.stats-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

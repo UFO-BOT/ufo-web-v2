@@ -69,10 +69,10 @@ import i18n from "@/plugins/i18n";
 if(!localStorage.getItem('token')) window.location.replace('/');
 
 const store = useStore();
-const showItems = [
-  {title: i18n.global.t('Me.settings'), value:false},
+const showItems = computed(() => [
+  {title: i18n.global.t('Me.settings'), value: false},
   {title: i18n.global.t('Me.leaders'), value: true}
-];
+]);
 let leaders = ref(false);
 let loggingOut = ref(false);
 let loadingGuilds = ref(false);

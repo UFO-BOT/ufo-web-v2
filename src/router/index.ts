@@ -4,6 +4,7 @@ import CommandsView from "@/views/CommandsView.vue"
 import StatsView from "@/views/StatsView.vue"
 import DonateView from "@/views/DonateView.vue"
 import MeView from "@/views/MeView.vue"
+import LeaderboardView from "@/views/LeaderboardView.vue"
 import LoginView from "@/views/LoginView.vue"
 import NotFoundView from "@/views/NotFoundView.vue"
 
@@ -32,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/@me',
     name: 'me',
     component: MeView
+  },
+  {
+    path: '/leaderboard/:id',
+    name: 'leaderboard',
+    component: LeaderboardView
   },
   {
     path: '/login',
