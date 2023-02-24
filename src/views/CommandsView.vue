@@ -20,7 +20,7 @@
                 <v-card color="modal">
 
                   <v-card-title class="cmd-name">
-                    {{ command.config[$i18n.locale].name }}
+                    {{ command.config[$i18n.locale].name.toUpperCase() }}
                     <v-btn icon variant="text" v-if="command.boostRequired">
                       <v-tooltip content-class="tooltip" activator="parent" location="top">
                         {{ $t('Commands.boostRequired') }}

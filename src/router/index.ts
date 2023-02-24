@@ -5,48 +5,54 @@ import StatsView from "@/views/StatsView.vue"
 import DonateView from "@/views/DonateView.vue"
 import MeView from "@/views/MeView.vue"
 import LeaderboardView from "@/views/LeaderboardView.vue"
+import LeaderboardMemberView from "@/views/LeaderboardMemberView.vue"
 import LoginView from "@/views/LoginView.vue"
 import NotFoundView from "@/views/NotFoundView.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: HomeView
   },
   {
     path: '/commands',
-    name: 'commands',
+    name: 'Commands',
     component: CommandsView
   },
   {
     path: '/stats',
-    name: 'stats',
+    name: 'Stats',
     component: StatsView
   },
   {
     path: '/donate',
-    name: 'donate',
+    name: 'Donate',
     component: DonateView
   },
   {
     path: '/@me',
-    name: 'me',
+    name: 'Me',
     component: MeView
   },
   {
     path: '/leaderboard/:id',
-    name: 'leaderboard',
+    name: 'Leaderboard',
     component: LeaderboardView
   },
   {
+    path: '/leaderboard/:id/:user',
+    name: 'LeaderboardMember',
+    component: LeaderboardMemberView
+  },
+  {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: LoginView
   },
   {
     path: '/:catchAll(.*)',
-    name: 'notfound',
+    name: 'NotFound',
     component: NotFoundView
   }
 ]

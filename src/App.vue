@@ -43,6 +43,10 @@ img {
   margin: 0 auto!important;
 }
 
+.fit-content {
+  width: fit-content!important;
+}
+
 .tooltip {
   background-color: rgb(var(--v-theme-tooltip))!important;
   color: white!important;

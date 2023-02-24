@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="name"><b>UFO</b></div>
-    <v-img :src="UFOLogo" class="item-center logo"></v-img>
+    <v-img :src="UFOLogo" class="logo item-center"></v-img>
     <span class="description"></span><br>
     <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=${encodeURIComponent
     (location + '/landing')}&response_type=code&permissions=1515519995134&scope=bot`"

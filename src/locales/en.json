@@ -233,6 +233,24 @@
     "balance": "Balance",
     "xp": "XP"
   },
+  "LeaderboardMember": {
+    "title": "Leaderboard",
+    "server": "Server",
+    "user": "User",
+    "rank": "Leaderboard rank",
+    "sort": "Sort",
+    "balance": "Balance",
+    "xp": "XP",
+    "resetXP": "Reset XP",
+    "deleteMember": "Delete member",
+    "deleteConfirm": "Are you sure you want to delete [M] from server leaderboard?",
+    "errors": {
+      "invalidBalance": "Balance must be an integer"
+    },
+    "submit": "Submit",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
   "Login": {
     "title": "Log in",
     "name": "Logging in..."

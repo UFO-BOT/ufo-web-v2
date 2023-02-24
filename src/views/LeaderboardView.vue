@@ -18,7 +18,7 @@
               <span>{{ leader.user.tag }}</span>
           </router-link>
         </td>
-        <td>{{ leader[sort] === null ? 'Infinity' : leader[sort] }}</td>
+        <td>{{ Number(leader[sort]).toLocaleString($i18n.locale) }}</td>
       </tr>
       </tbody>
     </v-table>

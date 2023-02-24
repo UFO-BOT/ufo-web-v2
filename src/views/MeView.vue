@@ -29,7 +29,7 @@
                   :label="$t('Me.show')" color="primary"/>
         <div v-if="guilds.filter(guild => guild.manageable || (leaders && guild.invited)).length <= 0 && !loadingGuilds"
              class="noGuilds">¯\_(ツ)_/¯</div>
-        <div class="guilds-container">
+        <div v-if="!loadingGuilds" class="guilds-container">
           <div class="guild" v-for="guild in guilds.filter(g => g.manageable || (leaders && g.invited))">
             <div>
               <span>
@@ -75,7 +75,7 @@ const showItems = computed(() => [
 ]);
 let leaders = ref(false);
 let loggingOut = ref(false);
-let loadingGuilds = ref(true);
+let loadingGuilds = ref(false);
 
 let user = computed(() => {
   document.title = store.getters.user.username ?? '';
@@ -90,8 +90,7 @@ function generateInvite(guildID: string) {
 }
 
 async function loadGuilds(reload?: boolean) {
-  if(reload) store.state.guilds = [];
-  if(!guilds.value.length) loadingGuilds.value = true;
+  if(reload) loadingGuilds.value = true;
   await store.dispatch('getGuilds')
   loadingGuilds.value = false;
 }
@@ -106,6 +105,7 @@ async function logout() {
 }
 
 onMounted(async () => {
+  if(!guilds.value.length) loadingGuilds.value = true;
   await store.dispatch('getUserBadges');
   await loadGuilds();
 })
