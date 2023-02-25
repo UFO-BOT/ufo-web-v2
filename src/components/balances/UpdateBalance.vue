@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 import {LeaderboardMember} from "@/types/LeaderboardMember";
 import {ReactiveVariable} from "vue/macros";
 import {UpdateBalanceForm} from "@/types/UpdateBalanceForm";

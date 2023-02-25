@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, ref} from "vue";
+import {ref} from "vue";
 import {LeaderboardMember} from "@/types/LeaderboardMember";
 import {useRoute} from "vue-router";
 import config from "@/config.json";
