@@ -13,10 +13,10 @@
         </v-card-title>
         <v-card-text class="mt-4">
           <v-form v-model="valid">
-            <v-text-field v-model="updateBalance.balance" class="ma-0 pa-0" :label="$t('LeaderboardMember.balance')"
-                        :rules="rules" hide-details="auto"/>
-            <v-checkbox v-model="updateBalance.resetXP" :label="$t('LeaderboardMember.resetXP')"
-                        hide-details color="primary"/>
+            <v-text-field v-model="updateBalance.balance" class="ma-0 pa-0" color="primary"
+                          :label="$t('LeaderboardMember.balance')" :rules="rules" hide-details="auto"/>
+            <v-checkbox v-model="updateBalance.resetXP" :label="$t('LeaderboardMember.resetXP')" color="primary"
+                        hide-details/>
           </v-form>
         </v-card-text>
         <v-divider></v-divider>

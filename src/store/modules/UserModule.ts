@@ -38,6 +38,7 @@ export const UserModule: Module<User, any> = {
             ctx.commit('updateBadges', badges)
         }
     },
+
     mutations: {
         updateUser(state, user) {
             Object.assign(state, user)
@@ -47,6 +48,7 @@ export const UserModule: Module<User, any> = {
             state.botBadges = badges
         }
     },
+
     getters: {
         user(state) {
             return state

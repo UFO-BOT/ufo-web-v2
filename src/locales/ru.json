@@ -227,6 +227,66 @@
       "bug_hunter": "Охотник за багами"
     }
   },
+  "Guild": {
+    "links": [
+      {
+        "name": "Основное",
+        "path": "general",
+        "icon": "settings"
+      },
+      {
+        "name": "Экономика",
+        "path": "economy",
+        "icon": "attach_money"
+      },
+      {
+        "name": "Команды",
+        "path": "commands",
+        "icon": "list"
+      },
+      {
+        "name": "Модерация",
+        "path": "moderation",
+        "icon": "security"
+      },
+      {
+        "name": "Логи",
+        "path": "logs",
+        "icon": "article"
+      },
+      {
+        "name": "Приветствия",
+        "path": "greetings",
+        "icon": "person_add"
+      }
+    ],
+    "boost": {
+      "name": "Буст",
+      "path": "boost",
+      "icon": "grade"
+    },
+    "loading": "Загрузка...",
+    "submitted": "Сохранено!",
+    "error": "Ошибка",
+    "close": "Закрыть"
+  },
+  "GuildGeneral": {
+    "title": "Основное",
+    "subtitles": {
+      "prefix": "Префикс",
+      "language": "Язык",
+      "commands": "Команд",
+      "interface": "Интерфейса"
+    },
+    "errors": {
+      "noPrefix": "Введите префикс",
+      "prefixLength": "Длина префикса не должна превышать 20 символов",
+      "invalidChars": "Префикс содержит недопустимые символы"
+    },
+    "ru": "Русский",
+    "en": "Английский",
+    "submit": "Сохранить"
+  },
   "Leaderboard": {
     "title": "Лидеры",
     "loading": "Загрузка...",

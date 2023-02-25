@@ -45,7 +45,7 @@
                        variant="outlined" :href="generateInvite(guild.id)">{{ $t('Me.invite') }}
                 </v-btn>
                 <v-btn v-if="guild.invited && guild.manageable" class="action-button" color="blue-grey lighten-1"
-                       variant="outlined" :to="`/server/${guild.id}/general`">{{ $t('Me.settings') }}
+                       variant="outlined" :to="`/guilds/${guild.id}/general`">{{ $t('Me.settings') }}
                 </v-btn>
                 <v-btn v-if="leaders && guild.invited" class="action-button" color="warning"
                        variant="outlined" :to="`/leaderboard/${guild.id}`">{{ $t('Me.leaders') }}
@@ -89,8 +89,8 @@ function generateInvite(guildID: string) {
       `&guild_id=${guildID}&scope=bot`
 }
 
-async function loadGuilds(reload?: boolean) {
-  if(reload) loadingGuilds.value = true;
+async function loadGuilds() {
+  loadingGuilds.value = true;
   await store.dispatch('getGuilds')
   loadingGuilds.value = false;
 }
@@ -105,9 +105,8 @@ async function logout() {
 }
 
 onMounted(async () => {
-  if(!guilds.value.length) loadingGuilds.value = true;
-  await store.dispatch('getUserBadges');
-  await loadGuilds();
+  store.dispatch('getUserBadges').then();
+  if(guilds.value.length <= 1) await loadGuilds();
 })
 </script>
 

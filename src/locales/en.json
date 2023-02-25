@@ -225,6 +225,66 @@
       "bug_hunter": "Bug hunter"
     }
   },
+  "Guild": {
+    "links": [
+      {
+        "name": "General",
+        "path": "general",
+        "icon": "settings"
+      },
+      {
+        "name": "Economy",
+        "path": "economy",
+        "icon": "attach_money"
+      },
+      {
+        "name": "Commands",
+        "path": "commands",
+        "icon": "list"
+      },
+      {
+        "name": "Moderation",
+        "path": "moderation",
+        "icon": "security"
+      },
+      {
+        "name": "Logs",
+        "path": "logs",
+        "icon": "article"
+      },
+      {
+        "name": "Greetings",
+        "path": "greetings",
+        "icon": "person_add"
+      }
+    ],
+    "boost": {
+      "name": "Boost",
+      "path": "boost",
+      "icon": "grade"
+    },
+    "loading": "Loading...",
+    "submitted": "Submitted!",
+    "error": "Error",
+    "close": "Close"
+  },
+  "GuildGeneral": {
+    "title": "General",
+    "subtitles": {
+      "prefix": "Prefix",
+      "language": "Language",
+      "commands": "Commands",
+      "interface": "Interface"
+    },
+    "errors": {
+      "noPrefix": "Enter prefix",
+      "prefixLength": "Prefix cannot be longer than 20 characters",
+      "invalidChars": "Prefix contains invalid characters"
+    },
+    "ru": "Russian",
+    "en": "English",
+    "submit": "Submit"
+  },
   "Leaderboard": {
     "title": "Leaderboard",
     "loading": "Loading...",

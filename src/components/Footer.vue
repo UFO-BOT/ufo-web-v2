@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-footer color="footer" class="footer">
+    <v-footer class="footer" color="footer">
       <div class="footer-flex pa-4">
         <div class="footer-block">
           <div class="bot-name">
@@ -50,6 +50,7 @@ function updateTheme() {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .footer-flex {

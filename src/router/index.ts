@@ -4,6 +4,8 @@ import CommandsView from "@/views/CommandsView.vue"
 import StatsView from "@/views/StatsView.vue"
 import DonateView from "@/views/DonateView.vue"
 import MeView from "@/views/MeView.vue"
+import GuildView from "@/views/GuildView.vue"
+import GuildGeneralView from "@/views/guild/GuildGeneralView.vue"
 import LeaderboardView from "@/views/LeaderboardView.vue"
 import LeaderboardMemberView from "@/views/LeaderboardMemberView.vue"
 import LoginView from "@/views/LoginView.vue"
@@ -34,6 +36,18 @@ const routes: Array<RouteRecordRaw> = [
     path: '/@me',
     name: 'Me',
     component: MeView
+  },
+  {
+    path: '/guilds/:id',
+    name: 'Guild',
+    component: GuildView,
+    children: [
+      {
+        path: '/guilds/:id/general',
+        name: 'GuildGeneral',
+        component: GuildGeneralView
+      }
+    ]
   },
   {
     path: '/leaderboard/:id',

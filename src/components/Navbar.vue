@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar class="pr-3" color="navbar">
+    <v-toolbar class="pr-3 navbar" color="navbar" elevation="5">
       <v-app-bar-nav-icon class="nav-menu" @click="mobileNav = !mobileNav"></v-app-bar-nav-icon>
       <router-link to="/"><img class="main-icon" :src="UFOLogo" alt="UFO Logo"></router-link>
       <v-toolbar-items class="nav-links">
@@ -24,9 +24,9 @@
         <v-btn v-if="loadingUser" disabled class="login"><v-progress-circular indeterminate/></v-btn>
       </v-toolbar-items>
     </v-toolbar>
-    <v-list v-if="mobileNav" class="mobileNav" bg-color="mobileNav" color="primary">
+    <v-list v-if="mobileNav" class="mobileNav" bg-color="mobileNav" color="primary" elevation="3">
       <v-item-group @click="mobileNav = false">
-        <v-list-item v-for="link in $tm('Nav.links')" :prepend-icon="$rt(link.icon)"
+        <v-list-item v-for="link in $tm('Nav.links')" min-height="55" :prepend-icon="$rt(link.icon)"
                      :to="link.href ? '' : $rt(link.path)" :href="link.href ? $rt(link.path) : ''"
                      :target="link.blank ? '_blank' : '_self'">
           {{ $rt(link.name) }}
@@ -65,6 +65,10 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.navbar {
+ z-index: 1;
+}
+
 @media screen and (max-width: 1000px) {
   .nav-menu {
     display: block;
@@ -89,7 +93,7 @@ onMounted(async () => {
 }
 
 .mobileNav {
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .main-icon {

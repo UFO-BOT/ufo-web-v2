@@ -16,7 +16,7 @@
         <v-progress-circular v-if="!statistics.shards?.length" :size="45" width="4"  indeterminate></v-progress-circular>
         <div class="value" v-else :style="{color: statistics.ping.bot < 300 ?
         '#00f56e' : (statistics.ping.bot > 1000 ? '#e20000' : '#ffd70c')}">
-          {{ statistics.ping.bot }} ms
+          {{ statistics.ping.bot }} {{ $t('Stats.ms') }}
         </div>
         <div class="value-name">{{ $t('Stats.bot') }}</div>
       </div>
@@ -24,7 +24,7 @@
         <v-progress-circular v-if="!statistics.shards?.length" :size="45" width="4" indeterminate></v-progress-circular>
         <div class="value" v-else :style="{color: statistics.ping.database < 300 ?
         '#00f56e' : (statistics.ping.database > 1000 ? '#e20000' : '#ffd70c')}">
-          {{ statistics.ping.database }} ms
+          {{ statistics.ping.database }} {{ $t('Stats.ms') }}
         </div>
         <div class="value-name">{{ $t('Stats.database') }}</div>
       </div>
