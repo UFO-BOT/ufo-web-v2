@@ -85,6 +85,27 @@
     "darkTheme": "Dark theme",
     "rights": "All rights were abducted"
   },
+  "DurationPicker": {
+    "input": "Enter",
+    "durationInput": "Duration input",
+    "enterDuration": "Enter duration",
+    "units": {
+      "seconds": "Seconds",
+      "minutes": "Minutes",
+      "hours": "Hours",
+      "days": "Days"
+    },
+    "invalidNumber": "Number must be a positive integer",
+    "tooLongDuration": "Too long duration"
+  },
+  "ResetBalance": {
+    "resetBalance": "Reset all balances",
+    "attention": "ATTENTION!",
+    "confirm": "This action will reset balances of all members. This is irreversible. Are you sure?",
+    "name": "Enter server name",
+    "reset": "Reset",
+    "cancel": "Cancel"
+  },
   "Home": {
     "title": "UFO",
     "descriptions": [
@@ -283,6 +304,53 @@
     },
     "ru": "Russian",
     "en": "English",
+    "submit": "Submit"
+  },
+  "GuildEconomy": {
+    "title": "Economy",
+    "subtitles": {
+      "work": "Work",
+      "moneybags": "Moneybags",
+      "salary": "Salary",
+      "cooldown": "Cooldown",
+      "money": "Money",
+      "moneySymbol": "Money symbol",
+      "symbol": "Symbol",
+      "moneySymbolHint": "To use emoji, enter it in <:name:id> format",
+      "minBet": "Minimal bet",
+      "bet": "Bet",
+      "commission": "Commission",
+      "duelCommission": "Applies to duel",
+      "resetBalance": "Reset all balances",
+      "shop": "Shop",
+      "deleteItem": "Delete item",
+      "deleteConfirm": "Are you sure you want to delete item [I]? This action is irreversible",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "create": "Create",
+      "createItem": "Create item",
+      "general": "General",
+      "name": "Name",
+      "description": "Description",
+      "values": "Values",
+      "price": "Price",
+      "xp": "XP",
+      "roles": "Roles",
+      "addRole": "Add role",
+      "removeRole": "Remove role",
+      "itemsLimit": "Items limit reached",
+      "percent": "Percent",
+      "from": "From",
+      "to": "To"
+    },
+    "errors": {
+      "invPosNumber": "Enter a positive integer",
+      "invNumber": "Enter an integer",
+      "invMoneySymbol": "Money symbol may not be longer than 50 characters",
+      "invCommission": "Commission must be an integer not less than 0 and not more than 100",
+      "invItemName": "Item must have a name not longer than 50 characters",
+      "invItemDescription": "Description may not be longer than 200 characters"
+    },
     "submit": "Submit"
   },
   "Leaderboard": {

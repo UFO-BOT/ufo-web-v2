@@ -52,8 +52,6 @@ const rules = [
   (value: number) => (!isNaN(value) && !(value % 1)) || i18n.global.t('LeaderboardMember.errors.invalidBalance')
 ]
 
-document.title = i18n.global.t('LeaderboardMember.title')
-
 async function submit() {
   loading.value = true;
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/balances/${props.member.user.id}`, {

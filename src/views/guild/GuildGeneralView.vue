@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-form>
+    <v-form v-model="valid">
       <div class="subtitle">{{ $t('GuildGeneral.subtitles.prefix') }}</div>
       <v-text-field v-model="settings.prefix" class="prefix" color="primary" counter="20" :rules="prefixRules"
                     :label="$t('GuildGeneral.subtitles.prefix')"/>
@@ -19,17 +19,17 @@
 </template>
 
 <script setup lang="ts">
-import {computed, Ref, ref} from "vue";
+import {computed, reactive, Ref, ref} from "vue";
 import {useRoute} from "vue-router";
-import {useStore} from "vuex";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import i18n from "@/plugins/i18n";
+import {ReactiveVariable} from "vue/macros";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
 const route = useRoute();
-let settings: Ref<GuildSettings> = ref(JSON.parse(JSON.stringify(props.settings)));
+let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
 const languageItems = computed(() => [
@@ -54,11 +54,11 @@ async function submit() {
           Authorization: localStorage.getItem('token') as string,
           'Content-Type': 'application/json'
         }, body: JSON.stringify({
-          prefix: settings.value.prefix,
-          language: settings.value.language
+          prefix: settings.prefix,
+          language: settings.language
         })
       })
-  if(response.ok) emit('submitted', 'success', settings.value)
+  if(response.ok) emit('submitted', 'success', settings)
   else emit('submitted', 'error')
   submitting.value = false;
 }

@@ -28,15 +28,12 @@ import {ref} from "vue";
 import {LeaderboardMember} from "@/types/LeaderboardMember";
 import {useRoute} from "vue-router";
 import config from "@/config.json";
-import i18n from "@/plugins/i18n";
 
 const props = defineProps<{member: LeaderboardMember}>()
 const emit = defineEmits(['delete'])
 const route = useRoute()
 let dialog = ref(false)
 let loading = ref(false)
-
-document.title = i18n.global.t('LeaderboardMember.title')
 
 async function submit() {
   loading.value = true;

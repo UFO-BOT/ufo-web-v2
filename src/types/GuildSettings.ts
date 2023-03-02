@@ -20,6 +20,8 @@ export interface GuildSettings {
         high: number
         cooldown: number
     }
+    commission: number
+    duelCommission: boolean
     minBet: number
     boost: boolean
 }
