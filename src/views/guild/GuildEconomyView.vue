@@ -38,6 +38,8 @@
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.resetBalance') }}</div>
       <ResetBalance :guild="guild"/>
       <br>
+      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.shop') }}</div>
+      <Items/>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
@@ -55,9 +57,10 @@ import {ReactiveVariable} from "vue/macros";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import i18n from "@/plugins/i18n";
+import {Guild} from "@/types/Guild";
 import DurationPicker from "@/components/DurationPicker.vue";
 import ResetBalance from "@/components/ResetBalance.vue";
-import {Guild} from "@/types/Guild";
+import Items from "@/components/items/Items.vue";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
