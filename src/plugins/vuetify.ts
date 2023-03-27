@@ -8,7 +8,7 @@ import { createVuetify } from 'vuetify'
 
 export default createVuetify({
     theme: {
-        defaultTheme: localStorage.getItem('theme') as 'light' | 'dark',
+        defaultTheme: localStorage.getItem('theme') ?? 'dark' as 'light' | 'dark',
         themes: {
             dark: {
                 dark: true,
