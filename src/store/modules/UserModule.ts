@@ -20,7 +20,6 @@ export const UserModule: Module<User, any> = {
                 user = await Oauth2.getUser(token.accessToken);
             }
             if(!user) return;
-            user.tag = user.username + '#' + user.discriminator;
             user.avatarURL = AvatarURL(user);
             ctx.commit('updateUser', user);
         },

@@ -15,7 +15,7 @@
         <td class="text-left">
           <router-link class="user-link" :to="`/leaderboard/${$route.params.id}/${leader.user.id}`">
             <img :src="leader.user.avatar" class="user-avatar" alt="">
-              <span>{{ leader.user.tag }}</span>
+              <span>{{ leader.user.username }}</span>
           </router-link>
         </td>
         <td>{{ Number(leader[sort]).toLocaleString($i18n.locale) }}</td>

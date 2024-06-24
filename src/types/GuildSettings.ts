@@ -23,5 +23,14 @@ export interface GuildSettings {
     commission: number
     duelCommission: boolean
     minBet: number
+    logs: {
+        list: Record<string, {
+            enabled: boolean
+            channel: string | null
+        }>
+        ignore: {
+            channels: Array<string>
+        }
+    }
     boost: boolean
 }

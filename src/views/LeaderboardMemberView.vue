@@ -4,7 +4,8 @@
       <v-progress-circular v-if="loading" :size="80" :width="6" indeterminate/>
       <div v-else>
         <v-img :lazy-src="member.user.avatar" :src="member.user.avatar" class="member-avatar item-center"/>
-        <div class="member-tag">{{ member.user.tag }}</div>
+        <div class="member-global-name">{{ member.user.global_name }}</div>
+        <div class="member-username">{{ member.user.username }}</div>
         <div class="mb-1">
           <div class="subtitle">{{ $t('LeaderboardMember.server') }}</div>
           <div class="guild-name">{{ guildName }}</div>
@@ -26,6 +27,9 @@
         <div v-if="manageable">
           <v-divider class="mt-2 mb-2"></v-divider>
           <div class="member-flex">
+            <v-btn icon variant="text" color="primary" size="40" :to="`/leaderboard/${route.params.id}`">
+              <v-icon>keyboard_return</v-icon>
+            </v-btn>
             <UpdateBalance :member="member" @update="updateBalance"/>
             <DeleteBalance :member="member" @delete="deleteBalance"/>
           </div>
@@ -88,7 +92,7 @@ onMounted(async () => {
 
 <style scoped>
 .member-card {
-  width: 600px;
+  max-width: 600px;
   margin: 20px auto;
   padding: 15px;
   border-radius: 5px;
@@ -102,10 +106,17 @@ onMounted(async () => {
   border-radius: 50%;
 }
 
-.member-tag {
-  margin-top: 5px;
-  font-size: 1.3em;
-  margin-bottom: 5px;
+.member-global-name {
+  margin-top: 10px;
+  font-size: 1.7em;
+  line-height: 1em;
+}
+
+.member-username {
+  font-size: 1.2em;
+  color: rgb(var(--v-theme-description));
+  margin-bottom: 10px;
+  opacity: 0.7;
 }
 
 .member-flex {

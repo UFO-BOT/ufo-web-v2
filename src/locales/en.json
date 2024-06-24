@@ -362,6 +362,36 @@
     },
     "submit": "Submit"
   },
+  "GuildLogs": {
+    "title": "Logs",
+    "subtitles": {
+      "logs": "Logs",
+      "channel": "Channel",
+      "ignoredChannels": "Ignored channels",
+      "channels": "Channels",
+      "ignoredChannelsHint": "Messages logs will ignore these channels"
+    },
+    "categories": {
+      "messages": "Messages",
+      "roles": "Roles",
+      "moderation": "Moderation"
+    },
+    "logs": {
+      "messageDelete": "Message delete",
+      "messageEdit": "Message edit",
+      "messageDeleteBulk": "Messages clear",
+      "roleCreate": "Role create",
+      "roleEdit": "Role edit",
+      "roleDelete": "Role delete",
+      "moderationWarn": "Member warn",
+      "moderationMute": "Member mute",
+      "moderationKick": "Member kick",
+      "moderationBan": "Member ban",
+      "moderationUnmute": "Member unmute",
+      "moderationUnban": "Member unban"
+    },
+    "submit": "Submit"
+  },
   "Leaderboard": {
     "title": "Leaderboard",
     "loading": "Loading...",

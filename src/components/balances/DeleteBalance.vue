@@ -1,14 +1,14 @@
 <template>
   <div>
-    <v-btn icon variant="text" size="40" @click="dialog = true">
-      <v-icon color="red">delete</v-icon>
+    <v-btn icon variant="text" color="red" size="40" @click="dialog = true">
+      <v-icon>delete</v-icon>
     </v-btn>
     <v-dialog v-model="dialog" width="500px">
       <v-card color="modal">
         <v-card-title class="modal-header">{{ $t('LeaderboardMember.deleteMember') }}</v-card-title>
         <v-card-text
             v-html="$t('LeaderboardMember.deleteConfirm').replace('[M]',
-            `<code>${member.user.tag}</code>`)">
+            `<code>${member.user.username}</code>`)">
         </v-card-text>
         <v-divider/>
         <v-card-actions>

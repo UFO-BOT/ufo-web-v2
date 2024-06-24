@@ -6,7 +6,7 @@
     <v-dialog v-model="dialog" width="500px">
       <v-card color="modal">
         <v-card-title class="modal-header">
-          <div>{{ props.member.user.tag }}</div>
+          <div>{{ props.member.user.username }}</div>
           <v-btn icon variant="text" @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>

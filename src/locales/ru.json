@@ -364,6 +364,36 @@
     },
     "submit": "Сохранить"
   },
+  "GuildLogs": {
+    "title": "Логи",
+    "subtitles": {
+      "logs": "Логи",
+      "channel": "Канал",
+      "ignoredChannels": "Игнорируемые каналы",
+      "channels": "Каналы",
+      "ignoredChannelsHint": "Логи сообщений будут игнорировать эти каналы"
+    },
+    "categories": {
+      "messages": "Сообщения",
+      "roles": "Роли",
+      "moderation": "Модерация"
+    },
+    "logs": {
+      "messageDelete": "Удаление сообщений",
+      "messageEdit": "Изменение сообщений",
+      "messageDeleteBulk": "Очистка сообщений",
+      "roleCreate": "Создание ролей",
+      "roleEdit": "Изменение ролей",
+      "roleDelete": "Удаление ролей",
+      "moderationWarn": "Предупреждение участника",
+      "moderationMute": "Мут участника",
+      "moderationKick": "Кик участника",
+      "moderationBan": "Бан участника",
+      "moderationUnmute": "Размут участника",
+      "moderationUnban": "Разбан участника"
+    },
+    "submit": "Сохранить"
+  },
   "Leaderboard": {
     "title": "Лидеры",
     "loading": "Загрузка...",

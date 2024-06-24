@@ -4,9 +4,9 @@
     <div v-if="!user.username"><v-progress-circular :size="100" :width="7" indeterminate/></div>
     <div v-else>
       <v-img class="user-avatar item-center" :lazy-src="user.avatarURL" :src="user.avatarURL"/>
-      <div class="user-tag">
-        <span class="username">{{ user.username }}</span>
-        <span class="discriminator">#{{ user.discriminator }}</span>
+      <div class="user-name">
+        <div class="global-name">{{ user.global_name }}</div>
+        <div class="username">{{ user.username }}</div>
       </div>
       <div>
         <v-tooltip v-for="badge in user.botBadges" content-class="tooltip" location="top" color="black">
@@ -33,8 +33,10 @@
           <div class="guild" v-for="guild in guilds.filter(g => g.manageable || (leaders && g.invited))">
             <div>
               <span>
-                <img :src="guild.icon ?? 'https://media.discordapp.net/attachments/708680940385337386' +
-                '/1077567295251038248/5.png?width=663&height=663'" class="guild-icon" alt="Icon">
+                <img :src="guild.icon ?? 'https://media.discordapp.net/attachments/708680940385337386/1254418216105803868' +
+                '/discord-icon-2048x2048-kva2hfax.png?ex=66796b80&is=66781a00&hm=8f526aeb60e9a192cfe6e46b63d2bb5cf7652' +
+                 '90fd1a4746dcb6d6c8731c04af8&=&format=webp&quality=lossless&width=662&height=662'+
+                 '&width=662&height=662'" class="guild-icon" alt="Icon">
               </span>
               {{ guild.name.length <= 25 ? guild.name : guild.name.slice(0, 25) + '...' }}
             </div>
@@ -117,18 +119,20 @@ onMounted(async () => {
   border-radius: 50%;
 }
 
-.user-tag {
+.user-name {
+  line-height: 2em;
+  padding: 10px;
+}
+
+.global-name {
+  word-break: break-all;
   font-size: 2em;
 }
 
 .username {
-  word-break: break-all;
-
-}
-
-.discriminator {
   color: rgb(var(--v-theme-description));
-  opacity: 0.7;
+  opacity: 0.6;
+  font-size: 1.5em;
 }
 
 .user-badge {

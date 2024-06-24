@@ -21,29 +21,29 @@
         <div class="item-settings">
           <v-form v-model="valid">
             <div class="subtitle">{{ $t('Items.subtitles.general') }}</div>
-            <v-text-field v-model="item.newName" class="general-item-field" color="primary" counter="50"
+            <v-text-field v-model="item.newName" class="general-item-field" counter="50"
                           :rules="nameRules" :label="$t('Items.subtitles.name')"/>
-            <v-textarea v-model="item.description" class="general-item-field" color="primary" counter="200"
+            <v-textarea v-model="item.description" class="general-item-field" counter="200"
                         :rules="descriptionRules" :label="$t('Items.subtitles.description')"/>
             <div class="subtitle">{{ $t('Items.subtitles.values') }}</div>
             <div class="item-flex">
               <div>
-                <v-text-field v-model="item.price" class="number-input" color="primary" :rules="positiveIntegerRules"
+                <v-text-field v-model="item.price" class="number-input" :rules="positiveIntegerRules"
                               type="number" :label="$t('Items.subtitles.price')"/>
               </div>
               <div>
-                <v-text-field v-model="item.xp" class="number-input" color="primary" :rules="positiveIntegerRules"
+                <v-text-field v-model="item.xp" class="number-input" :rules="positiveIntegerRules"
                               type="number" :label="$t('Items.subtitles.xp')"/>
               </div>
             </div>
             <div class="subtitle">{{ $t('Items.subtitles.roles') }}</div>
             <div class="item-flex">
               <div>
-                <v-select v-model="item.addRole" class="role-select" color="primary" :items="roles"
+                <v-select v-model="item.addRole" class="role-select" :items="roles"
                           :label="$t('Items.subtitles.addRole')"/>
               </div>
               <div>
-                <v-select v-model="item.removeRole" class="role-select" color="primary" :items="roles"
+                <v-select v-model="item.removeRole" class="role-select" :items="roles"
                           :label="$t('Items.subtitles.removeRole')"/>
               </div>
             </div>

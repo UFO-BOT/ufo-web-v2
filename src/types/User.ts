@@ -1,8 +1,8 @@
 export interface User {
     id: string
     username: string
+    global_name: string
     discriminator: string
-    tag?: string
     avatar: string | null
     avatarURL?: string
     mfa_enabled?: boolean

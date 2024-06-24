@@ -13,6 +13,7 @@ export default createVuetify({
             dark: {
                 dark: true,
                 colors: {
+                    surface: '#30344d',
                     block: '#1c1f34',
                     shadow: '#05050c',
                     background: '#0e0f1c',

@@ -7,6 +7,7 @@ import MeView from "@/views/MeView.vue"
 import GuildView from "@/views/GuildView.vue"
 import GuildGeneralView from "@/views/guild/GuildGeneralView.vue"
 import GuildEconomyView from "@/views/guild/GuildEconomyView.vue"
+import GuildLogsView from "@/views/guild/GuildLogsView.vue"
 import LeaderboardView from "@/views/LeaderboardView.vue"
 import LeaderboardMemberView from "@/views/LeaderboardMemberView.vue"
 import LoginView from "@/views/LoginView.vue"
@@ -52,6 +53,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/guilds/:id/economy',
         name: 'GuildEconomy',
         component: GuildEconomyView
+      },
+      {
+        path: '/guilds/:id/logs',
+        name: 'GuildLogs',
+        component: GuildLogsView
       }
     ]
   },
