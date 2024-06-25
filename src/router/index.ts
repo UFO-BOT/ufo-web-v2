@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue"
 import CommandsView from "@/views/CommandsView.vue"
 import StatsView from "@/views/StatsView.vue"
 import DonateView from "@/views/DonateView.vue"
+import LandingView from "@/views/LandingView.vue"
 import MeView from "@/views/MeView.vue"
 import GuildView from "@/views/GuildView.vue"
 import GuildGeneralView from "@/views/guild/GuildGeneralView.vue"
@@ -33,6 +34,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/donate',
     name: 'Donate',
     component: DonateView
+  },
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: LandingView
   },
   {
     path: '/@me',

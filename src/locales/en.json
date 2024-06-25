@@ -256,6 +256,13 @@
     "unauthorized": "Unauthorized",
     "close": "Close"
   },
+  "Landing": {
+    "title": "Thanks for inviting!",
+    "name": "Thanks for inviting UFO!",
+    "commands": "Commands",
+    "support": "Support",
+    "settings": "Settings"
+  },
   "Me": {
     "logout": "LOG OUT",
     "invite": "Invite",
