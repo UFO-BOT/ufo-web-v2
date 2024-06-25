@@ -29,9 +29,7 @@
                     :hint="$t('GuildEconomy.subtitles.moneySymbolHint')"/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.commission') }}</div>
       <v-text-field v-model="settings.commission" class="number-input" :rules="commissionRules" type="number"
-                    color="primary" :label="$t('GuildEconomy.subtitles.percent')" suffix="%" hide-details="auto"/>
-      <v-checkbox v-model="settings.duelCommission" color="primary" hide-details
-                  :label="$t('GuildEconomy.subtitles.duelCommission')"/>
+                    color="primary" :label="$t('GuildEconomy.subtitles.percent')" suffix="%"/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.minBet') }}</div>
       <v-text-field v-model="settings.minBet" class="number-input" :rules="positiveIntegerRules" type="number"
                     color="primary" :label="$t('GuildEconomy.subtitles.bet')"/>
@@ -100,8 +98,7 @@ async function submit() {
           moneybags: settings.moneybags,
           moneySymbol: settings.moneySymbol,
           minBet: settings.minBet,
-          commission: settings.commission,
-          duelCommission: settings.duelCommission
+          commission: settings.commission
         })
       })
   if(response.ok) emit('submitted', 'success', settings)

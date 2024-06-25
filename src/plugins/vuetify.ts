@@ -30,7 +30,7 @@ export default createVuetify({
                     scrollbarTrack: '#151926',
                     scrollbarThumb: '#242940',
                     primary: '#6161fd',
-                    secondary: '#232939'
+                    secondary: '#242c46'
                 },
             },
             light: {
