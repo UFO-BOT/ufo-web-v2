@@ -30,8 +30,8 @@
             <v-btn icon variant="text" color="primary" size="40" :to="`/leaderboard/${route.params.id}`">
               <v-icon>keyboard_return</v-icon>
             </v-btn>
-            <UpdateBalance :member="member" @update="updateBalance"/>
-            <DeleteBalance :member="member" @delete="deleteBalance"/>
+            <UpdateBalance v-if="access" :member="member" @update="updateBalance"/>
+            <DeleteBalance v-if="access" :member="member" @delete="deleteBalance"/>
           </div>
         </div>
       </div>
@@ -54,6 +54,7 @@ let loading = ref(true)
 let manageable = ref(false)
 let guildName = ref()
 let member: Ref<LeaderboardMember> = ref({} as LeaderboardMember)
+let access = ref(false)
 
 document.title = i18n.global.t('LeaderboardMember.title')
 
@@ -77,6 +78,7 @@ async function load() {
   if (!response.ok) return window.location.replace('/@me');
   guildName.value = body.guildName;
   member.value = body.leader;
+  access.value = body.access;
   let guildResponse = await fetch(`${config.API}/private/guilds/${route.params.id}/info`, {headers: {
       Authorization: localStorage.getItem('token') as string
     }})
