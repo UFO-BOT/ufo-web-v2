@@ -41,21 +41,6 @@
 </template>
 
 <script setup lang="ts">
-/*let res = await fetch("http://localhost:4827/private/guilds/705372583478165596/logs",
-    {
-      method: 'POST',
-      headers: {'Authorization': "j6tiXooO7zUXESw0RzlkjrwZ3Ml53W", 'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        list: {messageDelete: {enabled: true, channel: "710416624871800944"}},
-        ignore: {
-          channels: ["714808508905947136", "714142135728865321"]
-        }
-      })
-    }
-)
-let body = await res.json()
-console.log(body)*/
-
 import i18n from "@/plugins/i18n";
 import SelectItems from "@/utils/SelectItems";
 import {computed, reactive, ref} from "vue";

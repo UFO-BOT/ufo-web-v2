@@ -368,6 +368,17 @@
     },
     "submit": "Submit"
   },
+  "GuildModeration": {
+    "title": "Moderation",
+    "subtitles": {
+      "muteRole": "Mute role",
+      "selectRole": "Select role",
+      "useTimeout": "Use timeout",
+      "timeout": "Timeout",
+      "timeoutDescription": "Muted members will also be sent to a timeout. If mute duration is 28 days or longer, timeout will not be issued."
+    },
+    "submit": "Submit"
+  },
   "GuildLogs": {
     "title": "Logs",
     "subtitles": {

@@ -75,10 +75,12 @@ input[type=number] {
 
 ::-moz-selection {
   background: #4444ff;
+  color: white;
 }
 
 ::selection {
-  background: #4444ff;
+  background: #4f47d5;
+  color: white;
 }
 
 ::-webkit-scrollbar {

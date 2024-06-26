@@ -10,6 +10,7 @@ export interface GuildSettings {
     language: GuildLanguage
     moneySymbol: string
     muteRole: string
+    useTimeout: boolean
     work: {
         low: number
         high: number
@@ -21,7 +22,6 @@ export interface GuildSettings {
         cooldown: number
     }
     commission: number
-    duelCommission: boolean
     minBet: number
     logs: {
         list: Record<string, {

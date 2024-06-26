@@ -11,7 +11,7 @@ export default class SelectItems {
                 disabled: !role.memberManageable || !role.botManageable
             }
         }})
-        rolesItems.push({
+        if (none) rolesItems.push({
             title: '-',
             value: null
         })
