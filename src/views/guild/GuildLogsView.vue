@@ -34,7 +34,7 @@
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
-        {{ $t('GuildEconomy.submit') }}
+        {{ $t('GuildLogs.submit') }}
       </v-btn>
     </v-form>
   </div>

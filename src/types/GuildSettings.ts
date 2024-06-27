@@ -5,12 +5,21 @@ export interface GuildLanguage {
     interface: Language
 }
 
+interface WarnsPunishment {
+    warns: number
+    punishment: {
+        type: 'mute' | 'kick' | 'ban',
+        duration: number
+    }
+}
+
 export interface GuildSettings {
     prefix: string
     language: GuildLanguage
     moneySymbol: string
     muteRole: string
     useTimeout: boolean
+    warnsPunishments: Array<WarnsPunishment>
     work: {
         low: number
         high: number

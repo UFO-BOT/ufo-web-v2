@@ -6,11 +6,40 @@
                 :label="$t('GuildModeration.subtitles.selectRole')"/>
       <v-checkbox v-model="settings.useTimeout" class="ma-0 pa-0 fit-content" color="primary" hide-details
                   :label="$t('GuildModeration.subtitles.useTimeout')"/>
-      <v-alert v-if="settings.useTimeout" class="alert" border="start" color="primary"
+      <v-alert v-if="settings.useTimeout" class="alert mb-3" border="start" color="primary"
                :title="$t('GuildModeration.subtitles.timeout')" variant="tonal" closable>
                 {{ $t('GuildModeration.subtitles.timeoutDescription') }}
       </v-alert>
-      <br>
+      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.warnsPunishments') }}</div>
+      <div class="wp-list">
+        <div v-for="(warnsPunishment, i) of settings.warnsPunishments">
+          <div class="wp-flex">
+            <div class="punishment-title">{{ $t('GuildModeration.subtitles.punishment') }} {{ i + 1 }}</div>
+            <v-btn icon variant="text" size="small" @click="settings.warnsPunishments.splice(i, 1)">
+              <v-icon size="large" color="red">delete</v-icon>
+            </v-btn>
+          </div>
+          <v-text-field v-model="warnsPunishment.warns" class="warns-count mt-0" color="primary"
+                        :rules="warnsRules" :label="$t('GuildModeration.subtitles.warns')"/>
+          <div class="punishment">
+            <div class="punishment-select">
+              <v-select v-model="warnsPunishment.punishment.type" color="primary"
+                        :label="$t('GuildModeration.subtitles.punishment')" :items="punishments"/>
+            </div>
+            <DurationPicker v-if="warnsPunishment.punishment.type !== 'kick'"
+                            v-model="warnsPunishment.punishment.duration" class="duration-input" :limit="315360000000"/>
+          </div>
+          <v-divider/>
+        </div>
+        <div v-if="settings.warnsPunishments?.length" class="mb-3"></div>
+        <v-btn color="primary" variant="outlined"
+               v-if="settings.warnsPunishments?.length < 10"
+               @click="settings.warnsPunishments.push({warns: 0, punishment: {type: 'kick', duration: 0}})">
+          <v-icon medium class="mr-1">add</v-icon>
+          {{ $t('GuildModeration.subtitles.add') }}
+        </v-btn>
+        <div v-else class="wpLimit">{{ $t('GuildModeration.errors.warnsPunishmentsLimit') }}</div>
+      </div>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
@@ -30,8 +59,9 @@ import {useRoute} from "vue-router";
 import {ReactiveVariable} from "vue/macros";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
+import DurationPicker from "@/components/DurationPicker.vue";
 
-document.title = i18n.global.t('GuildLogs.title')
+document.title = computed(() => i18n.global.t('GuildModeration.title')).value
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -42,6 +72,17 @@ let roles = SelectItems.roles(guild.value!.roles!, false)
 let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
+let punishments = computed(() => [
+  {title: i18n.global.t('GuildModeration.punishments.mute'), value: 'mute'},
+  {title: i18n.global.t('GuildModeration.punishments.kick'), value: 'kick'},
+  {title: i18n.global.t('GuildModeration.punishments.ban'), value: 'ban'}
+])
+
+const warnsRules = [
+  (number: number) => (number > 0 && !(number % 1)) || i18n.global.t('GuildModeration.errors.invalidWarns'),
+  (number: number) => (settings.warnsPunishments.filter(wp => wp.warns == number).length <= 1 ||
+      i18n.global.t('GuildModeration.errors.duplicateWarns'))
+]
 
 async function submit() {
   submitting.value = true;
@@ -53,7 +94,8 @@ async function submit() {
           'Content-Type': 'application/json'
         }, body: JSON.stringify({
           muteRole: settings.muteRole,
-          useTimeout: settings.useTimeout
+          useTimeout: settings.useTimeout,
+          warnsPunishments: settings.warnsPunishments
         })
       })
   if (response.ok) emit('submitted', 'success', settings)
@@ -73,5 +115,52 @@ async function submit() {
 
 .alert {
   width: 95%;
+}
+
+.wp-list {
+  background-color: rgb(var(--v-theme-block));
+  box-shadow: 0 0 5px rgb(var(--v-theme-shadow));
+  padding: 5px 15px 15px 20px;
+  margin-bottom: 15px;
+  width: 90%;
+  margin-top: 5px;
+}
+
+.wp-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.punishment-title {
+  font-size: 1.2em;
+  margin-top: 3px;
+}
+
+.warns-count {
+  width: 95%;
+}
+
+.punishment {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.punishment-select {
+  width: 200px;
+  margin-right: 15px;
+}
+
+.duration-input {
+  margin-bottom: 15px;
+}
+
+.submit {
+  margin: 10px 0 10px 0;
+  font-size: 1.1em;
 }
 </style>

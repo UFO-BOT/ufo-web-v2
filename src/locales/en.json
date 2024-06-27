@@ -375,7 +375,26 @@
       "selectRole": "Select role",
       "useTimeout": "Use timeout",
       "timeout": "Timeout",
-      "timeoutDescription": "Muted members will also be sent to a timeout. If mute duration is 28 days or longer, timeout will not be issued."
+      "timeoutDescription": "Muted members will also be sent to a timeout. If mute duration is 28 days or longer, timeout will not be issued.",
+      "warnsPunishments": "Punishments for warns",
+      "warns": "Warns",
+      "punishment": "Punishment",
+      "add": "Add",
+      "reason": "Reason",
+      "duration": "Duration"
+    },
+    "punishments": {
+      "mute": "Mute",
+      "kick": "Kick",
+      "ban": "ban"
+    },
+    "errors": {
+      "reasonLength": "Reason cannot be longer than 512 characters",
+      "invalidDuration": "Duration must be a positive integer",
+      "tooLongDuration": "Punishment duration is too long",
+      "invalidWarns": "Warns amount must be an integer",
+      "duplicateWarns": "Punishment for this count of warns is already set",
+      "warnsPunishmentsLimit": "Punishments for warns limit is reached"
     },
     "submit": "Submit"
   },
