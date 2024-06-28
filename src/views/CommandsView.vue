@@ -80,8 +80,6 @@ const icons = ['public', 'attach_money', 'phone_iphone', 'build', 'security'];
 let commands: Ref<Array<Command>> = ref([]);
 let dialogs: ReactiveVariable<Record<string, boolean>> = reactive({a: false});
 
-document.title = i18n.global.t('Commands.title')
-
 onMounted(async () => {
   let response = await fetch(config.API + '/public/commands');
   commands.value = await response.json();

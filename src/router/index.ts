@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import i18n from "@/plugins/i18n";
 import HomeView from "@/views/HomeView.vue"
 import CommandsView from "@/views/CommandsView.vue"
 import StatsView from "@/views/StatsView.vue"
@@ -98,6 +99,11 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach(to => {
+  let title = String(to.name) + '.title'
+  if (i18n.global.te(title)) document.title = i18n.global.t(title)
 })
 
 export default router

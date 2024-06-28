@@ -51,8 +51,6 @@ import {ReactiveVariable} from "vue/macros";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 
-document.title = i18n.global.t('GuildLogs.title')
-
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
 const route = useRoute()

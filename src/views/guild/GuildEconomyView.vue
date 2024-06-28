@@ -83,8 +83,6 @@ const commissionRules = [
       i18n.global.t('GuildEconomy.errors.invCommission')
 ]
 
-document.title = i18n.global.t('GuildEconomy.title')
-
 async function submit() {
   submitting.value = true;
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/economy`,

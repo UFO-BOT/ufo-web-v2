@@ -28,8 +28,6 @@ const store = useStore();
 const route = useRoute();
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.query?.guild_id))
 
-document.title = i18n.global.t('Landing.title')
-
 onMounted(async () => {
   if(route.query?.guild_id) await store.dispatch('getGuild', route.query?.guild_id)
 })

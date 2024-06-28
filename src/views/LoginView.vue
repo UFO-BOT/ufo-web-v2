@@ -15,8 +15,6 @@ import {useRoute} from "vue-router";
 import Oauth2 from "@/utils/Oauth2";
 import i18n from "@/plugins/i18n";
 
-document.title = i18n.global.t('Login.title')
-
 onMounted(async () => {
   let route = useRoute();
   let response = await Oauth2.getToken(route.query.code as string)

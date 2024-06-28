@@ -58,8 +58,6 @@ let width = ref(window.innerWidth)
 
 window.addEventListener('resize', () => width.value = window.innerWidth)
 
-document.title = i18n.global.t('Leaderboard.title')
-
 async function loadLeaderboard() {
   loading.value = true;
   let response = await fetch(`${config.API}/private/leaderboard/` +

@@ -9,9 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import i18n from "@/plugins/i18n";
 
-document.title = i18n.global.t('NotFound.title')
 </script>
 
 <style scoped>

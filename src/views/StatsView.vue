@@ -66,8 +66,6 @@ const values = ['guilds', 'users', 'channels', 'emojis'];
 let statistics: Ref<Stats> = ref({} as Stats);
 let shards: Ref<Record<string, any>> = ref([]);
 
-document.title = i18n.global.t('Stats.title')
-
 onMounted(async () => {
   let response = await fetch(config.API + '/public/stats');
   statistics.value = await response.json();

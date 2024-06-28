@@ -56,8 +56,6 @@ let guildName = ref()
 let member: Ref<LeaderboardMember> = ref({} as LeaderboardMember)
 let access = ref(false)
 
-document.title = i18n.global.t('LeaderboardMember.title')
-
 function updateBalance(balance: UpdateBalanceForm) {
   member.value.balance = balance.balance;
   if(balance.resetXP) member.value.xp = 0;

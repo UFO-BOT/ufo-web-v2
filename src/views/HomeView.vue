@@ -25,8 +25,6 @@ import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
 import i18n from "@/plugins/i18n";
 
-document.title = i18n.global.t('Home.title')
-
 const location = window.location.origin
 let typed: Typed;
 function startTyped() {

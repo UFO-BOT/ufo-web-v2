@@ -42,8 +42,10 @@ import {useStore} from "vuex";
 import i18n from "@/plugins/i18n";
 import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
+import {useRoute} from "vue-router";
 import {Language} from "@/types/Language"
 
+const route = useRoute();
 const location = window.location.origin
 const mobileNav = ref(false);
 const loadingUser = ref(false);
@@ -53,6 +55,8 @@ function translate() {
   let language: Language = i18n.global.locale.value === "ru" ? "en" : "ru"
   localStorage.setItem("language", language);
   i18n.global.locale.value = language;
+  let title = String(route.name) + '.title'
+  if (i18n.global.te(title)) document.title = i18n.global.t(title)
 }
 
 let user = computed(() => store.getters.user)

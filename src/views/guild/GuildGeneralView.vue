@@ -43,8 +43,6 @@ const prefixRules = [
   (prefix: string) => !prefix.match(/[`| ]/gmi) || i18n.global.t('GuildGeneral.errors.invalidChars'),
 ]
 
-document.title = i18n.global.t('GuildGeneral.title')
-
 async function submit() {
   submitting.value = true;
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/general`,

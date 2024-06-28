@@ -31,14 +31,13 @@
           </div>
           <v-divider/>
         </div>
-        <div v-if="settings.warnsPunishments?.length" class="mb-3"></div>
-        <v-btn color="primary" variant="outlined"
+        <v-btn class="wp-add" color="primary" variant="outlined"
                v-if="settings.warnsPunishments?.length < 10"
                @click="settings.warnsPunishments.push({warns: 0, punishment: {type: 'kick', duration: 0}})">
           <v-icon medium class="mr-1">add</v-icon>
           {{ $t('GuildModeration.subtitles.add') }}
         </v-btn>
-        <div v-else class="wpLimit">{{ $t('GuildModeration.errors.warnsPunishmentsLimit') }}</div>
+        <div v-else>{{ $t('GuildModeration.errors.warnsPunishmentsLimit') }}</div>
       </div>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
@@ -60,8 +59,6 @@ import {ReactiveVariable} from "vue/macros";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import DurationPicker from "@/components/DurationPicker.vue";
-
-document.title = computed(() => i18n.global.t('GuildModeration.title')).value
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -157,6 +154,10 @@ async function submit() {
 
 .duration-input {
   margin-bottom: 15px;
+}
+
+.wp-add {
+  margin-top: 10px;
 }
 
 .submit {
