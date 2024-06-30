@@ -3,12 +3,12 @@ import {SelectItem} from "@/types/SelectItem";
 import {Channel} from "@/types/Channel";
 
 export default class SelectItems {
-    public static roles(roles: Array<Role>, none = true): Array<SelectItem> {
+    public static roles(roles: Array<Role>, none = true, checkManageable = true): Array<SelectItem> {
         let rolesItems: Array<SelectItem> = roles.map(role => {return {
             title: role.name,
             value: role.id,
             props: {
-                disabled: !role.memberManageable || !role.botManageable
+                disabled: checkManageable && (!role.memberManageable || !role.botManageable)
             }
         }})
         if (none) rolesItems.push({

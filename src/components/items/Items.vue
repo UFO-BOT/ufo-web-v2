@@ -72,7 +72,7 @@ onMounted(async () => {
   box-shadow: 0 0 5px rgb(var(--v-theme-shadow));
   padding: 15px 15px 15px 20px;
   margin-bottom: 15px;
-  width: 90%;
+  width: 95%;
   margin-top: 5px;
 }
 

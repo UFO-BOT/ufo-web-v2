@@ -13,13 +13,37 @@ interface WarnsPunishment {
     }
 }
 
+interface AutoModPunishment {
+    type: 'warn' | 'mute' | 'kick' | 'ban'
+    duration?: number
+    reason?: string
+}
+
+interface AutoModWhitelist {
+    roles: Array<string>
+    channels: Array<string>
+}
+
+interface AutoModeration {
+    enabled: boolean
+    deleteMessages?: boolean
+    punishment?: AutoModPunishment
+    whitelist?: AutoModWhitelist
+    options?: object
+}
+
+export interface GuildAutoModeration {
+    invites: AutoModeration
+}
+
+export interface AutoModInvitesOptions {
+    whitelistGuilds: Array<string>
+}
+
 export interface GuildSettings {
     prefix: string
     language: GuildLanguage
     moneySymbol: string
-    muteRole: string
-    useTimeout: boolean
-    warnsPunishments: Array<WarnsPunishment>
     work: {
         low: number
         high: number
@@ -32,6 +56,10 @@ export interface GuildSettings {
     }
     commission: number
     minBet: number
+    muteRole: string
+    useTimeout: boolean
+    warnsPunishments: Array<WarnsPunishment>
+    autoModeration: GuildAutoModeration
     logs: {
         list: Record<string, {
             enabled: boolean

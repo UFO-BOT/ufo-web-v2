@@ -381,12 +381,25 @@
       "punishment": "Punishment",
       "add": "Add",
       "reason": "Reason",
-      "duration": "Duration"
+      "duration": "Duration",
+      "autoModeration": "Automoderation",
+      "options": "Options",
+      "deleteMessages": "Delete messages",
+      "whitelist": "White list",
+      "allowedRoles": "Allowed roles",
+      "allowedChannels": "Allowed channels",
+      "allowedGuilds": "Allowed servers (Servers IDs or invite codes)"
     },
     "punishments": {
+      "warn": "Warn",
       "mute": "Mute",
       "kick": "Kick",
-      "ban": "ban"
+      "ban": "Ban"
+    },
+    "autoModeration": {
+      "invites": {
+        "name": "Invites"
+      }
     },
     "errors": {
       "reasonLength": "Reason cannot be longer than 512 characters",

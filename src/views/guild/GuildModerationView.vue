@@ -10,6 +10,9 @@
                :title="$t('GuildModeration.subtitles.timeout')" variant="tonal" closable>
                 {{ $t('GuildModeration.subtitles.timeoutDescription') }}
       </v-alert>
+      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.autoModeration') }}</div>
+      <AutoModeration :auto-moderation="settings.autoModeration" :roles="guild.roles" :channels="guild.channels"
+        @update="automodUpdated"/>
       <div class="subtitle-1">{{ $t('GuildModeration.subtitles.warnsPunishments') }}</div>
       <div class="wp-list">
         <div v-for="(warnsPunishment, i) of settings.warnsPunishments">
@@ -27,7 +30,7 @@
                         :label="$t('GuildModeration.subtitles.punishment')" :items="punishments"/>
             </div>
             <DurationPicker v-if="warnsPunishment.punishment.type !== 'kick'"
-                            v-model="warnsPunishment.punishment.duration" class="duration-input" :limit="315360000000"/>
+                            v-model="warnsPunishment.punishment.duration" class="punishment-duration" :limit="315360000000"/>
           </div>
           <v-divider/>
         </div>
@@ -56,9 +59,11 @@ import {Guild} from "@/types/Guild";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
 import {ReactiveVariable} from "vue/macros";
-import {GuildSettings} from "@/types/GuildSettings";
+import {GuildAutoModeration, GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
+import AutoModeration from "@/components/automod/AutoModeration.vue";
 import DurationPicker from "@/components/DurationPicker.vue";
+import {SubmitResult} from "@/types/SubmitResult";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -80,6 +85,11 @@ const warnsRules = [
   (number: number) => (settings.warnsPunishments.filter(wp => wp.warns == number).length <= 1 ||
       i18n.global.t('GuildModeration.errors.duplicateWarns'))
 ]
+
+function automodUpdated(result: SubmitResult, autoModeration: GuildAutoModeration) {
+  settings.autoModeration = autoModeration
+  emit('submitted', result, settings)
+}
 
 async function submit() {
   submitting.value = true;
@@ -119,7 +129,7 @@ async function submit() {
   box-shadow: 0 0 5px rgb(var(--v-theme-shadow));
   padding: 5px 15px 15px 20px;
   margin-bottom: 15px;
-  width: 90%;
+  width: 95%;
   margin-top: 5px;
 }
 
@@ -152,7 +162,7 @@ async function submit() {
   margin-right: 15px;
 }
 
-.duration-input {
+.punishment-duration {
   margin-bottom: 15px;
 }
 

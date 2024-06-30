@@ -383,12 +383,25 @@
       "punishment": "Наказание",
       "add": "Добавить",
       "reason": "Причина",
-      "duration": "Длительность"
+      "duration": "Длительность",
+      "autoModeration": "Автомодерация",
+      "options": "Параметры",
+      "deleteMessages": "Удалять сообщения",
+      "whitelist": "Белый список",
+      "allowedRoles": "Разрешенные роли",
+      "allowedChannels": "Разрешенные каналы",
+      "allowedGuilds": "Разрешенные сервера (ID серверов или коды приглашений)"
     },
     "punishments": {
+      "warn": "Предупреждение",
       "mute": "Мут",
       "kick": "Кик",
       "ban": "Бан"
+    },
+    "autoModeration": {
+      "invites": {
+        "name": "Приглашения"
+      }
     },
     "errors": {
       "reasonLength": "Причина не должна быть длиннее 512 символов",
