@@ -30,7 +30,8 @@ export default createVuetify({
                     scrollbarTrack: '#151926',
                     scrollbarThumb: '#242940',
                     primary: '#6161fd',
-                    secondary: '#242c46'
+                    secondary: '#242c46',
+                    alert: '#8c8cf1'
                 },
             },
             light: {
@@ -52,7 +53,8 @@ export default createVuetify({
                     scrollbarTrack: '#d0d0d0',
                     scrollbarThumb: '#b8b8b8',
                     primary: '#6161fd',
-                    secondary: '#546E7A'
+                    secondary: '#546E7A',
+                    alert: '#1b1be7'
                 }
             }
         }

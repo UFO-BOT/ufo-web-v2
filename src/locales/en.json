@@ -383,12 +383,15 @@
       "reason": "Reason",
       "duration": "Duration",
       "autoModeration": "Automoderation",
+      "description": "Description",
       "options": "Options",
       "deleteMessages": "Delete messages",
       "whitelist": "White list",
       "allowedRoles": "Allowed roles",
       "allowedChannels": "Allowed channels",
-      "allowedGuilds": "Allowed servers (Servers IDs or invite codes)"
+      "allowedGuilds": "Allowed servers (Server IDs or invite codes)",
+      "maxMessages": "Max messages per minute",
+      "maxSymbols": "Max characters per minute"
     },
     "punishments": {
       "warn": "Warn",
@@ -398,7 +401,12 @@
     },
     "autoModeration": {
       "invites": {
-        "name": "Invites"
+        "name": "Invites",
+        "description": "This filter is triggered by any valid invite link to Discord server. You can enter server IDs and invite codes that will be ignored."
+      },
+      "flood": {
+        "name": "Flood",
+        "description": "This filter is triggered by flood of two types: first, consisting of a large number of messages, and second, consisting of messages containing a large number of characters. If specified number of messages or sum of characters in messages will be exceeded by user in less than one minute, filter will be triggered. We recommend using default values (20 messages and 3000 characters) and changing them if necessary"
       }
     },
     "errors": {

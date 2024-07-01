@@ -34,10 +34,16 @@ interface AutoModeration {
 
 export interface GuildAutoModeration {
     invites: AutoModeration
+    flood: AutoModeration
 }
 
 export interface AutoModInvitesOptions {
     whitelistGuilds: Array<string>
+}
+
+export interface AutoModFloodOptions {
+    messages: number
+    symbols: number
 }
 
 export interface GuildSettings {

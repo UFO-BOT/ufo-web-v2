@@ -6,8 +6,8 @@
                 :label="$t('GuildModeration.subtitles.selectRole')"/>
       <v-checkbox v-model="settings.useTimeout" class="ma-0 pa-0 fit-content" color="primary" hide-details
                   :label="$t('GuildModeration.subtitles.useTimeout')"/>
-      <v-alert v-if="settings.useTimeout" class="alert mb-3" border="start" color="primary"
-               :title="$t('GuildModeration.subtitles.timeout')" variant="tonal" closable>
+      <v-alert v-if="settings.useTimeout" class="alert mb-3" border="start" color="alert"
+               :title="$t('GuildModeration.subtitles.timeout')" variant="tonal">
                 {{ $t('GuildModeration.subtitles.timeoutDescription') }}
       </v-alert>
       <div class="subtitle-1">{{ $t('GuildModeration.subtitles.autoModeration') }}</div>
@@ -121,6 +121,7 @@ async function submit() {
 }
 
 .alert {
+  text-align: justify;
   width: 95%;
 }
 

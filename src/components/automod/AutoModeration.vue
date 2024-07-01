@@ -28,10 +28,17 @@
               </v-toolbar>
               <div class="automod-settings">
                 <v-form v-model="valid[name]">
+                  <!-- <div class="subtitle">{{ $t('GuildModeration.subtitles.description') }}</div>
+                  <div class="description">{{ $t(`GuildModeration.autoModeration.${name}.description`) }}</div> -->
+                  <v-alert class="alert mb-2" color="alert" border="start"
+                           :title="$t('GuildModeration.subtitles.description')" variant="tonal">
+                    {{ $t(`GuildModeration.autoModeration.${name}.description`) }}
+                  </v-alert>
                   <div class="subtitle">{{ $t('GuildModeration.subtitles.options') }}</div>
-                  <v-checkbox v-model="automod.deleteMessages" color="primary" density="comfortable"
+                  <v-checkbox v-model="automod.deleteMessages" color="primary" density="comfortable" hide-details
                               :label="$t('GuildModeration.subtitles.deleteMessages')"/>
                   <AutoModInvitesOptions v-if="name === 'invites'" v-model="automod.options"/>
+                  <AutoModFloodOptions v-if="name === 'flood'" v-model="automod.options"/>
                   <div class="subtitle">{{ $t('GuildModeration.subtitles.punishment') }}</div>
                   <div class="punishment">
                     <div class="punishment-select">
@@ -52,18 +59,8 @@
               </div>
             </v-card>
           </v-dialog>
+          <v-divider v-if="Object.keys(autoModeration).indexOf(name) < Object.keys(autoModeration).length-1"/>
         </div>
-        <!--
-        <v-divider/>
-        <div class="automod">
-          <div class="automod-name text-truncate">Название</div>
-          <div><v-icon>settings</v-icon></div>
-        </div>
-        <v-divider/>
-        <div class="automod">
-          <div class="automod-name text-truncate">Название</div>
-          <div><v-icon>settings</v-icon></div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -81,6 +78,7 @@ import SelectItems from "@/utils/SelectItems";
 import {Channel} from "@/types/Channel";
 import config from "@/config.json";
 import AutoModInvitesOptions from "@/components/automod/options/AutoModInvitesOptions.vue";
+import AutoModFloodOptions from "@/components/automod/options/AutoModFloodOptions.vue";
 
 const props = defineProps<{autoModeration: GuildAutoModeration, roles: Array<Role>, channels: Array<Channel>}>()
 const emit = defineEmits(['update'])
@@ -107,7 +105,7 @@ async function enable(name: string) {
   let automod = autoModeration[name as keyof typeof autoModeration]
   if(!automod.enabled) {
     automod.deleteMessages = true
-    automod.options = {whitelistGuilds: [], messages: 10, duration: 60000}
+    automod.options = {whitelistGuilds: [], messages: 20, symbols: 3000}
     automod.punishment = {type: 'warn', duration: 0, reason: ''}
     automod.whitelist = {roles: [], channels: []}
     dialogs[name] = true
@@ -162,7 +160,7 @@ async function submitAutomod(name: string) {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 8px;
+  margin: 6px;
 }
 
 .automod-name {
@@ -201,6 +199,10 @@ async function submitAutomod(name: string) {
 
 .subtitle {
   font-size: 1.2em;
-  margin-bottom: 8px;
+  margin-bottom: 3px;
+}
+
+.alert {
+  text-align: justify;
 }
 </style>

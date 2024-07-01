@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-combobox v-model="props.modelValue.whitelistGuilds" @submit="emit('update:modelValue', props.modelValue)"
-                :label="$t('GuildModeration.subtitles.allowedGuilds')" chips closable-chips multiple/>
+                color="primary" :label="$t('GuildModeration.subtitles.allowedGuilds')" chips closable-chips multiple/>
   </div>
 </template>
 
