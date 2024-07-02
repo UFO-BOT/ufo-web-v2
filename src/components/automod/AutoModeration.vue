@@ -28,8 +28,6 @@
               </v-toolbar>
               <div class="automod-settings">
                 <v-form v-model="valid[name]">
-                  <!-- <div class="subtitle">{{ $t('GuildModeration.subtitles.description') }}</div>
-                  <div class="description">{{ $t(`GuildModeration.autoModeration.${name}.description`) }}</div> -->
                   <v-alert class="alert mb-2" color="alert" border="start"
                            :title="$t('GuildModeration.subtitles.description')" variant="tonal">
                     {{ $t(`GuildModeration.autoModeration.${name}.description`) }}
@@ -123,7 +121,7 @@ async function enable(name: string) {
     })
     loadingDisable[name] = false
     if (response.ok) emit('update', 'success', autoModeration)
-    else emit('update', 'error', autoModeration)
+    else emit('update', 'error')
   }
 }
 

@@ -13,7 +13,8 @@
       <v-toolbar-items>
         <v-btn @click="translate"><v-icon size="35" class="nav-icon">translate</v-icon></v-btn>
         <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=` +
-          `${encodeURIComponent(location + '/login')}&response_type=code&scope=identify%20guilds`"
+          `${encodeURIComponent(location + '/login')}&response_type=`+
+          `code&scope=identify+guilds+applications.commands.permissions.update`"
                v-if="!loadingUser && !user?.username">
           <v-icon size="20" class="nav-icon">{{ $t('Nav.login.icon') }}</v-icon>{{ $t('Nav.login.name') }}
         </v-btn>

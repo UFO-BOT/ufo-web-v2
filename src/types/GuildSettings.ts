@@ -1,4 +1,5 @@
 import {Language} from "@/types/Language";
+import {CommandSettings} from "@/types/CommandSettings";
 
 export interface GuildLanguage {
     commands: Language
@@ -62,6 +63,7 @@ export interface GuildSettings {
     }
     commission: number
     minBet: number
+    commands: Record<string, CommandSettings>
     muteRole: string
     useTimeout: boolean
     warnsPunishments: Array<WarnsPunishment>

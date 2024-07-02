@@ -138,31 +138,6 @@ async function submit() {
   margin-top: 8px;
 }
 
-.items {
-  background-color: var(--v-block-base);
-  box-shadow: 0 0 5px var(--v-blockShadow-base);
-  padding: 15px 15px 15px 20px;
-  margin-bottom: 15px;
-  width: 90%;
-  margin-top: 5px;
-}
-
-.item {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 8px;
-}
-
-.item-name {
-  font-size: 1.5em;
-}
-
-.item-action {
-  display: inline;
-}
-
 .submit {
   margin: 10px 0 10px 0;
   font-size: 1.1em;

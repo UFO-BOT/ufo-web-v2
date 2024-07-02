@@ -368,6 +368,43 @@
     },
     "submit": "Submit"
   },
+  "GuildCommands": {
+    "title": "Commands",
+    "categories": {
+      "general": "General",
+      "economy": "Economy",
+      "games": "Games",
+      "utilities": "Utilities",
+      "moderation": "Moderation"
+    },
+    "subtitles": {
+      "general": "General",
+      "deleteUsage": "Delete usage",
+      "permissions": "Permissions",
+      "allowedRoles": "Allowed roles",
+      "forbiddenRoles": "Forbidden roles",
+      "allowedChannels": "Allowed channels",
+      "forbiddenChannels": "Forbidden channels"
+    },
+    "permissionsLabel": {
+      "allowedRoles": "Allowed roles",
+      "forbiddenRoles": "Forbidden roles",
+      "allowedChannels": "Allowed channels",
+      "forbiddenChannels": "Forbidden channels"
+    },
+    "permissionsHint": {
+      "allowedRoles": "Members with these roles can use this command (all if empty)",
+      "forbiddenRoles": "Members with these roles cannot use this command",
+      "allowedChannels": "Members can use this command in these channels (all if empty)",
+      "forbiddenChannels": "Members cannot use this command in these channels"
+    },
+    "errors": {
+      "title": "Failed to save",
+      "description1": "Failed to overwrite permissions for slash command because application has no permission to do this. Authorize via",
+      "link": "new link",
+      "description2": "and try again"
+    }
+  },
   "GuildModeration": {
     "title": "Moderation",
     "subtitles": {

@@ -87,7 +87,7 @@ const warnsRules = [
 ]
 
 function automodUpdated(result: SubmitResult, autoModeration: GuildAutoModeration) {
-  settings.autoModeration = autoModeration
+  if(result === 'success') settings.autoModeration = autoModeration
   emit('submitted', result, settings)
 }
 
