@@ -98,6 +98,92 @@
     "invalidNumber": "Number must be a positive integer",
     "tooLongDuration": "Too long duration"
   },
+  "TemplateInput": {
+    "template": "Message template",
+    "tooltips": {
+      "role": "Role mention",
+      "channel": "Channel mention",
+      "variable": "Variable",
+      "docs": "Documentation"
+    },
+    "variables": {
+      "member": {
+        "title": "Member",
+        "list": [
+          {
+            "name": "member.id",
+            "description": "Member ID"
+          },
+          {
+            "name": "member.username",
+            "description": "Member username"
+          },
+          {
+            "name": "member.globalName",
+            "description": "Member display name"
+          },
+          {
+            "name": "member.nickname",
+            "description": "Member nickname (display name if no nickname)"
+          },
+          {
+            "name": "member.avatarUrl",
+            "description": "Member avatar URL"
+          },
+          {
+            "name": "member.bannerUrl",
+            "description": "Member banner URL"
+          },
+          {
+            "name": "member.bot",
+            "description": "Whether member is a bot (condition can be used)"
+          },
+          {
+            "name": "member.mention",
+            "description": "Member mention"
+          },
+          {
+            "name": "member.created",
+            "description": "Member account creation date"
+          },
+          {
+            "name": "member.joined",
+            "description": "Member join date"
+          }
+        ]
+      },
+      "guild": {
+        "title": "Server",
+        "list": [
+          {
+            "name": "guild.id",
+            "description": "Member ID"
+          },
+          {
+            "name": "guild.name",
+            "description": "Server name"
+          },
+          {
+            "name": "guild.memberCount",
+            "description": "Server members count"
+          },
+          {
+            "name": "guild.iconUrl",
+            "description": "Server icon URL"
+          },
+          {
+            "name": "guild.bannerUrl",
+            "description": "Server banner URL"
+          },
+          {
+            "name": "guild.created",
+            "description": "Guild creation date"
+          }
+        ]
+      }
+    },
+    "invalidLength": "Template may not be longer than [length] characters"
+  },
   "ResetBalance": {
     "resetBalance": "Reset all balances",
     "attention": "ATTENTION!",
@@ -483,6 +569,20 @@
       "moderationBan": "Member ban",
       "moderationUnmute": "Member unmute",
       "moderationUnban": "Member unban"
+    },
+    "submit": "Submit"
+  },
+  "GuildGreetings": {
+    "title": "Greetings",
+    "subtitles": {
+      "joinMessage": "Join message",
+      "leaveMessage": "Leave message",
+      "joinDM": "DM greeting",
+      "enabled": "Enabled",
+      "channel": "Channel",
+      "messageTemplate": "Message template",
+      "joinRoles": "Join roles",
+      "selectRoles": "Select roles"
     },
     "submit": "Submit"
   },

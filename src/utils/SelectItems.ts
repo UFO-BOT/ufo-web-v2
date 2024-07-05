@@ -11,7 +11,7 @@ export default class SelectItems {
                 disabled: checkManageable && (!role.memberManageable || !role.botManageable)
             }
         }})
-        if (none) rolesItems.push({
+        if (none) rolesItems.unshift({
             title: '-',
             value: null
         })
@@ -24,7 +24,7 @@ export default class SelectItems {
             if (!channel.botManageable && checkBotManageable) return
             channelsItems.push({title: channel.name, value: channel.id})
         })
-        if (none) channelsItems.push({
+        if (none) channelsItems.unshift({
             title: '-',
             value: null
         })

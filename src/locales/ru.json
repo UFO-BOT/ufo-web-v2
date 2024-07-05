@@ -98,6 +98,92 @@
     "invalidNumber": "Число должно быть целым и положительным",
     "tooLongDuration": "Слишком большая длительность"
   },
+  "TemplateInput": {
+    "template": "Шаблон сообщения",
+    "tooltips": {
+      "role": "Упоминание роли",
+      "channel": "Упоминание канала",
+      "variable": "Переменная",
+      "docs": "Документация"
+    },
+    "variables": {
+      "member": {
+        "title": "Участник",
+        "list": [
+          {
+            "name": "member.id",
+            "description": "ID участника"
+          },
+          {
+            "name": "member.username",
+            "description": "Имя пользователя участника"
+          },
+          {
+            "name": "member.globalName",
+            "description": "Отображаемое имя участника"
+          },
+          {
+            "name": "member.nickname",
+            "description": "Никнейм участника (отображаемое имя, если нет никнейма)"
+          },
+          {
+            "name": "member.avatarUrl",
+            "description": "Ссылка на аватар участника"
+          },
+          {
+            "name": "member.bannerUrl",
+            "description": "Ссылка на баннер участника"
+          },
+          {
+            "name": "member.bot",
+            "description": "Является ли участник ботом (можно использовать условие)"
+          },
+          {
+            "name": "member.mention",
+            "description": "Упоминание участника"
+          },
+          {
+            "name": "member.created",
+            "description": "Дата создания аккаунта участника"
+          },
+          {
+            "name": "member.joined",
+            "description": "Дата входа участника на сервер"
+          }
+        ]
+      },
+      "guild": {
+        "title": "Сервер",
+        "list": [
+          {
+            "name": "guild.id",
+            "description": "ID сервера"
+          },
+          {
+            "name": "guild.name",
+            "description": "Название сервера"
+          },
+          {
+            "name": "guild.memberCount",
+            "description": "Количество участников сервера"
+          },
+          {
+            "name": "guild.iconUrl",
+            "description": "Ссылка на иконку сервера"
+          },
+          {
+            "name": "guild.bannerUrl",
+            "description": "Ссылка на баннер сервера"
+          },
+          {
+            "name": "guild.created",
+            "description": "Дата создания сервера"
+          }
+        ]
+      }
+    },
+    "invalidLength": "Длина шаблона не может быть больше [length] символов"
+  },
   "ResetBalance": {
     "resetBalance": "Сбросить все балансы",
     "attention": "ВНИМАНИЕ!",
@@ -481,6 +567,20 @@
       "moderationBan": "Бан участника",
       "moderationUnmute": "Размут участника",
       "moderationUnban": "Разбан участника"
+    },
+    "submit": "Сохранить"
+  },
+  "GuildGreetings": {
+    "title": "Приветствия",
+    "subtitles": {
+      "joinMessage": "Сообщение о входе",
+      "leaveMessage": "Сообщение о выходе",
+      "joinDM": "Приветствие в ЛС",
+      "enabled": "Включено",
+      "channel": "Канал",
+      "messageTemplate": "Шаблон сообщения",
+      "joinRoles": "Роли при входе",
+      "selectRoles": "Выбрать роли"
     },
     "submit": "Сохранить"
   },

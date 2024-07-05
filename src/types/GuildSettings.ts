@@ -47,6 +47,23 @@ export interface AutoModFloodOptions {
     symbols: number
 }
 
+interface Greeting {
+    enabled: boolean
+    message?: string
+    embed?: object
+}
+
+interface GuildGreeting extends Greeting {
+    channel?: string
+}
+
+interface GuildGreetings {
+    join: GuildGreeting
+    leave: GuildGreeting
+    dm: Greeting
+    joinRoles: Array<string>
+}
+
 export interface GuildSettings {
     prefix: string
     language: GuildLanguage
@@ -77,5 +94,6 @@ export interface GuildSettings {
             channels: Array<string>
         }
     }
+    greetings: GuildGreetings
     boost: boolean
 }
