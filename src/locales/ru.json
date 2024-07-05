@@ -108,7 +108,7 @@
     },
     "variables": {
       "member": {
-        "title": "Участник",
+        "name": "Участник",
         "list": [
           {
             "name": "member.id",
@@ -153,7 +153,7 @@
         ]
       },
       "guild": {
-        "title": "Сервер",
+        "name": "Сервер",
         "list": [
           {
             "name": "guild.id",
@@ -180,9 +180,39 @@
             "description": "Дата создания сервера"
           }
         ]
+      },
+      "channel": {
+        "name": "Канал",
+        "list": [
+          {
+            "name": "channel.id",
+            "description": "ID канала"
+          },
+          {
+            "name": "channel.name",
+            "description": "Название канала"
+          },
+          {
+            "name": "channel.topic",
+            "description": "Тема канала"
+          },
+          {
+            "name": "channel.mention",
+            "description": "Упоминание канала"
+          },
+          {
+            "name": "channel.created",
+            "description": "Дата создания канала"
+          }
+        ]
       }
     },
     "invalidLength": "Длина шаблона не может быть больше [length] символов"
+  },
+  "TemplateCompilationError": {
+    "title": "Ошибка",
+    "description": "Произошла ошибка при проверке шаблонов. Проверьте, что все переменные использованы правильно. Документация по переменным шаблона находится",
+    "link": "здесь"
   },
   "ResetBalance": {
     "resetBalance": "Сбросить все балансы",
@@ -504,9 +534,15 @@
       "reason": "Причина",
       "duration": "Длительность",
       "autoModeration": "Автомодерация",
-      "description": "Описание",
+      "description": "Как это работает?",
       "options": "Параметры",
+      "actions": "Действия",
       "deleteMessages": "Удалять сообщения",
+      "message": "Отправить сообщение",
+      "selectChannel": "Отправить в определенный канал",
+      "channel": "Канал",
+      "punishMember": "Наказать участника",
+      "defaultChannel": "Канал нарушения",
       "whitelist": "Белый список",
       "allowedRoles": "Разрешенные роли",
       "allowedChannels": "Разрешенные каналы",
@@ -534,6 +570,7 @@
       "reasonLength": "Причина не должна быть длиннее 512 символов",
       "invalidDuration": "Длительность должна быть целым положительным числом",
       "tooLongDuration": "Слишком большая длительность наказания",
+      "invPosNumber": "Введите целое положительное число",
       "invalidWarns": "Количество предупреждений должно быть целым положительным числом",
       "duplicateWarns": "Наказание за такое количество предупреждений уже установлено",
       "warnsPunishmentsLimit": "Достигнут лимит наказаний за предупреждения"

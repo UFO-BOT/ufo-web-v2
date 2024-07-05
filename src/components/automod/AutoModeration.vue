@@ -28,6 +28,7 @@
               </v-toolbar>
               <div class="automod-settings">
                 <v-form v-model="valid[name]">
+                  <TemplateCompilationError v-if="templateCompilationErrors[name]" class="error"/>
                   <v-alert class="alert mb-2" color="alert" border="start"
                            :title="$t('GuildModeration.subtitles.description')" variant="tonal">
                     {{ $t(`GuildModeration.autoModeration.${name}.description`) }}
@@ -37,22 +38,38 @@
                               :label="$t('GuildModeration.subtitles.deleteMessages')"/>
                   <AutoModInvitesOptions v-if="name === 'invites'" v-model="automod.options"/>
                   <AutoModFloodOptions v-if="name === 'flood'" v-model="automod.options"/>
-                  <div class="subtitle">{{ $t('GuildModeration.subtitles.punishment') }}</div>
-                  <div class="punishment">
-                    <div class="punishment-select">
-                      <v-select v-model="automod.punishment.type" color="primary" :items="punishments"
-                                :label="$t('GuildModeration.subtitles.punishment')"/>
-                    </div>
-                    <DurationPicker v-if="!['warn', 'kick'].includes(automod.punishment.type)" :limit="315360000000"
-                                    v-model="automod.punishment.duration" class="punishment-duration"/>
+                  <div class="subtitle">{{ $t('GuildModeration.subtitles.actions') }}</div>
+                  <v-switch v-model="automod.message.enabled" class="fit-content" color="primary" hide-details
+                            density="compact" :label="$t('GuildModeration.subtitles.message')"/>
+                  <div v-if="automod.message.enabled">
+                    <v-checkbox v-model="certainChannels[name]" :label="$t('GuildModeration.subtitles.selectChannel')"
+                                hide-details density="comfortable" color="primary" @change="certainChannelChange(name)"/>
+                    <v-select v-if="certainChannels[name]" v-model="automod.message.channel" class="item-select"
+                              color="primary" :items="channels" :label="$t('GuildModeration.subtitles.channel')"/>
+                    <TemplateInput v-model="automod.message.template" :variables="['member', 'guild', 'channel']"
+                                   :counter="1500"/>
                   </div>
-                  <v-textarea v-model="automod.punishment.reason" class="general-item-field" color="primary"
-                              counter="512" :rules="reasonRules" :label="$t('GuildModeration.subtitles.reason')"/>
+                  <v-switch v-model="automod.punishment.enabled" class="fit-content" color="primary" hide-details
+                            density="compact" :label="$t('GuildModeration.subtitles.punishMember')"/>
+                  <div v-if="automod.punishment.enabled">
+                    <div class="punishment">
+                      <div class="item-select">
+                        <v-select v-model="automod.punishment.type" color="primary" :items="punishments"
+                                  :label="$t('GuildModeration.subtitles.punishment')"/>
+                      </div>
+                      <DurationPicker v-if="['mute', 'ban'].includes(automod.punishment.type)" :limit="315360000000"
+                                      v-model="automod.punishment.duration" class="punishment-duration"/>
+                    </div>
+                    <v-text-field v-model="automod.punishment.reason" class="general-item-field" color="primary"
+                                  counter="512" :rules="reasonRules" :label="$t('GuildModeration.subtitles.reason')"/>
+                  </div>
                   <div class="subtitle">{{ $t('GuildModeration.subtitles.whitelist') }}</div>
-                  <v-select v-model="automod.whitelist.roles" class="role-select mt-1" color="primary" :items="roles"
-                            multiple chips closable-chips :label="$t('GuildModeration.subtitles.allowedRoles')"/>
-                  <v-select v-model="automod.whitelist.channels" class="role-select mt-1" color="primary" :items="channels"
-                            multiple chips closable-chips :label="$t('GuildModeration.subtitles.allowedChannels')"/>
+                  <v-select v-model="automod.whitelist.roles" class="role-select mt-1" color="primary"
+                            :items="whitelistRoles" multiple chips closable-chips
+                            :label="$t('GuildModeration.subtitles.allowedRoles')"/>
+                  <v-select v-model="automod.whitelist.channels" class="role-select mt-1" color="primary"
+                            :items="whitelistChannels" multiple chips closable-chips
+                            :label="$t('GuildModeration.subtitles.allowedChannels')"/>
                 </v-form>
               </div>
             </v-card>
@@ -77,17 +94,22 @@ import {Channel} from "@/types/Channel";
 import config from "@/config.json";
 import AutoModInvitesOptions from "@/components/automod/options/AutoModInvitesOptions.vue";
 import AutoModFloodOptions from "@/components/automod/options/AutoModFloodOptions.vue";
+import TemplateInput from "@/components/TemplateInput.vue";
+import TemplateCompilationError from "@/components/TemplateCompilationError.vue";
 
 const props = defineProps<{autoModeration: GuildAutoModeration, roles: Array<Role>, channels: Array<Channel>}>()
 const emit = defineEmits(['update'])
 const route = useRoute()
 let autoModeration = props.autoModeration
-let roles = SelectItems.roles(props.roles, false, false)
-let channels = SelectItems.channels(props.channels, false, false)
+let channels = SelectItems.channels(props.channels, false)
+let whitelistRoles = SelectItems.roles(props.roles, false, false)
+let whitelistChannels = SelectItems.channels(props.channels, false, false)
 let dialogs: ReactiveVariable<Record<string, boolean>> = reactive({})
 let valid: ReactiveVariable<Record<string, boolean>> = reactive({})
 let loadingDisable: ReactiveVariable<Record<string, boolean>> = reactive({})
 let loading: ReactiveVariable<Record<string, boolean>> = reactive({})
+let certainChannels: ReactiveVariable<Record<string, boolean>> = reactive({})
+let templateCompilationErrors: ReactiveVariable<Record<string, boolean>> = reactive({})
 let punishments = computed(() => [
   {title: i18n.global.t('GuildModeration.punishments.warn'), value: 'warn'},
   {title: i18n.global.t('GuildModeration.punishments.mute'), value: 'mute'},
@@ -99,12 +121,24 @@ const reasonRules = [
   (reason: string) => (reason.length <= 512) || i18n.global.t('GuildModeration.errors.reasonLength')
 ]
 
+for (let name of Object.keys(autoModeration)) {
+  let automod = autoModeration[name as keyof typeof autoModeration]
+  if (!automod.message?.enabled) automod.message = {enabled: false, channel: null, template: ''}
+  if (!automod.punishment?.enabled) automod.punishment = {enabled: false, type: "warn", duration: 0, reason: ''}
+  certainChannels[name] = Boolean(automod.message?.channel)
+}
+
+function certainChannelChange(name: string) {
+  if (!certainChannels[name]) autoModeration[name as keyof typeof autoModeration].message!.channel = null
+}
+
 async function enable(name: string) {
   let automod = autoModeration[name as keyof typeof autoModeration]
   if(!automod.enabled) {
     automod.deleteMessages = true
     automod.options = {whitelistGuilds: [], messages: 20, symbols: 3000}
-    automod.punishment = {type: 'warn', duration: 0, reason: ''}
+    automod.message = {enabled: false, channel: null, template: ''}
+    automod.punishment = {enabled: false, type: 'warn', duration: 0, reason: ''}
     automod.whitelist = {roles: [], channels: []}
     dialogs[name] = true
   }
@@ -126,18 +160,25 @@ async function enable(name: string) {
 }
 
 async function submitAutomod(name: string) {
+  templateCompilationErrors[name] = false;
   loading[name] = true;
+  let automod = autoModeration[name as keyof typeof autoModeration]
+  if (!automod.message?.template?.length) automod.message!.enabled = false
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/automod/${name}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: localStorage.getItem('token') as string
     },
-    body: JSON.stringify(autoModeration[name as keyof typeof autoModeration])
+    body: JSON.stringify(automod)
   })
+  let body = await response.json()
+  templateCompilationErrors[name] = body.message === "Template compilation error"
   loading[name] = false;
-  dialogs[name] = false
-  if (response.ok) emit('update', 'success', autoModeration)
+  if (response.ok) {
+    dialogs[name] = false;
+    emit('update', 'success', autoModeration)
+  }
   else emit('update', 'error', autoModeration)
 }
 </script>
@@ -179,6 +220,14 @@ async function submitAutomod(name: string) {
   padding: 15px;
 }
 
+.error {
+  margin-bottom: 10px;
+}
+
+.alert {
+  text-align: justify;
+}
+
 .punishment {
   display: flex;
   justify-content: left;
@@ -186,8 +235,8 @@ async function submitAutomod(name: string) {
   margin-top: 5px;
 }
 
-.punishment-select {
-  width: 200px;
+.item-select {
+  width: 250px;
   margin-right: 15px;
 }
 
@@ -197,10 +246,7 @@ async function submitAutomod(name: string) {
 
 .subtitle {
   font-size: 1.2em;
+  margin-top: 5px;
   margin-bottom: 3px;
-}
-
-.alert {
-  text-align: justify;
 }
 </style>

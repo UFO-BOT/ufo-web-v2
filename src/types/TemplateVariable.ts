@@ -1,0 +1,1 @@
+export type TemplateVariable = 'member' | 'guild' | 'channel'

@@ -14,8 +14,15 @@ interface WarnsPunishment {
     }
 }
 
+interface AutoModMessage {
+    enabled: boolean
+    channel?: string | null
+    template?: string
+}
+
 interface AutoModPunishment {
-    type: 'warn' | 'mute' | 'kick' | 'ban'
+    enabled: boolean
+    type?: 'warn' | 'mute' | 'kick' | 'ban'
     duration?: number
     reason?: string
 }
@@ -28,6 +35,7 @@ interface AutoModWhitelist {
 interface AutoModeration {
     enabled: boolean
     deleteMessages?: boolean
+    message?: AutoModMessage
     punishment?: AutoModPunishment
     whitelist?: AutoModWhitelist
     options?: object

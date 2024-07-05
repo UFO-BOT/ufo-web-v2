@@ -23,9 +23,9 @@
         <v-overlay v-model="variableSelect" activator="parent" :scrim="false"
                    location-strategy="connected" scroll-strategy="reposition">
           <v-list :items="channels" :max-height="300" :disabled="!variableSelect" @click:select="channelMention">
-            <div v-for="(variables, name) in $tm('TemplateInput.variables')">
+            <div v-for="name in variablesList">
               <v-list-subheader>
-                {{ $rt(variables.title) }}
+                {{ $t(`TemplateInput.variables.${name}.name`) }}
               </v-list-subheader>
               <v-list-item v-for="variable in $tm(`TemplateInput.variables.${name}.list`)"
                            @click="variableAdd($rt(variable.name))">
@@ -56,10 +56,11 @@ import {useRoute} from "vue-router";
 import SelectItems from "@/utils/SelectItems";
 import {useStore} from "vuex";
 import {Guild} from "@/types/Guild";
-import i18n from "@/plugins/i18n";
 import {ListItemSelect} from "@/types/ListItemSelect";
+import {TemplateVariable} from "@/types/TemplateVariable";
+import i18n from "@/plugins/i18n";
 
-const props = defineProps<{modelValue: string, disabled: boolean, counter: number}>()
+const props = defineProps<{ modelValue: string, variables: Array<TemplateVariable>, counter: number, disabled?: boolean }>()
 const emit = defineEmits(['update:modelValue'])
 const route = useRoute()
 const store = useStore()
@@ -71,6 +72,11 @@ let value = props.modelValue;
 let roleSelect = ref(false);
 let channelSelect = ref(false);
 let variableSelect = ref(false);
+
+if (!template.value) template.value = ''
+
+const variablesList = Object.keys(i18n.global.tm('TemplateInput.variables'))
+    .filter(v => props.variables.includes(v as TemplateVariable))
 
 const rules = [
   (template: string) => (template.length <= props.counter ||

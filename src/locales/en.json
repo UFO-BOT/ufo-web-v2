@@ -108,7 +108,7 @@
     },
     "variables": {
       "member": {
-        "title": "Member",
+        "name": "Member",
         "list": [
           {
             "name": "member.id",
@@ -153,7 +153,7 @@
         ]
       },
       "guild": {
-        "title": "Server",
+        "name": "Server",
         "list": [
           {
             "name": "guild.id",
@@ -180,9 +180,39 @@
             "description": "Guild creation date"
           }
         ]
+      },
+      "channel": {
+        "name": "Channel",
+        "list": [
+          {
+            "name": "channel.id",
+            "description": "Channel ID"
+          },
+          {
+            "name": "channel.name",
+            "description": "Server name"
+          },
+          {
+            "name": "channel.topic",
+            "description": "Channel topic"
+          },
+          {
+            "name": "channel.mention",
+            "description": "Channel mention"
+          },
+          {
+            "name": "channel.created",
+            "description": "Channel creation date"
+          }
+        ]
       }
     },
     "invalidLength": "Template may not be longer than [length] characters"
+  },
+  "TemplateCompilationError": {
+    "title": "Error",
+    "description": "An error occurred while checking the templates. Check that all variables are used correctly. Template variables documentation is",
+    "link": "here"
   },
   "ResetBalance": {
     "resetBalance": "Reset all balances",
@@ -506,9 +536,14 @@
       "reason": "Reason",
       "duration": "Duration",
       "autoModeration": "Automoderation",
-      "description": "Description",
+      "description": "How does it work?",
       "options": "Options",
       "deleteMessages": "Delete messages",
+      "actions": "Actions",
+      "message": "Send message",
+      "selectChannel": "Send to certain channel",
+      "channel": "Channel",
+      "punishMember": "Punish member",
       "whitelist": "White list",
       "allowedRoles": "Allowed roles",
       "allowedChannels": "Allowed channels",
@@ -536,6 +571,7 @@
       "reasonLength": "Reason cannot be longer than 512 characters",
       "invalidDuration": "Duration must be a positive integer",
       "tooLongDuration": "Punishment duration is too long",
+      "invPosNumber": "Enter a positive integer",
       "invalidWarns": "Warns amount must be an integer",
       "duplicateWarns": "Punishment for this count of warns is already set",
       "warnsPunishmentsLimit": "Punishments for warns limit is reached"

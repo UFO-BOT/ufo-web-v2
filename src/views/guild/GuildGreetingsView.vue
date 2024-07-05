@@ -1,12 +1,13 @@
 <template>
   <v-form v-model="valid">
+    <TemplateCompilationError v-if="templateCompilationError" class="error"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinMessage') }}</div>
     <v-switch v-model="settings.greetings.join.enabled" class="fit-content" color="primary" hide-details
               :label="$t(`GuildGreetings.subtitles.enabled`)"/>
     <v-select v-model="settings.greetings.join.channel" class="channel-select" color="primary"
               :rules="joinRules" :disabled="!settings.greetings.join.enabled" :items="channels"
               :label="$t(`GuildGreetings.subtitles.channel`)"/>
-    <TemplateInput v-model="settings.greetings.join.message" class="template"
+    <TemplateInput v-model="settings.greetings.join.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.join.enabled" :counter="1500"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.leaveMessage') }}</div>
     <v-switch v-model="settings.greetings.leave.enabled" class="fit-content" color="primary" hide-details
@@ -14,12 +15,12 @@
     <v-select v-model="settings.greetings.leave.channel" class="channel-select" color="primary"
               :rules="joinRules" :disabled="!settings.greetings.leave.enabled" :items="channels"
               :label="$t(`GuildGreetings.subtitles.channel`)"/>
-    <TemplateInput v-model="settings.greetings.leave.message" class="template"
+    <TemplateInput v-model="settings.greetings.leave.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.leave.enabled" :counter="1500"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinDM') }}</div>
     <v-switch v-model="settings.greetings.dm.enabled" class="fit-content" color="primary" hide-details
               :label="$t(`GuildGreetings.subtitles.enabled`)"/>
-    <TemplateInput v-model="settings.greetings.dm.message" class="template"
+    <TemplateInput v-model="settings.greetings.dm.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.dm.enabled" :counter="1500"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinRoles') }}</div>
     <v-select v-model="settings.greetings.joinRoles" class="roles-select"
@@ -46,6 +47,7 @@ import {GuildAutoModeration, GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import {SubmitResult} from "@/types/SubmitResult";
 import TemplateInput from "@/components/TemplateInput.vue";
+import TemplateCompilationError from "@/components/TemplateCompilationError.vue";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -57,6 +59,7 @@ let channels = SelectItems.channels(guild.value!.channels!, false)
 let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
+let templateCompilationError = ref(false);
 const joinRules = [
   (channel: string) => (!!channel || '')
 ]
@@ -67,6 +70,7 @@ if (!settings.greetings.dm?.enabled) settings.greetings.dm = {enabled: false, me
 if (!settings.greetings.joinRoles) settings.greetings.joinRoles = []
 
 async function submit() {
+  templateCompilationError.value = false;
   submitting.value = true;
   if (!settings.greetings.join.channel || !settings.greetings.join.message?.length)
     settings.greetings.join.enabled = false;
@@ -81,6 +85,8 @@ async function submit() {
           'Content-Type': 'application/json'
         }, body: JSON.stringify(settings.greetings)
       })
+  let body = await response.json()
+  templateCompilationError.value = body.message === "Template compilation error"
   if (response.ok) emit('submitted', 'success', settings)
   else emit('submitted', 'error')
   submitting.value = false;
@@ -88,6 +94,11 @@ async function submit() {
 </script>
 
 <style scoped>
+.error {
+  margin-bottom: 10px;
+  width: 90%;
+}
+
 .subtitle-1 {
   font-size: 1.2em;
 }
