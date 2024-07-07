@@ -19,17 +19,16 @@
 </template>
 
 <script setup lang="ts">
-import {computed, reactive, Ref, ref} from "vue";
+import {computed, Reactive, reactive, Ref, ref} from "vue";
 import {useRoute} from "vue-router";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import i18n from "@/plugins/i18n";
-import {ReactiveVariable} from "vue/macros";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
 const route = useRoute();
-let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
+let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
 const languageItems = computed(() => [

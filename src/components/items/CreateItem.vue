@@ -56,13 +56,12 @@
 </template>
 
 <script setup lang="ts">
-import {computed, reactive, ref} from "vue";
+import {computed, Reactive, reactive, ref} from "vue";
 import {useRoute} from "vue-router";
 import {useStore} from "vuex";
 import config from "@/config.json";
 import {Item} from "@/types/Item";
 import {Guild} from "@/types/Guild";
-import {ReactiveVariable} from "vue/macros";
 import SelectItems from "@/utils/SelectItems";
 import i18n from "@/plugins/i18n";
 
@@ -75,7 +74,7 @@ let roles = SelectItems.roles(guild.value!.roles!)
 let dialog = ref(false)
 let valid = ref(true)
 let loading = ref(false)
-let item: ReactiveVariable<Item> = reactive({
+let item: Reactive<Item> = reactive({
   name: '',
   description: '',
   price: 0,

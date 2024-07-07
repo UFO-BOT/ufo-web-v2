@@ -20,9 +20,10 @@
 
 <script setup lang="ts">
 import Typed from "typed.js";
-import {onMounted, watch} from "vue";
+import {onMounted, watch, WritableComputedRef} from "vue";
 import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
+import {Language} from "@/types/Language";
 import i18n from "@/plugins/i18n";
 
 const location = window.location.origin
@@ -40,7 +41,7 @@ function startTyped() {
   })
 }
 onMounted(startTyped)
-watch(() => i18n.global.locale.value, startTyped)
+watch(() => (i18n.global.locale as WritableComputedRef<Language>).value, startTyped)
 </script>
 
 <style scoped>

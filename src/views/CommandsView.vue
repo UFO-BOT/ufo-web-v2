@@ -67,10 +67,9 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, reactive, Ref, ref} from "vue";
+import {onMounted, Reactive, reactive, Ref, ref} from "vue";
 import config from "@/config.json";
 import {Command} from "@/types/Command";
-import {ReactiveVariable} from "vue/macros";
 import GetUsage from "@/utils/GetUsage";
 import ParsePerms from "@/utils/ParsePerms";
 import i18n from "@/plugins/i18n";
@@ -78,7 +77,7 @@ import i18n from "@/plugins/i18n";
 const categories = ['general', 'economy', 'games', 'utilities', 'moderation'];
 const icons = ['public', 'attach_money', 'phone_iphone', 'build', 'security'];
 let commands: Ref<Array<Command>> = ref([]);
-let dialogs: ReactiveVariable<Record<string, boolean>> = reactive({a: false});
+let dialogs: Reactive<Record<string, boolean>> = reactive({a: false});
 
 onMounted(async () => {
   let response = await fetch(config.API + '/public/commands');

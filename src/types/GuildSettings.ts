@@ -1,5 +1,6 @@
 import {Language} from "@/types/Language";
 import {CommandSettings} from "@/types/CommandSettings";
+import {Embed} from "@/types/Embed";
 
 export interface GuildLanguage {
     commands: Language
@@ -58,7 +59,7 @@ export interface AutoModFloodOptions {
 interface Greeting {
     enabled: boolean
     message?: string
-    embed?: object
+    embed?: Embed
 }
 
 interface GuildGreeting extends Greeting {

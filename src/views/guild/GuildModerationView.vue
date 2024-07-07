@@ -54,11 +54,10 @@
 <script setup lang="ts">
 import i18n from "@/plugins/i18n";
 import SelectItems from "@/utils/SelectItems";
-import {computed, reactive, ref} from "vue";
+import {computed, Reactive, reactive, ref} from "vue";
 import {Guild} from "@/types/Guild";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
-import {ReactiveVariable} from "vue/macros";
 import {GuildAutoModeration, GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import AutoModeration from "@/components/automod/AutoModeration.vue";
@@ -71,7 +70,7 @@ const route = useRoute()
 const store = useStore()
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!, false)
-let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
+let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
 let punishments = computed(() => [

@@ -9,6 +9,7 @@
               :label="$t(`GuildGreetings.subtitles.channel`)"/>
     <TemplateInput v-model="settings.greetings.join.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.join.enabled" :counter="1500"/>
+    <EmbedInput v-model="settings.greetings.join.embed" class="embed"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.leaveMessage') }}</div>
     <v-switch v-model="settings.greetings.leave.enabled" class="fit-content" color="primary" hide-details
               :label="$t(`GuildGreetings.subtitles.enabled`)"/>
@@ -17,11 +18,13 @@
               :label="$t(`GuildGreetings.subtitles.channel`)"/>
     <TemplateInput v-model="settings.greetings.leave.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.leave.enabled" :counter="1500"/>
+    <EmbedInput v-model="settings.greetings.leave.embed" class="embed"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinDM') }}</div>
     <v-switch v-model="settings.greetings.dm.enabled" class="fit-content" color="primary" hide-details
               :label="$t(`GuildGreetings.subtitles.enabled`)"/>
     <TemplateInput v-model="settings.greetings.dm.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.dm.enabled" :counter="1500"/>
+    <EmbedInput v-model="settings.greetings.dm.embed" class="embed"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinRoles') }}</div>
     <v-select v-model="settings.greetings.joinRoles" class="roles-select"
               :label="$t('GuildGreetings.subtitles.selectRoles')"
@@ -36,18 +39,18 @@
 </template>
 
 <script setup lang="ts">
-import i18n from "@/plugins/i18n";
 import SelectItems from "@/utils/SelectItems";
 import {computed, reactive, ref} from "vue";
 import {Guild} from "@/types/Guild";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
 import {ReactiveVariable} from "vue/macros";
-import {GuildAutoModeration, GuildSettings} from "@/types/GuildSettings";
+import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
-import {SubmitResult} from "@/types/SubmitResult";
 import TemplateInput from "@/components/TemplateInput.vue";
 import TemplateCompilationError from "@/components/TemplateCompilationError.vue";
+import EmbedInput from "@/components/EmbedInput.vue";
+import {Embed} from "@/types/Embed";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -64,9 +67,10 @@ const joinRules = [
   (channel: string) => (!!channel || '')
 ]
 
-if (!settings.greetings.join?.enabled) settings.greetings.join = {enabled: false, message: '', embed: {}}
-if (!settings.greetings.leave?.enabled) settings.greetings.leave = {enabled: false, message: '', embed: {}}
-if (!settings.greetings.dm?.enabled) settings.greetings.dm = {enabled: false, message: '', embed: {}}
+let embed: Embed = {enabled: false}
+if (!settings.greetings.join?.enabled) settings.greetings.join = {enabled: false, message: '', embed}
+if (!settings.greetings.leave?.enabled) settings.greetings.leave = {enabled: false, message: '', embed}
+if (!settings.greetings.dm?.enabled) settings.greetings.dm = {enabled: false, message: '', embed}
 if (!settings.greetings.joinRoles) settings.greetings.joinRoles = []
 
 async function submit() {
@@ -109,6 +113,10 @@ async function submit() {
 
 .template {
   width: 90%;
+}
+
+.embed {
+  margin-bottom: 15px;
 }
 
 .roles-select {

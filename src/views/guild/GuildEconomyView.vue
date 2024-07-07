@@ -48,10 +48,9 @@
 </template>
 
 <script setup lang="ts">
-import {computed, reactive, ref} from "vue";
+import {computed, Reactive, reactive, ref} from "vue";
 import {useRoute} from "vue-router";
 import {useStore} from "vuex";
-import {ReactiveVariable} from "vue/macros";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import i18n from "@/plugins/i18n";
@@ -65,7 +64,7 @@ const emit = defineEmits(['submitted'])
 const route = useRoute();
 const store = useStore();
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
-let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
+let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
 

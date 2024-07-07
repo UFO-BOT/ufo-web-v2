@@ -214,6 +214,33 @@
     "description": "An error occurred while checking the templates. Check that all variables are used correctly. Template variables documentation is",
     "link": "here"
   },
+  "EmbedInput": {
+    "title": "Embed",
+    "general": "General",
+    "description": "Description",
+    "embed": {
+      "color": "Color",
+      "author": {
+        "name": "Author",
+        "url": "Author Url",
+        "iconUrl": "Author icon url"
+      },
+      "title": "Title",
+      "url": "Title Url",
+      "description": "Description",
+      "Fields": "Fields",
+      "image": "Image Url",
+      "thumbnail": "Thumbnail Url",
+      "footer": {
+        "text": "Footer",
+        "iconUrl": "Footer icon Url"
+      },
+      "timestamp": "Timestamp"
+    },
+    "errors": {
+      "invalidColor": "Enter valid color"
+    }
+  },
   "ResetBalance": {
     "resetBalance": "Reset all balances",
     "attention": "ATTENTION!",
