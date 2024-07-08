@@ -22,7 +22,7 @@
       </tr>
       </tbody>
     </v-table>
-    <v-progress-linear v-if="loading" class="loading" indeterminate/>
+    <v-progress-linear v-if="loading" class="loading item-center" indeterminate/>
     <div class="leaderboard-menu">
       <div>
         <v-pagination v-model="page" :length="pageCount" :disabled="loading"

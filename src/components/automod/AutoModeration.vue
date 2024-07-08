@@ -14,9 +14,7 @@
           <v-dialog v-model="dialogs[name]" fullscreen>
             <v-card color="modal">
               <v-toolbar dark color="primary">
-                <v-btn icon :disabled="loading[name]" @click="dialogs[name] = false">
-                  <v-icon>close</v-icon>
-                </v-btn>
+                <v-btn icon="close" :disabled="loading[name]" @click="dialogs[name] = false"/>
                 <v-toolbar-title>{{ $t(`GuildModeration.autoModeration.${name}.name`) }}</v-toolbar-title>
                 <v-spacer/>
                 <v-toolbar-items>
@@ -82,9 +80,8 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, reactive, Ref, ref} from "vue";
+import {computed, onMounted, Reactive, reactive, Ref, ref} from "vue";
 import {GuildAutoModeration} from "@/types/GuildSettings";
-import {ReactiveVariable} from "vue/macros";
 import {Role} from "@/types/Role";
 import i18n from "@/plugins/i18n";
 import {useRoute} from "vue-router";
@@ -104,12 +101,12 @@ let autoModeration = props.autoModeration
 let channels = SelectItems.channels(props.channels, false)
 let whitelistRoles = SelectItems.roles(props.roles, false, false)
 let whitelistChannels = SelectItems.channels(props.channels, false, false)
-let dialogs: ReactiveVariable<Record<string, boolean>> = reactive({})
-let valid: ReactiveVariable<Record<string, boolean>> = reactive({})
-let loadingDisable: ReactiveVariable<Record<string, boolean>> = reactive({})
-let loading: ReactiveVariable<Record<string, boolean>> = reactive({})
-let certainChannels: ReactiveVariable<Record<string, boolean>> = reactive({})
-let templateCompilationErrors: ReactiveVariable<Record<string, boolean>> = reactive({})
+let dialogs: Reactive<Record<string, boolean>> = reactive({})
+let valid: Reactive<Record<string, boolean>> = reactive({})
+let loadingDisable: Reactive<Record<string, boolean>> = reactive({})
+let loading: Reactive<Record<string, boolean>> = reactive({})
+let certainChannels: Reactive<Record<string, boolean>> = reactive({})
+let templateCompilationErrors: Reactive<Record<string, boolean>> = reactive({})
 let punishments = computed(() => [
   {title: i18n.global.t('GuildModeration.punishments.warn'), value: 'warn'},
   {title: i18n.global.t('GuildModeration.punishments.mute'), value: 'mute'},
@@ -218,6 +215,10 @@ async function submitAutomod(name: string) {
 
 .automod-settings {
   padding: 15px;
+}
+
+.btn-icon {
+  margin-right: 5px;
 }
 
 .error {

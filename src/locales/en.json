@@ -207,7 +207,10 @@
         ]
       }
     },
-    "invalidLength": "Template may not be longer than [length] characters"
+    "errors": {
+      "required": "Enter template",
+      "invalidLength": "Template cannot be longer than [length] characters"
+    }
   },
   "TemplateCompilationError": {
     "title": "Error",
@@ -218,6 +221,9 @@
     "title": "Embed",
     "general": "General",
     "description": "Description",
+    "fields": "Fields",
+    "field": "Field",
+    "done": "Done",
     "embed": {
       "color": "Color",
       "author": {
@@ -228,7 +234,11 @@
       "title": "Title",
       "url": "Title Url",
       "description": "Description",
-      "Fields": "Fields",
+      "field": {
+        "name": "Field name",
+        "value": "Field value",
+        "inline": "Inline"
+      },
       "image": "Image Url",
       "thumbnail": "Thumbnail Url",
       "footer": {
@@ -238,7 +248,25 @@
       "timestamp": "Timestamp"
     },
     "errors": {
-      "invalidColor": "Enter valid color"
+      "invalidColor": "Enter valid color",
+      "nameRequired": "Enter field name",
+      "invalidLength": "Cannot be longer than [length] characters"
+    }
+  },
+  "TimestampInput": {
+    "label": "Timestamp",
+    "items": {
+      "custom": {
+        "name": "Select date",
+        "description": "Select custom date"
+      },
+      "current": {
+        "name": "Current time",
+        "description": "Message creation timestamp"
+      },
+      "memberCreated": "Member account creation date",
+      "memberJoined": "Member join date",
+      "guildCreated": "Guild creation date"
     }
   },
   "ResetBalance": {

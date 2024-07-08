@@ -9,7 +9,7 @@
               :label="$t(`GuildGreetings.subtitles.channel`)"/>
     <TemplateInput v-model="settings.greetings.join.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.join.enabled" :counter="1500"/>
-    <EmbedInput v-model="settings.greetings.join.embed" class="embed"/>
+    <EmbedInput v-model="settings.greetings.join.embed" class="embed" :disabled="!settings.greetings.join.enabled"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.leaveMessage') }}</div>
     <v-switch v-model="settings.greetings.leave.enabled" class="fit-content" color="primary" hide-details
               :label="$t(`GuildGreetings.subtitles.enabled`)"/>
@@ -18,13 +18,13 @@
               :label="$t(`GuildGreetings.subtitles.channel`)"/>
     <TemplateInput v-model="settings.greetings.leave.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.leave.enabled" :counter="1500"/>
-    <EmbedInput v-model="settings.greetings.leave.embed" class="embed"/>
+    <EmbedInput v-model="settings.greetings.leave.embed" class="embed" :disabled="!settings.greetings.leave.enabled"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinDM') }}</div>
     <v-switch v-model="settings.greetings.dm.enabled" class="fit-content" color="primary" hide-details
               :label="$t(`GuildGreetings.subtitles.enabled`)"/>
     <TemplateInput v-model="settings.greetings.dm.message" class="template" :variables="['member', 'guild']"
                    :disabled="!settings.greetings.dm.enabled" :counter="1500"/>
-    <EmbedInput v-model="settings.greetings.dm.embed" class="embed"/>
+    <EmbedInput v-model="settings.greetings.dm.embed" class="embed" :disabled="!settings.greetings.dm.enabled"/>
     <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.joinRoles') }}</div>
     <v-select v-model="settings.greetings.joinRoles" class="roles-select"
               :label="$t('GuildGreetings.subtitles.selectRoles')"
@@ -40,11 +40,10 @@
 
 <script setup lang="ts">
 import SelectItems from "@/utils/SelectItems";
-import {computed, reactive, ref} from "vue";
+import {computed, Reactive, reactive, ref} from "vue";
 import {Guild} from "@/types/Guild";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
-import {ReactiveVariable} from "vue/macros";
 import {GuildSettings} from "@/types/GuildSettings";
 import config from "@/config.json";
 import TemplateInput from "@/components/TemplateInput.vue";
@@ -59,7 +58,7 @@ const store = useStore()
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!, false)
 let channels = SelectItems.channels(guild.value!.channels!, false)
-let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
+let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
 let templateCompilationError = ref(false);
@@ -76,11 +75,14 @@ if (!settings.greetings.joinRoles) settings.greetings.joinRoles = []
 async function submit() {
   templateCompilationError.value = false;
   submitting.value = true;
-  if (!settings.greetings.join.channel || !settings.greetings.join.message?.length)
+  if (!settings.greetings.join.channel ||
+      (!settings.greetings.join.message?.trim()?.length && !settings.greetings.join.embed?.enabled))
     settings.greetings.join.enabled = false;
-  if (!settings.greetings.leave.channel || !settings.greetings.join.message?.length)
+  if (!settings.greetings.leave.channel ||
+      (!settings.greetings.leave.message?.trim()?.length && !settings.greetings.leave.embed?.enabled))
     settings.greetings.leave.enabled = false;
-  if (!settings.greetings.dm.message?.length) settings.greetings.dm.enabled = false;
+  if (!settings.greetings.dm.message?.trim()?.length && !settings.greetings.dm.embed?.enabled)
+    settings.greetings.dm.enabled = false;
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/greetings`,
       {
         method: 'POST',

@@ -207,7 +207,10 @@
         ]
       }
     },
-    "invalidLength": "Длина шаблона не может быть больше [length] символов"
+    "errors": {
+      "required": "Введите шаблон",
+      "invalidLength": "Длина шаблона не может быть больше [length] символов"
+    }
   },
   "TemplateCompilationError": {
     "title": "Ошибка",
@@ -218,6 +221,9 @@
     "title": "Эмбед",
     "general": "Основное",
     "description": "Описание",
+    "fields": "Поля",
+    "field": "Поле",
+    "done": "Готово",
     "embed": {
       "color": "Цвет",
       "author": {
@@ -228,7 +234,11 @@
       "title": "Название",
       "url": "Ссылка названия",
       "description": "Описание",
-      "Fields": "Поля",
+      "field": {
+        "name": "Название поля",
+        "value": "Описание поля",
+        "inline": "В ряд"
+      },
       "image": "Ссылка на большую картинку",
       "thumbnail": "Ссылка на маленькую картику",
       "footer": {
@@ -238,7 +248,25 @@
       "timestamp": "Отметка времени"
     },
     "errors": {
-      "invalidColor": "Введите действительный цвет"
+      "invalidColor": "Введите действительный цвет",
+      "nameRequired": "Введите название поля",
+      "invalidLength": "Не может быть длиннее [length] символов"
+    }
+  },
+  "TimestampInput": {
+    "label": "Отметка времени",
+    "items": {
+      "custom": {
+        "name": "Выбор даты",
+        "description": "Выбрать определенную дату"
+      },
+      "current": {
+        "name": "Текущее время",
+        "description": "Время отправки сообщения"
+      },
+      "memberCreated": "Дата создания аккаунта участника",
+      "memberJoined": "Дата присоединения участника",
+      "guildCreated": "Дата создания сервера"
     }
   },
   "ResetBalance": {

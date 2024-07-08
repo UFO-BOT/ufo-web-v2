@@ -2,7 +2,7 @@
   <div>
     <v-form v-model="valid">
       <div class="subtitle-1">{{ $t('GuildModeration.subtitles.muteRole') }}</div>
-      <v-select v-model="settings.muteRole" class="role-select mt-1" :items="roles" hide-details
+      <v-select v-model="settings.muteRole" class="role-select mt-1" color="primary" :items="roles" hide-details
                 :label="$t('GuildModeration.subtitles.selectRole')"/>
       <v-checkbox v-model="settings.useTimeout" class="ma-0 pa-0 fit-content" color="primary" hide-details
                   :label="$t('GuildModeration.subtitles.useTimeout')"/>

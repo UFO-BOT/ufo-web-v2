@@ -44,14 +44,14 @@
         <v-tooltip activator="parent" location="top">{{ $t(`TemplateInput.tooltips.docs`) }}</v-tooltip>
       </v-btn>
     </div>
-    <v-textarea v-model="template" class="template" :disabled="props.disabled" :rules="rules"
-                @input="update" :label="$t(`TemplateInput.template`)" color="primary"
-                :counter="props.counter"/>
+    <v-textarea v-model="template" ref="textarea" class="template" :disabled="props.disabled" :rules="rules"
+                :label="props.label ?? $t(`TemplateInput.template`)" color="primary" :counter="props.counter"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, reactive, ref} from "vue";
+import {computed, ref} from "vue";
+import {VTextarea} from "vuetify/lib/components";
 import {useRoute} from "vue-router";
 import SelectItems from "@/utils/SelectItems";
 import {useStore} from "vuex";
@@ -60,15 +60,15 @@ import {ListItemSelect} from "@/types/ListItemSelect";
 import {TemplateVariable} from "@/types/TemplateVariable";
 import i18n from "@/plugins/i18n";
 
-const props = defineProps<{ modelValue: string, variables: Array<TemplateVariable>, counter: number, disabled?: boolean }>()
-const emit = defineEmits(['update:modelValue'])
+const props = defineProps<{ variables: Array<TemplateVariable>, counter: number, label?: string, required?: boolean
+  disabled?: boolean }>()
 const route = useRoute()
 const store = useStore()
-let template = ref(props.modelValue)
+let template = defineModel<string>()
+let textarea = ref<VTextarea | null>(null)
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!, false, false)
 let channels = SelectItems.channels(guild.value!.channels!, false, false)
-let value = props.modelValue;
 let roleSelect = ref(false);
 let channelSelect = ref(false);
 let variableSelect = ref(false);
@@ -79,30 +79,29 @@ const variablesList = Object.keys(i18n.global.tm('TemplateInput.variables'))
     .filter(v => props.variables.includes(v as TemplateVariable))
 
 const rules = [
+  (template: string) => ((!props.required || template.length > 0) || i18n.global.t('TemplateInput.errors.required')),
   (template: string) => (template.length <= props.counter ||
-      i18n.global.t('TemplateInput.invalidLength').replace("[length]", props.counter.toString()))
+      i18n.global.t('TemplateInput.errors.invalidLength').replace("[length]", props.counter.toString()))
 ]
 
 function roleMention(role: ListItemSelect) {
   template.value += `<@&${role.id}>`
-  emit('update:modelValue', template.value);
   roleSelect.value = false
 }
 
 function channelMention(channel: ListItemSelect) {
-  template.value += `<#${channel.id}>`
-  emit('update:modelValue', template.value);
+  let pos = textarea.value!.selectionStart
+  let len = template.value?.length
+  template.value = template.value?.substring(0, pos) + `<#${channel.id}>` + template.value?.substring(pos, len)
+  template.value +=
   channelSelect.value = false
 }
 
 function variableAdd(variable: string) {
-  template.value += '{{' + variable + '}}'
-  emit('update:modelValue', template.value);
+  let pos = textarea.value!.selectionStart
+  let len = template.value?.length
+  template.value = template.value?.substring(0, pos) + '{{' + variable + '}}' + template.value?.substring(pos, len)
   variableSelect.value = false
-}
-
-function update() {
-  emit('update:modelValue', template.value);
 }
 </script>
 
