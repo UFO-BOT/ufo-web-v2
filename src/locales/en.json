@@ -229,7 +229,7 @@
       "author": {
         "name": "Author",
         "url": "Author Url",
-        "iconUrl": "Author icon url"
+        "iconUrl": "Author icon Url"
       },
       "title": "Title",
       "url": "Title Url",
@@ -248,22 +248,20 @@
       "timestamp": "Timestamp"
     },
     "errors": {
-      "invalidColor": "Enter valid color",
       "nameRequired": "Enter field name",
       "invalidLength": "Cannot be longer than [length] characters"
     }
   },
   "TimestampInput": {
     "label": "Timestamp",
+    "date": "Date",
+    "variable": "Variable",
     "items": {
-      "custom": {
-        "name": "Select date",
-        "description": "Select custom date"
-      },
-      "current": {
-        "name": "Current time",
-        "description": "Message creation timestamp"
-      },
+      "current": "Current time",
+      "custom": "Select date",
+      "template": "Select variable"
+    },
+    "variables": {
       "memberCreated": "Member account creation date",
       "memberJoined": "Member join date",
       "guildCreated": "Guild creation date"

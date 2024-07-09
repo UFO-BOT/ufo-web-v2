@@ -83,6 +83,7 @@ async function submit() {
     settings.greetings.leave.enabled = false;
   if (!settings.greetings.dm.message?.trim()?.length && !settings.greetings.dm.embed?.enabled)
     settings.greetings.dm.enabled = false;
+  console.log(settings.greetings.leave.embed)
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/greetings`,
       {
         method: 'POST',

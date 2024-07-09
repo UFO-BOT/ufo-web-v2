@@ -8,6 +8,8 @@
     "i18n:report": "vue-cli-service i18n:report --src \\\\\\\"./src/**/*.?(js|vue)\\\\\\\" --locales \\\\\\\"src/locales/**/*.json\\\\\\\""
   },
   "dependencies": {
+    "@date-io/date-fns": "^3.0.0",
+    "date-fns": "^3.6.0",
     "roboto-fontface": "*",
     "typed.js": "^2.0.12",
     "vue": "^3.2.13",

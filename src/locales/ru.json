@@ -248,22 +248,20 @@
       "timestamp": "Отметка времени"
     },
     "errors": {
-      "invalidColor": "Введите действительный цвет",
       "nameRequired": "Введите название поля",
       "invalidLength": "Не может быть длиннее [length] символов"
     }
   },
   "TimestampInput": {
     "label": "Отметка времени",
+    "date": "Дата",
+    "variable": "Переменная",
     "items": {
-      "custom": {
-        "name": "Выбор даты",
-        "description": "Выбрать определенную дату"
-      },
-      "current": {
-        "name": "Текущее время",
-        "description": "Время отправки сообщения"
-      },
+      "current": "Текущее время",
+      "custom": "Выбор даты",
+      "template": "Выбрать переменную"
+    },
+    "variables": {
       "memberCreated": "Дата создания аккаунта участника",
       "memberJoined": "Дата присоединения участника",
       "guildCreated": "Дата создания сервера"

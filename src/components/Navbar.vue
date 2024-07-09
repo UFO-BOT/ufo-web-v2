@@ -41,6 +41,7 @@
 import {computed, onMounted, ref, WritableComputedRef} from "vue";
 import {useStore} from "vuex";
 import i18n from "@/plugins/i18n";
+import vuetify from "@/plugins/vuetify";
 import UFOLogo from "@/assets/logo.png";
 import config from "@/config.json";
 import {useRoute} from "vue-router";
@@ -57,6 +58,7 @@ function translate() {
   let language: Language = locale.value === "ru" ? "en" : "ru"
   localStorage.setItem("language", language);
   locale.value = language;
+  vuetify.locale.current = computed(() => language);
   let title = String(route.name) + '.title'
   if (i18n.global.te(title)) document.title = i18n.global.t(title)
 }

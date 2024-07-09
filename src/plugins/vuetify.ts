@@ -2,11 +2,19 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { aliases, md } from 'vuetify/iconsets/md';
+import { en, ru } from 'vuetify/locale'
+import {Language} from "@/types/Language";
 
 // Vuetify
 import { createVuetify } from 'vuetify'
+import { VDateInput } from 'vuetify/labs/VDateInput'
 
 export default createVuetify({
+    locale: {
+        locale: localStorage.getItem("language") as Language,
+        fallback: 'en',
+        messages: { en, ru },
+    },
     theme: {
         defaultTheme: localStorage.getItem('theme') ?? 'dark' as 'light' | 'dark',
         themes: {
@@ -63,5 +71,8 @@ export default createVuetify({
         defaultSet: 'md',
         aliases,
         sets: {md}
+    },
+    components: {
+        VDateInput,
     }
 })

@@ -22,7 +22,7 @@
         <div class="embed-settings">
           <v-form v-model="valid">
             <div class="subtitle">{{ $t('EmbedInput.general') }}</div>
-            <v-text-field v-model="embed.color" class="input" :label="$t('EmbedInput.embed.color')" :rules="colorRules">
+            <v-text-field v-model="embed.color" class="input" :label="$t('EmbedInput.embed.color')" readonly>
               <template v-slot:prepend>
                 <v-icon :color="embed.color" icon="$vuetify">palette</v-icon>
               </template>
@@ -57,7 +57,7 @@
               <v-text-field v-model="embed.footer.iconUrl"  class="input" :label="$t('EmbedInput.embed.footer.iconUrl')"
                             color="primary" prepend-icon="link" :counter="2048" :rules="lengthRules(2048)"/>
             </div>
-            <TimestampInput class="input"/>
+            <TimestampInput v-model="embed.timestamp"/>
             <div class="subtitle">{{ $t('EmbedInput.description') }}</div>
             <TemplateInput v-model="embed.description" :variables="['member', 'guild']" :counter="2048"/>
             <div class="subtitle">{{ $t('EmbedInput.fields') }}</div>
@@ -80,7 +80,7 @@
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
-            <v-btn icon="add" variant="tonal" color="success" @click="addField"/>
+            <v-btn v-if="embed.fields.length < 25" icon="add" variant="tonal" color="success" @click="addField"/>
           </v-form>
         </div>
       </v-card>
@@ -102,10 +102,6 @@ let valid = ref(true)
 let colorPicker = ref(false)
 let fieldRemove = ref(false)
 
-const colorRules = [
-  (color: string) => (/^#[0-9A-F]{6}$/i.test(color) || i18n.global.t('EmbedInput.errors.invalidColor'))
-]
-
 function lengthRules(length: number) {
   return [(str: string) => (str.length <= length || i18n.global.t('EmbedInput.errors.invalidLength')
       .replace("[length]", String(length)))]
@@ -125,7 +121,7 @@ if (!embed.value?.enabled) embed.value = {
   fields: [],
   image: '', thumbnail: '',
   footer: {text: '', iconUrl: ''},
-  timestamp: {type: "template", template: "{{member.created}}"} as EmbedTimestamp
+  timestamp: {type: null, date: new Date(), template: "{{member.created}}"} as EmbedTimestamp
 }
 
 function addField() {
