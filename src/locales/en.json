@@ -671,7 +671,15 @@
       "channel": "Channel",
       "messageTemplate": "Message template",
       "joinRoles": "Join roles",
-      "selectRoles": "Select roles"
+      "selectRoles": "Select roles",
+      "tests": "Tests",
+      "testsTitle": "Test greetings",
+      "testsDescription": "Simulates event of your joining or leaving the server for you to check that messages, embeds and all templates are filled correctly. Save all changes before testing.",
+      "joinTest": "Join test",
+      "leaveTest": "Leave test",
+      "testCompleted": "Test completed!",
+      "testError": "Error",
+      "close": "Close"
     },
     "submit": "Submit"
   },

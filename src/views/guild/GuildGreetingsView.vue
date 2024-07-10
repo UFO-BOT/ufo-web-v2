@@ -30,6 +30,31 @@
               :label="$t('GuildGreetings.subtitles.selectRoles')"
               color="primary" persistent-hint multiple chips closable-chips
               :items="roles"/>
+    <div class="subtitle-1">{{ $t('GuildGreetings.subtitles.tests') }}</div>
+    <v-alert v-if="settings.useTimeout" class="alert" border="start" color="alert"
+             :title="$t('GuildGreetings.subtitles.testsTitle')" variant="tonal">
+      {{ $t('GuildGreetings.subtitles.testsDescription') }}
+    </v-alert>
+    <div class="test-buttons">
+      <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['join']" prepend-icon="person_add"
+             @click="test('join')">
+        {{ $t('GuildGreetings.subtitles.joinTest') }}
+      </v-btn>
+      <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['leave']" prepend-icon="person_remove"
+             @click="test('leave')">
+        {{ $t('GuildGreetings.subtitles.leaveTest') }}
+      </v-btn>
+    </div>
+    <v-snackbar v-model="testSnackbar" color="block">
+      <div class="test-result">
+        {{ testSuccess ? $t('GuildGreetings.subtitles.testCompleted') : $t('GuildGreetings.subtitles.testError') }}
+      </div>
+      <template v-slot:actions>
+        <v-btn :color="testSuccess ? 'green' : 'pink'" variant="text" ripple @click="testSnackbar = false">
+          {{ $t('GuildGreetings.subtitles.close') }}
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
            @click="submit">
       <v-icon class="save-icon">save</v-icon>
@@ -62,6 +87,9 @@ let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props
 let valid = ref(true);
 let submitting = ref(false);
 let templateCompilationError = ref(false);
+let tests: Reactive<Record<string, boolean>> = reactive({});
+let testSnackbar = ref(false);
+let testSuccess = ref(true);
 const joinRules = [
   (channel: string) => (!!channel || '')
 ]
@@ -83,7 +111,6 @@ async function submit() {
     settings.greetings.leave.enabled = false;
   if (!settings.greetings.dm.message?.trim()?.length && !settings.greetings.dm.embed?.enabled)
     settings.greetings.dm.enabled = false;
-  console.log(settings.greetings.leave.embed)
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/greetings`,
       {
         method: 'POST',
@@ -97,6 +124,21 @@ async function submit() {
   if (response.ok) emit('submitted', 'success', settings)
   else emit('submitted', 'error')
   submitting.value = false;
+}
+
+async function test(type: 'join' | 'leave') {
+  tests[type] = true
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/greetings/test`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token') as string,
+          'Content-Type': 'application/json'
+        }, body: JSON.stringify({type})
+      })
+  tests[type] = false
+  testSuccess.value = response.ok
+  testSnackbar.value = true
 }
 </script>
 
@@ -115,7 +157,7 @@ async function submit() {
 }
 
 .template {
-  width: 90%;
+  width: 95%;
 }
 
 .embed {
@@ -124,7 +166,26 @@ async function submit() {
 
 .roles-select {
   margin-top: 10px;
-  width: 90%;
+  width: 95%;
+}
+
+.alert {
+  text-align: justify;
+  width: 95%;
+  margin-top: 5px;
+}
+
+.test-buttons {
+  margin-top: 15px;
+}
+
+.test-button {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.test-result {
+  font-size: 1.4em;
 }
 
 .submit {
