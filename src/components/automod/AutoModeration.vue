@@ -39,28 +39,34 @@
                   <div class="subtitle">{{ $t('GuildModeration.subtitles.actions') }}</div>
                   <v-switch v-model="automod.message.enabled" class="fit-content" color="primary" hide-details
                             density="compact" :label="$t('GuildModeration.subtitles.message')"/>
-                  <div v-if="automod.message.enabled">
-                    <v-checkbox v-model="certainChannels[name]" :label="$t('GuildModeration.subtitles.selectChannel')"
-                                hide-details density="comfortable" color="primary" @change="certainChannelChange(name)"/>
-                    <v-select v-if="certainChannels[name]" v-model="automod.message.channel" class="item-select"
-                              color="primary" :items="channels" :label="$t('GuildModeration.subtitles.channel')"/>
-                    <TemplateInput v-model="automod.message.template" :variables="['member', 'guild', 'channel']"
-                                   :counter="1500"/>
-                  </div>
+                  <v-expand-transition>
+                    <div v-if="automod.message.enabled">
+                      <v-checkbox v-model="certainChannels[name]" :label="$t('GuildModeration.subtitles.selectChannel')"
+                                  hide-details density="comfortable" color="primary" @change="certainChannelChange(name)"/>
+                      <v-expand-transition>
+                        <v-select v-if="certainChannels[name]" v-model="automod.message.channel" class="item-select"
+                                  color="primary" :items="channels" :label="$t('GuildModeration.subtitles.channel')"/>
+                      </v-expand-transition>
+                      <TemplateInput v-model="automod.message.template" :variables="['member', 'guild', 'channel']"
+                                     :counter="1500"/>
+                    </div>
+                  </v-expand-transition>
                   <v-switch v-model="automod.punishment.enabled" class="fit-content" color="primary" hide-details
                             density="compact" :label="$t('GuildModeration.subtitles.punishMember')"/>
-                  <div v-if="automod.punishment.enabled">
-                    <div class="punishment">
-                      <div class="item-select">
-                        <v-select v-model="automod.punishment.type" color="primary" :items="punishments"
-                                  :label="$t('GuildModeration.subtitles.punishment')"/>
+                  <v-expand-transition>
+                    <div v-if="automod.punishment.enabled">
+                      <div class="punishment">
+                        <div class="item-select">
+                          <v-select v-model="automod.punishment.type" color="primary" :items="punishments"
+                                    :label="$t('GuildModeration.subtitles.punishment')"/>
+                        </div>
+                        <DurationPicker v-if="['mute', 'ban'].includes(automod.punishment.type)" :limit="315360000000"
+                                        v-model="automod.punishment.duration" class="punishment-duration"/>
                       </div>
-                      <DurationPicker v-if="['mute', 'ban'].includes(automod.punishment.type)" :limit="315360000000"
-                                      v-model="automod.punishment.duration" class="punishment-duration"/>
+                      <v-text-field v-model="automod.punishment.reason" class="general-item-field" color="primary"
+                                    counter="512" :rules="reasonRules" :label="$t('GuildModeration.subtitles.reason')"/>
                     </div>
-                    <v-text-field v-model="automod.punishment.reason" class="general-item-field" color="primary"
-                                  counter="512" :rules="reasonRules" :label="$t('GuildModeration.subtitles.reason')"/>
-                  </div>
+                  </v-expand-transition>
                   <div class="subtitle">{{ $t('GuildModeration.subtitles.whitelist') }}</div>
                   <v-select v-model="automod.whitelist.roles" class="role-select mt-1" color="primary"
                             :items="whitelistRoles" multiple chips closable-chips

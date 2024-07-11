@@ -3,7 +3,9 @@
     <v-main class="content">
       <div>
         <Navbar/>
-        <router-view/>
+        <v-fade-transition>
+          <router-view/>
+        </v-fade-transition>
       </div>
       <div>
         <Footer/>

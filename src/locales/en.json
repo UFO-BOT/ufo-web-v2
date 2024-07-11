@@ -220,6 +220,7 @@
   "EmbedInput": {
     "title": "Embed",
     "general": "General",
+    "generalDescription": "You can use template variables in every embed option. For example, in icon url you can use member avatar url variable",
     "description": "Description",
     "fields": "Fields",
     "field": "Field",

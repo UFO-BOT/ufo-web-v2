@@ -15,11 +15,13 @@
           {{ $t('Guild.boost.name') }}
         </v-list-item>
       </v-item-group>
-      </v-list>
+    </v-list>
     <v-window class="guild-settings">
       <div class="settings">
-        <v-progress-circular v-if="!guild?.settings" class="item-center" :size="60" :width="5" indeterminate/>
-        <router-view v-else :settings="guild.settings" @submitted="submitted"/>
+        <v-scroll-y-transition>
+          <v-progress-circular v-if="!guild?.settings" class="item-center" :size="60" :width="5" indeterminate/>
+          <router-view v-else :settings="guild.settings" @submitted="submitted"/>
+        </v-scroll-y-transition>
         <v-snackbar v-model="snackbar" color="block">
           <div class="result-text">{{ success ? $t('Guild.submitted') : $t('Guild.error') }}</div>
           <template v-slot:actions>
@@ -48,24 +50,24 @@ let snackbar = ref(false)
 let success = ref(true)
 
 onMounted(async () => {
-  if(!guild.value?.settings) await store.dispatch('getGuild', route.params.id)
+  if (!guild.value?.settings) await store.dispatch('getGuild', route.params.id)
 })
 
 async function submitted(result: SubmitResult, settings?: GuildSettings) {
   success.value = result === 'success';
-  if(result === 'success') await store.dispatch('updateSettings', {id: route.params.id, settings})
+  if (result === 'success') await store.dispatch('updateSettings', {id: route.params.id, settings})
   snackbar.value = true;
 }
 </script>
 
 <style scoped>
 .guild-name {
-  font-size: 1.2em!important;
+  font-size: 1.2em !important;
   padding: 5px 5px 5px 15px;
   margin-bottom: 8px;
 }
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 900px) {
   .guild-content {
     display: flex;
     flex-direction: row;
@@ -73,7 +75,6 @@ async function submitted(result: SubmitResult, settings?: GuildSettings) {
   }
 
   .guild-menu {
-    /* box-shadow: 0 5px 15px #14161a; */
     width: 250px;
   }
 

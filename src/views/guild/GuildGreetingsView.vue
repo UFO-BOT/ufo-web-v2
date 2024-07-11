@@ -128,7 +128,7 @@ async function submit() {
 
 async function test(type: 'join' | 'leave') {
   tests[type] = true
-  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/greetings/test`,
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/tests/greetings`,
       {
         method: 'POST',
         headers: {

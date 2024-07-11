@@ -87,6 +87,9 @@ onMounted(async () => {
   .mobileNav {
     display: block;
   }
+  .user-username {
+    display: none;
+  }
 }
 @media screen and (min-width: 1000px) {
   .nav-menu {
@@ -97,6 +100,9 @@ onMounted(async () => {
   }
   .mobileNav {
     display: none;
+  }
+  .user-username {
+    display: block;
   }
 }
 

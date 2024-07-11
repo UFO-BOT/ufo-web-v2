@@ -21,7 +21,13 @@
         </v-toolbar>
         <div class="embed-settings">
           <v-form v-model="valid">
-            <div class="subtitle">{{ $t('EmbedInput.general') }}</div>
+            <div class="subtitle subtitle-general">{{ $t('EmbedInput.general') }}</div>
+            <v-tooltip location="bottom" width="500px" open-on-click>
+              {{ $t('EmbedInput.generalDescription') }}
+              <template v-slot:activator="{ props }">
+                <v-btn class="general-icon" icon="help_outline" variant="text" density="comfortable" v-bind="props"/>
+              </template>
+            </v-tooltip>
             <v-text-field v-model="embed.color" class="input" :label="$t('EmbedInput.embed.color')" readonly>
               <template v-slot:prepend>
                 <v-icon :color="embed.color" icon="$vuetify">palette</v-icon>
@@ -80,7 +86,7 @@
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
-            <v-btn v-if="embed.fields.length < 25" icon="add" variant="tonal" color="success" @click="addField"/>
+            <v-btn v-if="embed.fields.length < 25" icon="add" variant="tonal" color="primary" @click="addField"/>
           </v-form>
         </div>
       </v-card>
@@ -160,6 +166,14 @@ function submit() {
   margin-bottom: 10px;
 }
 
+.subtitle-general {
+  display: inline;
+}
+
+.general-icon {
+  margin-left: 5px;
+}
+
 .inputs {
   display: flex;
   justify-content: space-between;
@@ -173,6 +187,7 @@ function submit() {
 }
 
 .fields {
+  margin-top: 5px;
   margin-bottom: 10px;
 }
 

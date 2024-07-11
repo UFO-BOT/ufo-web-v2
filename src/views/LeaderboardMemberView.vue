@@ -24,15 +24,13 @@
             <div>{{ Number(member.xp).toLocaleString($i18n.locale) }}</div>
           </div>
         </div>
-        <div v-if="manageable">
-          <v-divider class="mt-2 mb-2"></v-divider>
-          <div class="member-flex">
-            <v-btn icon variant="text" color="primary" size="40" :to="`/leaderboard/${route.params.id}`">
-              <v-icon>keyboard_return</v-icon>
-            </v-btn>
-            <UpdateBalance v-if="access" :member="member" @update="updateBalance"/>
-            <DeleteBalance v-if="access" :member="member" @delete="deleteBalance"/>
-          </div>
+        <v-divider class="mt-2 mb-2"></v-divider>
+        <div class="member-flex">
+          <v-btn icon variant="text" color="primary" size="40" :to="`/leaderboard/${route.params.id}`">
+            <v-icon>keyboard_return</v-icon>
+          </v-btn>
+          <UpdateBalance v-if="access" :member="member" @update="updateBalance"/>
+          <DeleteBalance v-if="access" :member="member" @delete="deleteBalance"/>
         </div>
       </div>
     </div>
@@ -44,21 +42,19 @@ import {onMounted, Ref, ref} from "vue";
 import {LeaderboardMember} from "@/types/LeaderboardMember";
 import config from "@/config.json";
 import {useRoute} from "vue-router";
-import i18n from "@/plugins/i18n";
 import {UpdateBalanceForm} from "@/types/UpdateBalanceForm";
 import UpdateBalance from "@/components/balances/UpdateBalance.vue";
 import DeleteBalance from "@/components/balances/DeleteBalance.vue";
 
 const route = useRoute()
 let loading = ref(true)
-let manageable = ref(false)
 let guildName = ref()
 let member: Ref<LeaderboardMember> = ref({} as LeaderboardMember)
 let access = ref(false)
 
 function updateBalance(balance: UpdateBalanceForm) {
   member.value.balance = balance.balance;
-  if(balance.resetXP) member.value.xp = 0;
+  if (balance.resetXP) member.value.xp = 0;
   return load();
 }
 
@@ -77,10 +73,12 @@ async function load() {
   guildName.value = body.guildName;
   member.value = body.leader;
   access.value = body.access;
-  let guildResponse = await fetch(`${config.API}/private/guilds/${route.params.id}/info`, {headers: {
+  let guildResponse = await fetch(`${config.API}/private/guilds/${route.params.id}/info`, {
+    headers: {
       Authorization: localStorage.getItem('token') as string
-    }})
-  if(guildResponse.ok) manageable.value = true;
+    }
+  })
+  if (guildResponse.ok) access.value = true
 }
 
 onMounted(async () => {
