@@ -528,6 +528,13 @@
       "minBet": "Minimal bet",
       "bet": "Bet",
       "commission": "Commission",
+      "messageXp": "Experience for messages",
+      "chance": "Chance",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "moneyBonuses": "Money bonuses",
+      "daily": "Daily",
+      "weekly": "Weekly",
       "resetBalance": "Reset all balances",
       "shop": "Shop",
       "percent": "Percent",
@@ -538,7 +545,7 @@
       "invPosNumber": "Enter a positive integer",
       "invNumber": "Enter an integer",
       "invMoneySymbol": "Money symbol may not be longer than 50 characters",
-      "invCommission": "Commission must be an integer not less than 0 and not more than 100"
+      "invPercent": "Enter valid percentage"
     },
     "submit": "Submit"
   },

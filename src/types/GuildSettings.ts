@@ -105,4 +105,13 @@ export interface GuildSettings {
     }
     greetings: GuildGreetings
     boost: boolean
+    messageXp: {
+        chance: number
+        min: number
+        max: number
+    }
+    moneyBonuses: {
+        daily: number
+        weekly: number
+    }
 }

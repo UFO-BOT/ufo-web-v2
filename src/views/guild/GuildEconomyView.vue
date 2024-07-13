@@ -28,16 +28,31 @@
                     counter="50" variant="outlined" :label="$t('GuildEconomy.subtitles.symbol')"
                     :hint="$t('GuildEconomy.subtitles.moneySymbolHint')"/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.commission') }}</div>
-      <v-text-field v-model="settings.commission" class="number-input" :rules="commissionRules" type="number"
+      <v-text-field v-model="settings.commission" class="number-input" :rules="percentRules" type="number"
                     color="primary" :label="$t('GuildEconomy.subtitles.percent')" suffix="%"/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.minBet') }}</div>
       <v-text-field v-model="settings.minBet" class="number-input" :rules="positiveIntegerRules" type="number"
                     color="primary" :label="$t('GuildEconomy.subtitles.bet')"/>
-      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.resetBalance') }}</div>
-      <ResetBalance :guild="guild" class="reset-balance"/>
-      <br>
+      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.messageXp') }}</div>
+      <v-text-field v-model="settings.messageXp.chance" class="number-input" :rules="percentRules" type="number"
+                    color="primary" :label="$t('GuildEconomy.subtitles.chance')" suffix="%"/>
+      <div class="number-inputs-flex">
+        <v-text-field v-model="settings.messageXp.min" class="number-input-item" :rules="positiveIntegerRules"
+                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.minimum')"/>
+        <v-text-field v-model="settings.messageXp.max" class="number-input-item" :rules="positiveIntegerRules"
+                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.maximum')"/>
+      </div>
+      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.moneyBonuses') }}</div>
+      <div class="number-inputs-flex">
+        <v-text-field v-model="settings.moneyBonuses.daily" class="number-input-item" :rules="positiveIntegerRules"
+                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.daily')"/>
+        <v-text-field v-model="settings.moneyBonuses.weekly" class="number-input-item" :rules="positiveIntegerRules"
+                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.weekly')"/>
+      </div>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.shop') }}</div>
       <Items/>
+      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.resetBalance') }}</div>
+      <ResetBalance :guild="guild" class="reset-balance"/>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
@@ -77,9 +92,9 @@ const positiveIntegerRules = [
 const moneySymbolRules = [
   (symbol: string) => (symbol.length <= 50) || i18n.global.t('GuildEconomy.errors.invMoneySymbol')
 ]
-const commissionRules = [
+const percentRules = [
   (number: number) => (number >= 0 && number <= 100 && !(number % 1)) ||
-      i18n.global.t('GuildEconomy.errors.invCommission')
+      i18n.global.t('GuildEconomy.errors.invPercent')
 ]
 
 async function submit() {
@@ -90,13 +105,7 @@ async function submit() {
         headers: {
           Authorization: localStorage.getItem('token') as string,
           'Content-Type': 'application/json'
-        }, body: JSON.stringify({
-          work: settings.work,
-          moneybags: settings.moneybags,
-          moneySymbol: settings.moneySymbol,
-          minBet: settings.minBet,
-          commission: settings.commission
-        })
+        }, body: JSON.stringify(settings)
       })
   if(response.ok) emit('submitted', 'success', settings)
   else emit('submitted', 'error')
@@ -117,16 +126,16 @@ async function submit() {
 .number-inputs-flex {
   display: flex;
   flex-wrap: wrap;
-  max-width: 350px;
+  max-width: 300px;
+  gap: 10px;
 }
 
 .number-input-item {
   width: 100px;
-  margin-right: 20px;
 }
 
 .number-input {
-  max-width: 200px;
+  max-width: 145px;
   margin-right: 20px;
   margin-top: 8px;
 }
@@ -139,6 +148,7 @@ async function submit() {
 
 .reset-balance {
   margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 .submit {
