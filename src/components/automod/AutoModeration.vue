@@ -44,7 +44,7 @@
                       <v-checkbox v-model="certainChannels[name]" :label="$t('GuildModeration.subtitles.selectChannel')"
                                   hide-details density="comfortable" color="primary" @change="certainChannelChange(name)"/>
                       <v-expand-transition>
-                        <v-select v-if="certainChannels[name]" v-model="automod.message.channel" class="item-select"
+                        <v-select v-if="certainChannels[name]" v-model="automod.message.channel" class="automod-select"
                                   color="primary" :items="channels" :label="$t('GuildModeration.subtitles.channel')"/>
                       </v-expand-transition>
                       <TemplateInput v-model="automod.message.template" :variables="['member', 'guild', 'channel']"
@@ -56,7 +56,7 @@
                   <v-expand-transition>
                     <div v-if="automod.punishment.enabled">
                       <div class="punishment">
-                        <div class="item-select">
+                        <div class="automod-select">
                           <v-select v-model="automod.punishment.type" color="primary" :items="punishments"
                                     :label="$t('GuildModeration.subtitles.punishment')"/>
                         </div>
@@ -68,10 +68,10 @@
                     </div>
                   </v-expand-transition>
                   <div class="subtitle">{{ $t('GuildModeration.subtitles.whitelist') }}</div>
-                  <v-select v-model="automod.whitelist.roles" class="role-select mt-1" color="primary"
+                  <v-select v-model="automod.whitelist.roles" class="whitelist-select" color="primary"
                             :items="whitelistRoles" multiple chips closable-chips
                             :label="$t('GuildModeration.subtitles.allowedRoles')"/>
-                  <v-select v-model="automod.whitelist.channels" class="role-select mt-1" color="primary"
+                  <v-select v-model="automod.whitelist.channels" class="whitelist-select" color="primary"
                             :items="whitelistChannels" multiple chips closable-chips
                             :label="$t('GuildModeration.subtitles.allowedChannels')"/>
                 </v-form>
@@ -242,7 +242,7 @@ async function submitAutomod(name: string) {
   margin-top: 5px;
 }
 
-.item-select {
+.automod-select {
   width: 250px;
   margin-right: 15px;
 }
@@ -254,6 +254,6 @@ async function submitAutomod(name: string) {
 .subtitle {
   font-size: 1.2em;
   margin-top: 5px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 </style>

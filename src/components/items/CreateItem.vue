@@ -33,8 +33,19 @@
                               type="number" :label="$t('Items.subtitles.price')"/>
               </div>
               <div>
-                <v-text-field v-model="item.xp" class="number-input" color="primary" :rules="positiveIntegerRules"
-                              type="number" :label="$t('Items.subtitles.xp')"/>
+                <v-text-field v-model="item.requiredXp" class="number-input" color="primary" :rules="positiveIntegerRules"
+                              type="number" :label="$t('Items.subtitles.requiredXp')"/>
+              </div>
+            </div>
+            <div class="subtitle">{{ $t('Items.subtitles.xp') }}</div>
+            <div class="item-flex">
+              <div>
+                <v-text-field v-model="item.xp.min" class="number-input" color="primary" :rules="positiveIntegerRules"
+                              type="number" :label="$t('Items.subtitles.minimum')"/>
+              </div>
+              <div>
+                <v-text-field v-model="item.xp.max" class="number-input" color="primary" :rules="positiveIntegerRules"
+                              type="number" :label="$t('Items.subtitles.maximum')"/>
               </div>
             </div>
             <div class="subtitle">{{ $t('Items.subtitles.roles') }}</div>
@@ -48,6 +59,8 @@
                           :label="$t('Items.subtitles.removeRole')"/>
               </div>
             </div>
+            <v-select v-model="item.requiredRoles" color="primary" :items="requiredRoles" multiple chips closable-chips
+                      :label="$t('Items.subtitles.requiredRoles')"/>
           </v-form>
         </div>
       </v-card>
@@ -71,14 +84,18 @@ const route = useRoute()
 const store = useStore()
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!)
+let requiredRoles = SelectItems.roles(guild.value!.roles!, false, false)
 let dialog = ref(false)
 let valid = ref(true)
 let loading = ref(false)
 let item: Reactive<Item> = reactive({
   name: '',
   description: '',
+  thumbnailUrl: '',
+  requiredRoles: [],
+  requiredXp: 0,
   price: 0,
-  xp: 0,
+  xp: {min: 0, max: 0},
   addRole: null,
   removeRole: null
 })
@@ -120,9 +137,8 @@ async function createItem() {
 }
 
 .number-input {
-  width: 100px;
-  display: inline-block;
-  margin-right: 20px;
+  width: 150px;
+  display: block;
 }
 
 .create-item-btn {
@@ -142,10 +158,11 @@ async function createItem() {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .role-select {
-  width: 180px;
+  width: 200px;
 }
 
 .btn-icon {

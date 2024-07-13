@@ -32,8 +32,19 @@
                               type="number" :label="$t('Items.subtitles.price')"/>
               </div>
               <div>
-                <v-text-field v-model="item.xp" class="number-input" :rules="positiveIntegerRules"
-                              type="number" :label="$t('Items.subtitles.xp')"/>
+                <v-text-field v-model="item.requiredXp" class="number-input" :rules="positiveIntegerRules"
+                              type="number" :label="$t('Items.subtitles.requiredXp')"/>
+              </div>
+            </div>
+            <div class="subtitle">{{ $t('Items.subtitles.xp') }}</div>
+            <div class="item-flex">
+              <div>
+                <v-text-field v-model="item.xp.min" class="number-input" :rules="positiveIntegerRules"
+                              type="number" :label="$t('Items.subtitles.minimum')"/>
+              </div>
+              <div>
+                <v-text-field v-model="item.xp.max" class="number-input" :rules="positiveIntegerRules"
+                              type="number" :label="$t('Items.subtitles.maximum')"/>
               </div>
             </div>
             <div class="subtitle">{{ $t('Items.subtitles.roles') }}</div>
@@ -47,6 +58,8 @@
                           :label="$t('Items.subtitles.removeRole')"/>
               </div>
             </div>
+            <v-select v-model="item.requiredRoles" :items="requiredRoles" multiple chips closable-chips
+                      :label="$t('Items.subtitles.requiredRoles')"/>
           </v-form>
         </div>
       </v-card>
@@ -55,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, Reactive, reactive, Ref, ref} from "vue";
+import {computed, Reactive, reactive, ref} from "vue";
 import {useRoute} from "vue-router";
 import {useStore} from "vuex";
 import config from "@/config.json";
@@ -69,6 +82,7 @@ const route = useRoute()
 const store = useStore()
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!)
+let requiredRoles = SelectItems.roles(guild.value!.roles!, false, false)
 let dialog = ref(false)
 let valid = ref(true)
 let loading = ref(false)
@@ -109,9 +123,8 @@ async function editItem() {
 }
 
 .number-input {
-  width: 100px;
-  display: inline-block;
-  margin-right: 20px;
+  width: 150px;
+  display: block;
 }
 
 .item-settings {
@@ -127,10 +140,11 @@ async function editItem() {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .role-select {
-  width: 180px;
+  width: 200px;
 }
 
 .btn-icon {

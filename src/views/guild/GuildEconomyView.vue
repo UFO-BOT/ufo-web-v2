@@ -34,7 +34,7 @@
       <v-text-field v-model="settings.minBet" class="number-input" :rules="positiveIntegerRules" type="number"
                     color="primary" :label="$t('GuildEconomy.subtitles.bet')"/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.resetBalance') }}</div>
-      <ResetBalance :guild="guild"/>
+      <ResetBalance :guild="guild" class="reset-balance"/>
       <br>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.shop') }}</div>
       <Items/>
@@ -135,6 +135,10 @@ async function submit() {
   max-width: 280px;
   margin-right: 20px;
   margin-top: 8px;
+}
+
+.reset-balance {
+  margin-top: 5px;
 }
 
 .submit {
