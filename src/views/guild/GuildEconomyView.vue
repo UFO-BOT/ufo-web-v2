@@ -127,6 +127,7 @@ async function submit() {
   display: flex;
   flex-wrap: wrap;
   max-width: 300px;
+  margin-top: 5px;
   gap: 10px;
 }
 

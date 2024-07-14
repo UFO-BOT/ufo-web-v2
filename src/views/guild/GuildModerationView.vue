@@ -42,6 +42,24 @@
         </v-btn>
         <div v-else>{{ $t('GuildModeration.errors.warnsPunishmentsLimit') }}</div>
       </div>
+      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.kickMessage') }}</div>
+      <v-switch v-model="settings.punishmentMessages.kick.enabled" color="primary" hide-details
+                :label="$t('GuildModeration.subtitles.enabled')"/>
+      <TemplateInput v-model="settings.punishmentMessages.kick.message" class="template" :counter="1500"
+                     :disabled="!settings.punishmentMessages.kick.enabled"
+                     :variables="['member', 'guild', 'moderator', 'punishment']"/>
+      <EmbedInput v-model="settings.punishmentMessages.kick.embed" class="embed"
+                  :disabled="!settings.punishmentMessages.kick.enabled"
+                  :variables="['member', 'guild', 'moderator', 'punishment']"/>
+      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.banMessage') }}</div>
+      <v-switch v-model="settings.punishmentMessages.ban.enabled" color="primary" hide-details
+                :label="$t('GuildModeration.subtitles.enabled')"/>
+      <TemplateInput v-model="settings.punishmentMessages.ban.message" class="template" :counter="1500"
+                     :disabled="!settings.punishmentMessages.ban.enabled"
+                     :variables="['member', 'guild', 'moderator', 'punishment']"/>
+      <EmbedInput v-model="settings.punishmentMessages.ban.embed" class="embed"
+                  :disabled="!settings.punishmentMessages.ban.enabled"
+                  :variables="['member', 'guild', 'moderator', 'punishment']"/>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
@@ -63,6 +81,8 @@ import config from "@/config.json";
 import AutoModeration from "@/components/automod/AutoModeration.vue";
 import DurationPicker from "@/components/DurationPicker.vue";
 import {SubmitResult} from "@/types/SubmitResult";
+import TemplateInput from "@/components/TemplateInput.vue";
+import EmbedInput from "@/components/EmbedInput.vue";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -92,6 +112,10 @@ function automodUpdated(result: SubmitResult, autoModeration: GuildAutoModeratio
 
 async function submit() {
   submitting.value = true;
+  if (!settings.punishmentMessages.kick.message?.trim()?.length && !settings.punishmentMessages.kick.embed?.enabled)
+    settings.punishmentMessages.kick.enabled = false
+  if (!settings.punishmentMessages.ban.message?.trim()?.length && !settings.punishmentMessages.ban.embed?.enabled)
+    settings.punishmentMessages.ban.enabled = false
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/moderation`,
       {
         method: 'POST',
@@ -101,7 +125,8 @@ async function submit() {
         }, body: JSON.stringify({
           muteRole: settings.muteRole,
           useTimeout: settings.useTimeout,
-          warnsPunishments: settings.warnsPunishments
+          warnsPunishments: settings.warnsPunishments,
+          punishmentMessages: settings.punishmentMessages
         })
       })
   if (response.ok) emit('submitted', 'success', settings)
@@ -168,6 +193,14 @@ async function submit() {
 
 .wp-add {
   margin-top: 10px;
+}
+
+.template {
+  width: 95%;
+}
+
+.embed {
+  margin-bottom: 15px;
 }
 
 .submit {

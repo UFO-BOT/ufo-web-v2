@@ -68,10 +68,10 @@ const variables = [
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 25px;
 }
 
 .input {
-  margin-right: 25px;
   margin-top: 10px;
   flex-basis: 20em;
 }

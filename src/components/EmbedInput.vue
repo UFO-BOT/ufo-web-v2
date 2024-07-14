@@ -65,7 +65,7 @@
             </div>
             <TimestampInput v-model="embed.timestamp"/>
             <div class="subtitle">{{ $t('EmbedInput.description') }}</div>
-            <TemplateInput v-model="embed.description" :variables="['member', 'guild']" :counter="2048"/>
+            <TemplateInput v-model="embed.description" :variables="variables ?? ['member', 'guild']" :counter="2048"/>
             <div class="subtitle">{{ $t('EmbedInput.fields') }}</div>
             <v-expansion-panels v-if="embed.fields.length" class="fields" variant="accordion" multiple>
               <v-expansion-panel v-for="(field, i) in embed.fields" bg-color="block">
@@ -75,8 +75,8 @@
                 <v-expansion-panel-text>
                   <v-text-field v-model="field.name" class="field-name" :label="$t('EmbedInput.embed.field.name')"
                                 color="primary" :counter="256" :rules="fieldNameRules"/>
-                  <TemplateInput v-model="field.value" :variables="['member', 'guild']" :counter="1024" required
-                                 :label="$t('EmbedInput.embed.field.value')"/>
+                  <TemplateInput v-model="field.value" :variables="variables ?? ['member', 'guild']" :counter="1024"
+                                 required :label="$t('EmbedInput.embed.field.value')"/>
                   <div class="field-actions">
                     <v-checkbox v-model="field.inline" color="primary" :label="$t('EmbedInput.embed.field.inline')"
                                 density="comfortable" hide-details/>
@@ -100,9 +100,10 @@ import TemplateInput from "@/components/TemplateInput.vue";
 import {Embed, EmbedTimestamp} from "@/types/Embed";
 import i18n from "@/plugins/i18n";
 import TimestampInput from "@/components/TimestampInput.vue";
+import {TemplateVariable} from "@/types/TemplateVariable";
 
-const props = defineProps<{ modelValue: Embed, disabled?: boolean }>()
-let embed = defineModel<Embed>()
+const props = defineProps<{ modelValue: Embed, disabled?: boolean, variables?: Array<TemplateVariable> }>()
+let embed = defineModel<Embed>({default: {enabled: false}})
 let dialog = ref(false)
 let valid = ref(true)
 let colorPicker = ref(false)
@@ -118,7 +119,7 @@ const fieldNameRules = [
   (name: string) => (name.length <= 256 || i18n.global.t('EmbedInput.errors.invalidLength').replace("[length]", "256"))
 ]
 
-if (!embed.value?.enabled) embed.value = {
+if (!embed?.value?.enabled) embed.value = {
   enabled: false,
   color: '#00a6ff',
   author: {name: '', url: '', iconUrl: ''},
@@ -178,10 +179,10 @@ function submit() {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 25px;
 }
 
 .input {
-  margin-right: 25px;
   margin-top: 10px;
   flex-basis: 20em;
 }

@@ -205,6 +205,68 @@
             "description": "Дата создания канала"
           }
         ]
+      },
+      "moderator": {
+        "name": "Модератор",
+        "list": [
+          {
+            "name": "moderator.id",
+            "description": "ID модератора"
+          },
+          {
+            "name": "moderator.username",
+            "description": "Имя пользователя модератора"
+          },
+          {
+            "name": "moderator.globalName",
+            "description": "Отображаемое имя модератора"
+          },
+          {
+            "name": "moderator.nickname",
+            "description": "Никнейм модератора (отображаемое имя, если нет никнейма)"
+          },
+          {
+            "name": "moderator.avatarUrl",
+            "description": "Ссылка на аватар модератора"
+          },
+          {
+            "name": "moderator.bannerUrl",
+            "description": "Ссылка на баннер модератора"
+          },
+          {
+            "name": "moderator.bot",
+            "description": "Является ли модератор ботом (можно использовать условие)"
+          },
+          {
+            "name": "moderator.mention",
+            "description": "Упоминание модератора"
+          },
+          {
+            "name": "moderator.created",
+            "description": "Дата создания аккаунта модератора"
+          },
+          {
+            "name": "moderator.joined",
+            "description": "Дата входа модератора на сервер"
+          }
+        ]
+      },
+      "punishment": {
+        "name": "Наказание",
+        "list": [
+          {
+            "name": "punishment.duration",
+            "description": "Длительность наказания (null если отсутствует)"
+          },
+          {
+            "name": "punishment.ends",
+            "description": "Дата окончания наказания (null если отсутствует)"
+          },
+          {
+            "name": "punishment.reason",
+            "description": "Причина наказания"
+          }
+        ]
       }
     },
     "errors": {
@@ -613,7 +675,10 @@
       "allowedChannels": "Разрешенные каналы",
       "allowedGuilds": "Разрешенные сервера (ID серверов или коды приглашений)",
       "maxMessages": "Макс. сообщений в минуту",
-      "maxSymbols": "Макс. символов в минуту"
+      "maxSymbols": "Макс. символов в минуту",
+      "kickMessage": "Сообщение в ЛС кикнутым участникам",
+      "banMessage": "Сообщение в ЛС забаненным участникам",
+      "enabled": "Включено"
     },
     "punishments": {
       "warn": "Предупреждение",

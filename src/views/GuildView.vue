@@ -18,10 +18,12 @@
     </v-list>
     <v-window class="guild-settings">
       <div class="settings">
-        <v-scroll-y-transition>
-          <v-progress-circular v-if="!guild?.settings" class="item-center" :size="60" :width="5" indeterminate/>
-          <router-view v-else :settings="guild.settings" @submitted="submitted"/>
-        </v-scroll-y-transition>
+        <router-view v-slot="{ Component }">
+          <v-scroll-y-transition :duration="100">
+            <v-progress-circular v-if="!guild?.settings" class="item-center" :size="60" :width="5" indeterminate/>
+            <component v-else :is="Component" :settings="guild.settings" @submitted="submitted"/>
+          </v-scroll-y-transition>
+        </router-view>
         <v-snackbar v-model="snackbar" color="block">
           <div class="result-text">{{ success ? $t('Guild.submitted') : $t('Guild.error') }}</div>
           <template v-slot:actions>

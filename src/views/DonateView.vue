@@ -2,7 +2,7 @@
   <div class="center">
     <div class="content item-center">
       <div class="name"><b>{{ $t('Donate.name') }}</b></div>
-      <div class="description" v-html="$t('Donate.description')"></div>
+      <div class="donate-description" v-html="$t('Donate.description')"></div>
       <v-expansion-panels variant="accordion">
         <v-expansion-panel v-for="feature of $tm('Donate.features')" bg-color="block">
           <v-expansion-panel-title class="feature-name" ripple>
@@ -56,7 +56,7 @@
   font-size: 3.5em;
 }
 
-.description {
+.donate-description {
   font-size: 1.4em;
   text-align: left;
   margin-bottom: 10px;

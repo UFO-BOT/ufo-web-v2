@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="error-code"><b>404</b></div>
-    <div class="description">{{ $t('NotFound.name') }}</div>
+    <div class="notfound-description">{{ $t('NotFound.name') }}</div>
     <v-btn class="home" color="secondary" size="x-large" to="/">
       <v-icon class="mr-2" size="large">home</v-icon>{{ $t('NotFound.home')}}
     </v-btn>
@@ -17,7 +17,7 @@
   font-size: 10em;
 }
 
-.description {
+.notfound-description {
   margin: 10px;
   font-size: 3em;
 }

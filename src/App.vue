@@ -3,9 +3,11 @@
     <v-main class="content">
       <div>
         <Navbar/>
-        <v-fade-transition>
-          <router-view/>
-        </v-fade-transition>
+        <router-view v-slot="{ Component }">
+          <v-fade-transition :duration="150">
+            <component :is="Component"/>
+          </v-fade-transition>
+        </router-view>
       </div>
       <div>
         <Footer/>

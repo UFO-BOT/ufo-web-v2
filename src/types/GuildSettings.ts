@@ -73,6 +73,12 @@ interface GuildGreetings {
     joinRoles: Array<string>
 }
 
+interface PunishmentMessage {
+    enabled: boolean
+    message?: string
+    embed?: Embed
+}
+
 export interface GuildSettings {
     prefix: string
     language: GuildLanguage
@@ -113,5 +119,9 @@ export interface GuildSettings {
     moneyBonuses: {
         daily: number
         weekly: number
+    }
+    punishmentMessages: {
+        kick: PunishmentMessage
+        ban: PunishmentMessage
     }
 }

@@ -205,6 +205,68 @@
             "description": "Channel creation date"
           }
         ]
+      },
+      "moderator": {
+        "name": "Moderator",
+        "list": [
+          {
+            "name": "moderator.id",
+            "description": "Moderator ID"
+          },
+          {
+            "name": "moderator.username",
+            "description": "Moderator username"
+          },
+          {
+            "name": "moderator.globalName",
+            "description": "Moderator display name"
+          },
+          {
+            "name": "moderator.nickname",
+            "description": "Moderator nickname (display name if no nickname)"
+          },
+          {
+            "name": "moderator.avatarUrl",
+            "description": "Moderator avatar URL"
+          },
+          {
+            "name": "moderator.bannerUrl",
+            "description": "Moderator banner URL"
+          },
+          {
+            "name": "moderator.bot",
+            "description": "Whether moderator is a bot (condition can be used)"
+          },
+          {
+            "name": "moderator.mention",
+            "description": "Moderator mention"
+          },
+          {
+            "name": "moderator.created",
+            "description": "Moderator account creation date"
+          },
+          {
+            "name": "moderator.joined",
+            "description": "Moderator join date"
+          }
+        ]
+      },
+      "punishment": {
+        "name": "Punishment",
+        "list": [
+          {
+            "name": "punishment.duration",
+            "description": "Punishment duration (null if not specified)"
+          },
+          {
+            "name": "punishment.ends",
+            "description": "Punishment expiration date (null if not specified)"
+          },
+          {
+            "name": "punishment.reason",
+            "description": "Punishment reason"
+          }
+        ]
       }
     },
     "errors": {
@@ -614,7 +676,10 @@
       "allowedChannels": "Allowed channels",
       "allowedGuilds": "Allowed servers (Server IDs or invite codes)",
       "maxMessages": "Max messages per minute",
-      "maxSymbols": "Max characters per minute"
+      "maxSymbols": "Max characters per minute",
+      "kickMessage": "Custom DM to kicked members",
+      "banMessage": "Custom DM to banned members",
+      "enabled": "Enabled"
     },
     "punishments": {
       "warn": "Warn",

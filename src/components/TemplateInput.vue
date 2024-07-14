@@ -60,11 +60,11 @@ import {ListItemSelect} from "@/types/ListItemSelect";
 import {TemplateVariable} from "@/types/TemplateVariable";
 import i18n from "@/plugins/i18n";
 
-const props = defineProps<{ variables: Array<TemplateVariable>, counter: number, label?: string, required?: boolean
+const props = defineProps<{ variables: Array<TemplateVariable>, counter?: number, label?: string, required?: boolean
   disabled?: boolean }>()
 const route = useRoute()
 const store = useStore()
-let template = defineModel<string>()
+let template = defineModel<string>({default: ''})
 let textarea = ref<VTextarea | null>(null)
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!, false, false)
@@ -85,7 +85,9 @@ const rules = [
 ]
 
 function roleMention(role: ListItemSelect) {
-  template.value += `<@&${role.id}>`
+  let pos = textarea.value!.selectionStart
+  let len = template.value?.length
+  template.value = template.value?.substring(0, pos) + `<@&${role.id}>` + template.value?.substring(pos, len)
   roleSelect.value = false
 }
 
@@ -93,7 +95,6 @@ function channelMention(channel: ListItemSelect) {
   let pos = textarea.value!.selectionStart
   let len = template.value?.length
   template.value = template.value?.substring(0, pos) + `<#${channel.id}>` + template.value?.substring(pos, len)
-  template.value +=
   channelSelect.value = false
 }
 
