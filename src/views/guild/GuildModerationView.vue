@@ -60,6 +60,31 @@
       <EmbedInput v-model="settings.punishmentMessages.ban.embed" class="embed"
                   :disabled="!settings.punishmentMessages.ban.enabled"
                   :variables="['member', 'guild', 'moderator', 'punishment']"/>
+      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.tests') }}</div>
+      <v-alert v-if="settings.useTimeout" class="alert" border="start" color="alert"
+               :title="$t('GuildModeration.subtitles.testsTitle')" variant="tonal">
+        {{ $t('GuildModeration.subtitles.testsDescription') }}
+      </v-alert>
+      <div class="test-buttons">
+        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['kick']" prepend-icon="person_add"
+               @click="test('kick')">
+          {{ $t('GuildModeration.subtitles.kickTest') }}
+        </v-btn>
+        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['ban']" prepend-icon="person_remove"
+               @click="test('ban')">
+          {{ $t('GuildModeration.subtitles.banTest') }}
+        </v-btn>
+      </div>
+      <v-snackbar v-model="testSnackbar" color="block">
+        <div class="test-result">
+          {{ testSuccess ? $t('GuildModeration.subtitles.testCompleted') : $t('GuildModeration.subtitles.testError') }}
+        </div>
+        <template v-slot:actions>
+          <v-btn :color="testSuccess ? 'green' : 'pink'" variant="text" ripple @click="testSnackbar = false">
+            {{ $t('GuildModeration.subtitles.close') }}
+          </v-btn>
+        </template>
+      </v-snackbar>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
@@ -98,6 +123,9 @@ let punishments = computed(() => [
   {title: i18n.global.t('GuildModeration.punishments.kick'), value: 'kick'},
   {title: i18n.global.t('GuildModeration.punishments.ban'), value: 'ban'}
 ])
+let tests: Reactive<Record<string, boolean>> = reactive({});
+let testSnackbar = ref(false);
+let testSuccess = ref(true);
 
 const warnsRules = [
   (number: number) => (number > 0 && !(number % 1)) || i18n.global.t('GuildModeration.errors.invalidWarns'),
@@ -132,6 +160,21 @@ async function submit() {
   if (response.ok) emit('submitted', 'success', settings)
   else emit('submitted', 'error')
   submitting.value = false;
+}
+
+async function test(type: 'kick' | 'ban') {
+  tests[type] = true
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/tests/punishments`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token') as string,
+          'Content-Type': 'application/json'
+        }, body: JSON.stringify({type})
+      })
+  tests[type] = false
+  testSuccess.value = response.ok
+  testSnackbar.value = true
 }
 </script>
 
@@ -201,6 +244,25 @@ async function submit() {
 
 .embed {
   margin-bottom: 15px;
+}
+
+.alert {
+  text-align: justify;
+  width: 95%;
+  margin-top: 5px;
+}
+
+.test-buttons {
+  margin-top: 15px;
+}
+
+.test-button {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.test-result {
+  font-size: 1.4em;
 }
 
 .submit {

@@ -327,7 +327,8 @@
     "variables": {
       "memberCreated": "Member account creation date",
       "memberJoined": "Member join date",
-      "guildCreated": "Guild creation date"
+      "guildCreated": "Guild creation date",
+      "punishmentEnds": "Punishment expiration date (null if not specified)"
     }
   },
   "ResetBalance": {
@@ -679,7 +680,15 @@
       "maxSymbols": "Max characters per minute",
       "kickMessage": "Custom DM to kicked members",
       "banMessage": "Custom DM to banned members",
-      "enabled": "Enabled"
+      "enabled": "Enabled",
+      "tests": "Tests",
+      "testsTitle": "Test messages",
+      "testsDescription": "Sends to you selected message in DM for you to check that messages, embeds and all templates are filled correctly. UFO bot will be used as a moderator variable. Save all changes before testing.",
+      "kickTest": "Kick test",
+      "banTest": "Ban test",
+      "testCompleted": "Test completed!",
+      "testError": "Error",
+      "close": "Close"
     },
     "punishments": {
       "warn": "Warn",

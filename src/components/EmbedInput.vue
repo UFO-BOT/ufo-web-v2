@@ -63,7 +63,7 @@
               <v-text-field v-model="embed.footer.iconUrl"  class="input" :label="$t('EmbedInput.embed.footer.iconUrl')"
                             color="primary" prepend-icon="link" :counter="2048" :rules="lengthRules(2048)"/>
             </div>
-            <TimestampInput v-model="embed.timestamp"/>
+            <TimestampInput v-model="embed.timestamp" :variables="variables ?? ['member', 'guild']"/>
             <div class="subtitle">{{ $t('EmbedInput.description') }}</div>
             <TemplateInput v-model="embed.description" :variables="variables ?? ['member', 'guild']" :counter="2048"/>
             <div class="subtitle">{{ $t('EmbedInput.fields') }}</div>
@@ -179,7 +179,7 @@ function submit() {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 25px;
+  column-gap: 25px;
 }
 
 .input {

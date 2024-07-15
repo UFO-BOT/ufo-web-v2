@@ -21,8 +21,9 @@ import {computed, defineModel, ref} from "vue";
 import {useDate} from "vuetify";
 import i18n from "@/plugins/i18n";
 import {EmbedTimestamp} from "@/types/Embed";
+import {TemplateVariable} from "@/types/TemplateVariable";
 
-const props = defineProps<{}>()
+const props = defineProps<{ variables?: Array<TemplateVariable> }>()
 const date = useDate()
 let timestamp = defineModel<EmbedTimestamp>()
 let datePicker = ref(false)
@@ -44,7 +45,8 @@ const items = [
     value: "template"
   }
 ]
-const variables = [
+const variables = []
+if (props.variables.includes('member')) variables.push(
   {
     title: "{{member.created}}",
     props: {subtitle: i18n.global.t('TimestampInput.variables.memberCreated')},
@@ -55,12 +57,22 @@ const variables = [
     props: {subtitle: i18n.global.t('TimestampInput.variables.memberJoined')},
     value: "{{member.joined}}"
   },
+)
+if (props.variables.includes('guild')) variables.push(
   {
     title: "{{guild.created}}",
     props: {subtitle: i18n.global.t('TimestampInput.variables.guildCreated')},
     value: "{{guild.created}}"
   }
-]
+)
+if (props.variables.includes('punishment')) variables.push(
+  {
+    title: "{{punishment.ends}}",
+    props: {subtitle: i18n.global.t('TimestampInput.variables.punishmentEnds')},
+    value: "{{punishment.ends}}"
+  }
+)
+console.log(variables)
 </script>
 
 <style scoped>
@@ -68,7 +80,7 @@ const variables = [
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 25px;
+  column-gap: 25px;
 }
 
 .input {
