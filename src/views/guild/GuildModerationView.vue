@@ -66,12 +66,18 @@
         {{ $t('GuildModeration.subtitles.testsDescription') }}
       </v-alert>
       <div class="test-buttons">
-        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['kick']" prepend-icon="person_add"
+        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.kick" prepend-icon="person_add"
                @click="test('kick')">
+          <v-tooltip v-if="testsThrottle.kick" activator="parent" location="top" open-on-click>
+            {{ $t('GuildGreetings.subtitles.throttle') }}
+          </v-tooltip>
           {{ $t('GuildModeration.subtitles.kickTest') }}
         </v-btn>
-        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['ban']" prepend-icon="person_remove"
+        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.ban" prepend-icon="person_remove"
                @click="test('ban')">
+          <v-tooltip v-if="testsThrottle.ban" activator="parent" location="top" open-on-click>
+            {{ $t('GuildGreetings.subtitles.throttle') }}
+          </v-tooltip>
           {{ $t('GuildModeration.subtitles.banTest') }}
         </v-btn>
       </div>
@@ -124,6 +130,7 @@ let punishments = computed(() => [
   {title: i18n.global.t('GuildModeration.punishments.ban'), value: 'ban'}
 ])
 let tests: Reactive<Record<string, boolean>> = reactive({});
+let testsThrottle: Reactive<Record<string, boolean>> = reactive({});
 let testSnackbar = ref(false);
 let testSuccess = ref(true);
 
@@ -163,6 +170,7 @@ async function submit() {
 }
 
 async function test(type: 'kick' | 'ban') {
+  if (testsThrottle[type]) return
   tests[type] = true
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/tests/punishments`,
       {
@@ -173,6 +181,9 @@ async function test(type: 'kick' | 'ban') {
         }, body: JSON.stringify({type})
       })
   tests[type] = false
+  tests[type] = false
+  testsThrottle[type] = true
+  setTimeout(() => testsThrottle[type] = false, 10000)
   testSuccess.value = response.ok
   testSnackbar.value = true
 }

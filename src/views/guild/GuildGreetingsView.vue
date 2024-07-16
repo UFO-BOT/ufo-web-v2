@@ -36,12 +36,18 @@
       {{ $t('GuildGreetings.subtitles.testsDescription') }}
     </v-alert>
     <div class="test-buttons">
-      <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['join']" prepend-icon="person_add"
+      <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.join" prepend-icon="person_add"
              @click="test('join')">
+        <v-tooltip v-if="testsThrottle.join" activator="parent" location="top" open-on-click>
+          {{ $t('GuildGreetings.subtitles.throttle') }}
+        </v-tooltip>
         {{ $t('GuildGreetings.subtitles.joinTest') }}
       </v-btn>
-      <v-btn class="test-button" color="primary" variant="tonal" :loading="tests['leave']" prepend-icon="person_remove"
+      <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.leave" prepend-icon="person_remove"
              @click="test('leave')">
+        <v-tooltip v-if="testsThrottle.leave" activator="parent" location="top" open-on-click>
+          {{ $t('GuildGreetings.subtitles.throttle') }}
+        </v-tooltip>
         {{ $t('GuildGreetings.subtitles.leaveTest') }}
       </v-btn>
     </div>
@@ -88,6 +94,7 @@ let valid = ref(true);
 let submitting = ref(false);
 let templateCompilationError = ref(false);
 let tests: Reactive<Record<string, boolean>> = reactive({});
+let testsThrottle: Reactive<Record<string, boolean>> = reactive({});
 let testSnackbar = ref(false);
 let testSuccess = ref(true);
 const joinRules = [
@@ -127,6 +134,7 @@ async function submit() {
 }
 
 async function test(type: 'join' | 'leave') {
+  if (testsThrottle[type]) return
   tests[type] = true
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/tests/greetings`,
       {
@@ -137,6 +145,8 @@ async function test(type: 'join' | 'leave') {
         }, body: JSON.stringify({type})
       })
   tests[type] = false
+  testsThrottle[type] = true
+  setTimeout(() => testsThrottle[type] = false, 10000)
   testSuccess.value = response.ok
   testSnackbar.value = true
 }
