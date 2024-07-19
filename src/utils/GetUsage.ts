@@ -6,7 +6,7 @@ export default function GetUsage(cmd: Command): string {
     cmd.options.forEach(option => {
         let config = option.config[i18n.global.locale.value]
         let name = config.choices?.length ? config.choices.map(c => c.name).join(" | ") : config.name
-        usage += ` ${option.required ? "<" : "["}${name}${option.required ? ">" : "]"}`
+        usage += ` ${option.required ? "<" : "["}${(option.type === 5 ? '-' : '') +  name}${option.required ? ">" : "]"}`
     })
     return usage;
 }

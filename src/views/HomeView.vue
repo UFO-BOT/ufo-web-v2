@@ -1,7 +1,8 @@
 <template>
   <div class="center">
     <div class="name"><b>UFO</b></div>
-    <v-img :src="UFOLogo" class="logo item-center"></v-img>
+    <v-img v-if="$vuetify.theme.current.dark" :src="UFOLogoDark" class="logo item-center"></v-img>
+    <v-img v-else :src="UFOLogoLight" class="logo item-center"></v-img>
     <span class="description"></span><br>
     <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=${encodeURIComponent
     (location + '/landing')}&response_type=code&permissions=1515519995134&scope=bot`"
@@ -21,7 +22,8 @@
 <script setup lang="ts">
 import Typed from "typed.js";
 import {onMounted, watch, WritableComputedRef} from "vue";
-import UFOLogo from "@/assets/logo.png";
+import UFOLogoDark from "@/assets/logo-v2-dark.png";
+import UFOLogoLight from "@/assets/logo-v2-light.png";
 import config from "@/config.json";
 import {Language} from "@/types/Language";
 import i18n from "@/plugins/i18n";

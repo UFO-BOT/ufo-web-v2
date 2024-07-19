@@ -509,6 +509,7 @@
     "noGuilds": "No servers to add or configure the bot",
     "badges": {
       "developer": "Developer",
+      "head_staff": "Head Staff",
       "moderator": "Moderator",
       "support": "Support",
       "tester": "Tester",

@@ -112,6 +112,7 @@ import config from "@/config.json";
 import AutoModeration from "@/components/automod/AutoModeration.vue";
 import DurationPicker from "@/components/DurationPicker.vue";
 import {SubmitResult} from "@/types/SubmitResult";
+import {Command} from "@/types/Command";
 import TemplateInput from "@/components/TemplateInput.vue";
 import EmbedInput from "@/components/EmbedInput.vue";
 
@@ -121,6 +122,7 @@ const route = useRoute()
 const store = useStore()
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!, false)
+let commands = computed(() => (store.getters.commands as Array<Command>));
 let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let valid = ref(true);
 let submitting = ref(false);
@@ -207,7 +209,7 @@ async function test(type: 'kick' | 'ban') {
   background-color: rgb(var(--v-theme-block));
   box-shadow: 0 0 5px rgb(var(--v-theme-shadow));
   padding: 5px 15px 15px 20px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   width: 95%;
   margin-top: 5px;
 }

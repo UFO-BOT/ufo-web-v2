@@ -2,8 +2,11 @@ import {Module} from 'vuex'
 import {Guild} from "@/types/Guild";
 import config from "@/config.json";
 
-export const GuildsModule: Module<Array<Guild>, any> = {
-    state: [],
+export const GuildsModule = {
+    state: {
+        guilds: [] as Array<Guild>
+    },
+
     actions: {
         async getGuilds(ctx) {
             let token = localStorage.getItem('token');
@@ -38,24 +41,24 @@ export const GuildsModule: Module<Array<Guild>, any> = {
 
     mutations: {
         updateGuilds(state, guilds) {
-            state.length = 0
-            Object.assign(state, guilds)
+            state.guilds = guilds
         },
 
         updateGuild(state, guild) {
-            let index = state.indexOf(state.find(g => g.id === guild.id) as Guild)
-            if(index === -1) state.push(guild)
-            else state[state.indexOf(state.find(g => g.id === guild.id) as Guild)] = guild
+            let index = state.guilds.indexOf(state.guilds.find(g => g.id === guild.id) as Guild)
+            if(index === -1) state.guilds.push(guild)
+            else state.guilds[state.guilds.indexOf(state.guilds.find(g => g.id === guild.id) as Guild)] = guild
         },
 
         updateSettings(state, {id, settings}) {
-            state.find(g => g.id === id)!.settings = JSON.parse(JSON.stringify(settings))
+            let guild = state.guilds.find(g => g.id === id)
+            guild.settings = JSON.parse(JSON.stringify(settings))
         }
     },
 
     getters: {
         guilds(state) {
-            return state
+            return state.guilds
         }
     }
 }

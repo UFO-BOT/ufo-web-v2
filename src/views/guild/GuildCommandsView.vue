@@ -34,11 +34,10 @@
 <script setup lang="ts">
 import GuildCommand from "@/components/commands/GuildCommand"
 import SelectItems from "@/utils/SelectItems";
-import {computed, onMounted, reactive, Ref, ref} from "vue";
+import {computed, onMounted, Reactive, reactive, Ref, ref} from "vue";
 import {Guild} from "@/types/Guild";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
-import {ReactiveVariable} from "vue/macros";
 import { GuildSettings} from "@/types/GuildSettings";
 import {Command} from "@/types/Command";
 import {SubmitResult} from "@/types/SubmitResult";
@@ -52,11 +51,11 @@ const store = useStore()
 const location = window.location.origin
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
 let roles = SelectItems.roles(guild.value!.roles!, false)
-let settings: ReactiveVariable<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
+let commands = computed(() => (store.getters.commands as Array<Command>));
+let settings: Reactive<GuildSettings> = reactive(JSON.parse(JSON.stringify(props.settings)));
 let unauthorized = ref(false);
 const categories = ['general', 'economy', 'games', 'utilities', 'moderation'];
 const icons = ['public', 'attach_money', 'phone_iphone', 'build', 'security'];
-let commands: Ref<Array<Command>> = ref([]);
 
 function commandUpdated(result: SubmitResult, status: number, command: CommandSettings) {
   if(result === 'success') {
@@ -68,8 +67,7 @@ function commandUpdated(result: SubmitResult, status: number, command: CommandSe
 }
 
 onMounted(async () => {
-  let response = await fetch(config.API + '/public/commands');
-  commands.value = await response.json();
+  if (!commands.value?.length) await store.dispatch('getCommands')
   commands.value.forEach(command => {
     if (!settings.commands[command.config.en.name]) settings.commands[command.config.en.name] = {
       name: command.config.en.name,

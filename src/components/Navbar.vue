@@ -42,7 +42,7 @@ import {computed, onMounted, ref, WritableComputedRef} from "vue";
 import {useStore} from "vuex";
 import i18n from "@/plugins/i18n";
 import vuetify from "@/plugins/vuetify";
-import UFOLogo from "@/assets/logo.png";
+import UFOLogo from "@/assets/logo-v2-dark.png";
 import config from "@/config.json";
 import {useRoute} from "vue-router";
 import {Language} from "@/types/Language"

@@ -4,7 +4,11 @@ import Oauth2 from "@/utils/Oauth2";
 import AvatarURL from "@/utils/AvatarURL";
 import config from "@/config.json";
 
-export const UserModule: Module<User, any> = {
+export const UserModule = {
+    state: {
+        user: {} as User
+    },
+
     actions: {
         async getUser(ctx) {
             let token = localStorage.getItem('token')
@@ -40,17 +44,17 @@ export const UserModule: Module<User, any> = {
 
     mutations: {
         updateUser(state, user) {
-            Object.assign(state, user)
+            state.user = Object.assign(state.user, user)
         },
 
         updateBadges(state, badges) {
-            state.botBadges = badges
+            state.user.botBadges = badges
         }
     },
 
     getters: {
         user(state) {
-            return state
+            return state.user
         }
     }
 }

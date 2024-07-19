@@ -72,7 +72,6 @@ if (props.variables.includes('punishment')) variables.push(
     value: "{{punishment.ends}}"
   }
 )
-console.log(variables)
 </script>
 
 <style scoped>
