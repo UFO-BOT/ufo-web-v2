@@ -1,14 +1,8 @@
 <template>
   <div>
     <div class="items">
-      <v-progress-circular v-if="loading" :size="40" :width="4" indeterminate/>
-      <div v-if="!items.length && !loading">
-        <div class="item">
-          <div class="item-name">¯\_(ツ)_/¯</div>
-        </div>
-        <v-divider/>
-      </div>
-      <div v-if="items.length && !loading" v-for="item of items">
+      <v-progress-circular v-if="loading" class="loading" :size="40" :width="4" indeterminate/>
+      <div v-if="items.length && !loading" v-for="item of items" :key="item.name">
         <div class="item">
           <div class="item-name text-truncate">{{ item.name }}</div>
           <div>
@@ -18,9 +12,24 @@
         </div>
         <v-divider/>
       </div>
-      <CreateItem v-if="items.length < (guild.settings?.boost ? 40 : 15)" :names="items.map(i => i.name)"
-                  @create="created"/>
-      <div v-else class="items-limit">{{ $t('Items.subtitles.limit') }}</div>
+      <div class="items-bottom" v-if="!loading">
+        <div>
+          <CreateItem v-if="items.length < lim" :names="items.map(i => i.name)"
+                      @create="created"/>
+          <div v-else>
+            <div v-if="guild.settings.boost">{{ $t('Items.subtitles.limit') }}</div>
+            <div v-else class="items-limit">
+              <v-btn color="primary" variant="text" rounded prepend-icon="favorite" to="/donate">
+                {{ $t('Items.subtitles.donate') }}
+              </v-btn>
+              {{ $t('Items.subtitles.increaseLimit') }} {{ limit.boost }}
+            </div>
+          </div>
+        </div>
+        <div class="items-count">
+          {{ items.length }}/{{ lim }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,6 +51,12 @@ let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id
 let loading = ref(false)
 let name = ref();
 let items: Ref<Array<Item>> = ref([]);
+
+const limit = {
+  standard: 15,
+  boost: 30
+}
+let lim = guild.value?.settings?.boost ? limit.boost : limit.standard
 
 function created(item: Item) {
   items.value.push(item)
@@ -70,10 +85,14 @@ onMounted(async () => {
 .items {
   background-color: rgb(var(--v-theme-block));
   box-shadow: 0 0 5px rgb(var(--v-theme-shadow));
-  padding: 15px 15px 15px 20px;
+  padding: 5px 15px 15px 20px;
   margin-bottom: 15px;
   width: 95%;
   margin-top: 5px;
+}
+
+.loading {
+  margin-top: 10px;
 }
 
 .item {
@@ -93,9 +112,20 @@ onMounted(async () => {
   display: inline;
 }
 
+.items-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  column-gap: 20px;
+}
+
 .items-limit {
-  font-size: 1.1em;
+  font-size: 1.2em;
+}
+
+.items-count {
   color: rgb(var(--v-theme-description));
-  margin-top: 5px;
+  font-size: 1.2em;
 }
 </style>

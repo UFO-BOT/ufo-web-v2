@@ -25,14 +25,13 @@ import {useRoute} from "vue-router";
 import {useStore} from "vuex";
 import config from "@/config.json";
 import {Item} from "@/types/Item";
-import {ReactiveVariable} from "vue/macros";
 
 const props = defineProps<{item: Item}>()
 const emit = defineEmits(['delete'])
 const route = useRoute()
 let dialog = ref(false)
 let loading = ref(false)
-let item: ReactiveVariable<Item> = reactive(props.item)
+let item: Item = props.item
 
 async function deleteItem() {
   loading.value = true;

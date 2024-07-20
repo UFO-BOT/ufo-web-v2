@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="create-item-btn" color="primary" variant="outlined" @click="dialog = true">
+    <v-btn color="primary" variant="outlined" @click="dialog = true">
       <v-icon class="btn-icon" size="25">add</v-icon>
       {{ $t('Items.subtitles.create') }}
     </v-btn>
@@ -26,6 +26,8 @@
                           :label="$t('Items.subtitles.name')"/>
             <v-textarea v-model="item.description" class="general-item-field" color="primary" counter="200"
                         :rules="descriptionRules" :label="$t('Items.subtitles.description')"/>
+            <v-text-field v-model="item.thumbnailUrl" class="general-item-field" prepend-inner-icon="art_track"
+                          :rules="descriptionRules" color="primary" :label="$t('Items.subtitles.thumbnailUrl')"/>
             <div class="subtitle">{{ $t('Items.subtitles.values') }}</div>
             <div class="item-flex">
               <div>
@@ -88,17 +90,7 @@ let requiredRoles = SelectItems.roles(guild.value!.roles!, false, false)
 let dialog = ref(false)
 let valid = ref(true)
 let loading = ref(false)
-let item: Reactive<Item> = reactive({
-  name: '',
-  description: '',
-  thumbnailUrl: '',
-  requiredRoles: [],
-  requiredXp: 0,
-  price: 0,
-  xp: {min: 0, max: 0},
-  addRole: null,
-  removeRole: null
-})
+let item = {} as Item
 
 const positiveIntegerRules = [
   (number: number) => (number >= 0 && !(number % 1)) || i18n.global.t('Items.errors.invPosNumber')
@@ -110,6 +102,21 @@ const nameRules = [
 const descriptionRules = [
   (description: string) => (description.length <= 200) || i18n.global.t('Items.errors.invItemDescription')
 ]
+
+function newItem() {
+  item = reactive({
+    name: '',
+    description: '',
+    thumbnailUrl: '',
+    requiredRoles: [],
+    requiredXp: 0,
+    price: 0,
+    xp: {min: 0, max: 0},
+    addRole: null,
+    removeRole: null
+  })
+}
+newItem()
 
 async function createItem() {
   loading.value = true;
@@ -125,6 +132,7 @@ async function createItem() {
     dialog.value = false;
     item.newName = item.name;
     emit('create', item);
+    newItem()
   }
   loading.value = false;
 }
@@ -139,10 +147,6 @@ async function createItem() {
 .number-input {
   width: 150px;
   display: block;
-}
-
-.create-item-btn {
-  margin-top: 12px;
 }
 
 .item-settings {

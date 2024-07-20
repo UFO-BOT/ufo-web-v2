@@ -25,6 +25,8 @@
                           :rules="nameRules" :label="$t('Items.subtitles.name')"/>
             <v-textarea v-model="item.description" class="general-item-field" counter="200"
                         :rules="descriptionRules" :label="$t('Items.subtitles.description')"/>
+            <v-text-field v-model="item.thumbnailUrl" class="general-item-field" prepend-inner-icon="art_track"
+                        :rules="descriptionRules" :label="$t('Items.subtitles.thumbnailUrl')"/>
             <div class="subtitle">{{ $t('Items.subtitles.values') }}</div>
             <div class="item-flex">
               <div>
@@ -101,17 +103,20 @@ const descriptionRules = [
 
 async function editItem() {
   loading.value = true;
-  let name = item.name;
-  item.name = item.newName!;
-  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/items/${name}`, {
+  let newItem = {...item}
+  newItem.name = newItem.newName!
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/items/${item.name}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: localStorage.getItem('token') as string
     },
-    body: JSON.stringify(item)
+    body: JSON.stringify(newItem)
   })
-  if (response.ok) dialog.value = false;
+  if (response.ok) {
+    Object.assign(item, newItem)
+    dialog.value = false;
+  }
   loading.value = false;
 }
 </script>

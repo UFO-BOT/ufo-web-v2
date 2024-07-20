@@ -319,7 +319,7 @@
     "label": "Timestamp",
     "date": "Date",
     "variable": "Variable",
-    "items": {
+      "items": {
       "current": "Current time",
       "custom": "Select date",
       "template": "Select variable"
@@ -350,6 +350,7 @@
       "general": "General",
       "name": "Name",
       "description": "Description",
+      "thumbnailUrl": "Thumbnail url",
       "values": "Values",
       "price": "Price",
       "requiredXp": "Required XP",
@@ -360,6 +361,8 @@
       "addRole": "Add role",
       "requiredRoles": "Required roles",
       "removeRole": "Remove role",
+      "donate": "Donate us",
+      "increaseLimit": "to increase items limit to",
       "limit": "Items limit reached",
       "submit": "Submit"
     },
