@@ -4,9 +4,9 @@
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.work') }}</div>
       <div class="subtitle-2">{{ $t('GuildEconomy.subtitles.salary') }}</div>
       <div class="number-inputs-flex">
-        <v-text-field v-model="settings.work.low" class="number-input-item" :rules="positiveIntegerRules" type="number"
+        <v-text-field v-model="settings.work.min" class="number-input-item" :rules="positiveIntegerRules" type="number"
                       color="primary" :label="$t('GuildEconomy.subtitles.from')"/>
-        <v-text-field v-model="settings.work.high" class="number-input-item" :rules="positiveIntegerRules" type="number"
+        <v-text-field v-model="settings.work.max" class="number-input-item" :rules="positiveIntegerRules" type="number"
                       color="primary" :label="$t('GuildEconomy.subtitles.to')"/>
       </div>
       <div class="subtitle-2">{{ $t('GuildEconomy.subtitles.cooldown') }}</div>
@@ -15,9 +15,9 @@
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.moneybags') }}</div>
       <div class="subtitle-2">{{ $t('GuildEconomy.subtitles.money') }}</div>
       <div class="number-inputs-flex">
-        <v-text-field v-model="settings.moneybags.low" class="number-input-item" :rules="integerRules" type="number"
+        <v-text-field v-model="settings.moneybags.min" class="number-input-item" :rules="integerRules" type="number"
                       color="primary" :label="$t('GuildEconomy.subtitles.from')"/>
-        <v-text-field v-model="settings.moneybags.high" class="number-input-item" :rules="integerRules" type="number"
+        <v-text-field v-model="settings.moneybags.max" class="number-input-item" :rules="integerRules" type="number"
                       color="primary" :label="$t('GuildEconomy.subtitles.to')"/>
       </div>
       <div class="subtitle-2">{{ $t('GuildEconomy.subtitles.cooldown') }}</div>
@@ -33,21 +33,24 @@
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.minBet') }}</div>
       <v-text-field v-model="settings.minBet" class="number-input" :rules="positiveIntegerRules" type="number"
                     color="primary" :label="$t('GuildEconomy.subtitles.bet')"/>
-      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.messageXp') }}</div>
-      <v-text-field v-model="settings.messageXp.chance" class="number-input" :rules="percentRules" type="number"
-                    color="primary" :label="$t('GuildEconomy.subtitles.chance')" suffix="%"/>
-      <div class="number-inputs-flex">
-        <v-text-field v-model="settings.messageXp.min" class="number-input-item" :rules="positiveIntegerRules"
-                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.minimum')"/>
-        <v-text-field v-model="settings.messageXp.max" class="number-input-item" :rules="positiveIntegerRules"
-                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.maximum')"/>
-      </div>
-      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.moneyBonuses') }}</div>
-      <div class="number-inputs-flex">
-        <v-text-field v-model="settings.moneyBonuses.daily" class="number-input-item" :rules="positiveIntegerRules"
-                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.daily')"/>
-        <v-text-field v-model="settings.moneyBonuses.weekly" class="number-input-item" :rules="positiveIntegerRules"
-                      type="number" color="primary" :label="$t('GuildEconomy.subtitles.weekly')"/>
+      <BoostAlert v-if="!guild.settings.boost" class="alert" :text="$t('GuildEconomy.subtitles.boostDescription')"/>
+      <div v-else>
+        <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.messageXp') }}</div>
+        <v-text-field v-model="settings.messageXp.chance" class="number-input" :rules="percentRules" type="number"
+                      color="primary" :label="$t('GuildEconomy.subtitles.chance')" suffix="%"/>
+        <div class="number-inputs-flex">
+          <v-text-field v-model="settings.messageXp.min" class="number-input-item" :rules="positiveIntegerRules"
+                        type="number" color="primary" :label="$t('GuildEconomy.subtitles.minimum')"/>
+          <v-text-field v-model="settings.messageXp.max" class="number-input-item" :rules="positiveIntegerRules"
+                        type="number" color="primary" :label="$t('GuildEconomy.subtitles.maximum')"/>
+        </div>
+        <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.moneyBonuses') }}</div>
+        <div class="number-inputs-flex">
+          <v-text-field v-model="settings.moneyBonuses.daily" class="number-input-item" :rules="positiveIntegerRules"
+                        type="number" color="primary" :label="$t('GuildEconomy.subtitles.daily')"/>
+          <v-text-field v-model="settings.moneyBonuses.weekly" class="number-input-item" :rules="positiveIntegerRules"
+                        type="number" color="primary" :label="$t('GuildEconomy.subtitles.weekly')"/>
+        </div>
       </div>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.shop') }}</div>
       <Items/>
@@ -73,6 +76,7 @@ import {Guild} from "@/types/Guild";
 import DurationPicker from "@/components/DurationPicker.vue";
 import ResetBalance from "@/components/ResetBalance.vue";
 import Items from "@/components/items/Items.vue";
+import BoostAlert from "@/components/BoostAlert.vue";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -145,6 +149,11 @@ async function submit() {
   max-width: 280px;
   margin-right: 20px;
   margin-top: 8px;
+}
+
+.alert {
+  width: 95%;
+  margin-top: 5px;
 }
 
 .reset-balance {

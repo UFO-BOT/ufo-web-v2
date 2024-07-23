@@ -339,6 +339,10 @@
     "reset": "Reset",
     "cancel": "Cancel"
   },
+  "BoostAlert": {
+    "boost": "Boost",
+    "donate": "Donate us"
+  },
   "Items": {
     "subtitles": {
       "deleteItem": "Delete item",
@@ -350,7 +354,8 @@
       "general": "General",
       "name": "Name",
       "description": "Description",
-      "thumbnailUrl": "Thumbnail url",
+      "thumbnailUrl": "Thumbnail Url",
+      "thumbnailDescription": "to set an item picture that will be displayed in item info and when buying it",
       "values": "Values",
       "price": "Price",
       "requiredXp": "Required XP",
@@ -370,7 +375,8 @@
       "invPosNumber": "Enter a positive integer",
       "invItemName": "Item must have a name not longer than 50 characters",
       "invItemDescription": "Description may not be longer than 200 characters",
-      "alreadyExists": "Another item has this name"
+      "alreadyExists": "Another item has this name",
+      "invUrl": "Enter a valid Url"
     }
   },
   "Home": {
@@ -595,6 +601,7 @@
       "minBet": "Minimal bet",
       "bet": "Bet",
       "commission": "Commission",
+      "boostDescription": "If you want to set up experience that will be given to members for messages, as well as daily and weekly money bonuses",
       "messageXp": "Experience for messages",
       "chance": "Chance",
       "minimum": "Minimum",
@@ -682,6 +689,7 @@
       "allowedGuilds": "Allowed servers (Server IDs or invite codes)",
       "maxMessages": "Max messages per minute",
       "maxSymbols": "Max characters per minute",
+      "boostDescription": "If you want to set custom messages that will be send to kicked and banned via command members in DM",
       "kickMessage": "Custom DM to kicked members",
       "banMessage": "Custom DM to banned members",
       "enabled": "Enabled",

@@ -19,9 +19,10 @@
           <div v-else>
             <div v-if="guild.settings.boost">{{ $t('Items.subtitles.limit') }}</div>
             <div v-else class="items-limit">
-              <v-btn color="primary" variant="text" rounded prepend-icon="favorite" to="/donate">
+              <router-link class="donate-link" to="/donate">
+                <v-icon>favorite</v-icon>
                 {{ $t('Items.subtitles.donate') }}
-              </v-btn>
+              </router-link>
               {{ $t('Items.subtitles.increaseLimit') }} {{ limit.boost }}
             </div>
           </div>
@@ -122,6 +123,17 @@ onMounted(async () => {
 
 .items-limit {
   font-size: 1.2em;
+}
+
+.donate-link {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+  transition-duration: 200ms;
+}
+
+.donate-link:active {
+  opacity: 0.7;
+  transition-duration: 200ms;
 }
 
 .items-count {

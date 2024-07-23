@@ -231,10 +231,6 @@ async function submitAutomod(name: string) {
   margin-bottom: 10px;
 }
 
-.alert {
-  text-align: justify;
-}
-
 .punishment {
   display: flex;
   justify-content: left;

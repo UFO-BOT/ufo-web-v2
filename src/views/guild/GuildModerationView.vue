@@ -8,11 +8,11 @@
                   :label="$t('GuildModeration.subtitles.useTimeout')"/>
       <v-alert v-if="settings.useTimeout" class="alert mb-3" border="start" color="alert"
                :title="$t('GuildModeration.subtitles.timeout')" variant="tonal">
-                {{ $t('GuildModeration.subtitles.timeoutDescription') }}
+        {{ $t('GuildModeration.subtitles.timeoutDescription') }}
       </v-alert>
       <div class="subtitle-1">{{ $t('GuildModeration.subtitles.autoModeration') }}</div>
       <AutoModeration :auto-moderation="settings.autoModeration" :roles="guild.roles" :channels="guild.channels"
-        @update="automodUpdated"/>
+                      @update="automodUpdated"/>
       <div class="subtitle-1">{{ $t('GuildModeration.subtitles.warnsPunishments') }}</div>
       <div class="wp-list">
         <div v-for="(warnsPunishment, i) of settings.warnsPunishments">
@@ -30,7 +30,8 @@
                         :label="$t('GuildModeration.subtitles.punishment')" :items="punishments"/>
             </div>
             <DurationPicker v-if="warnsPunishment.punishment.type !== 'kick'"
-                            v-model="warnsPunishment.punishment.duration" class="punishment-duration" :limit="315360000000"/>
+                            v-model="warnsPunishment.punishment.duration" class="punishment-duration"
+                            :limit="315360000000"/>
           </div>
           <v-divider/>
         </div>
@@ -42,55 +43,60 @@
         </v-btn>
         <div v-else>{{ $t('GuildModeration.errors.warnsPunishmentsLimit') }}</div>
       </div>
-      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.kickMessage') }}</div>
-      <v-switch v-model="settings.punishmentMessages.kick.enabled" color="primary" hide-details
-                :label="$t('GuildModeration.subtitles.enabled')"/>
-      <TemplateInput v-model="settings.punishmentMessages.kick.message" class="template" :counter="1500"
-                     :disabled="!settings.punishmentMessages.kick.enabled"
-                     :variables="['member', 'guild', 'moderator', 'punishment']"/>
-      <EmbedInput v-model="settings.punishmentMessages.kick.embed" class="embed"
-                  :disabled="!settings.punishmentMessages.kick.enabled"
-                  :variables="['member', 'guild', 'moderator', 'punishment']"/>
-      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.banMessage') }}</div>
-      <v-switch v-model="settings.punishmentMessages.ban.enabled" color="primary" hide-details
-                :label="$t('GuildModeration.subtitles.enabled')"/>
-      <TemplateInput v-model="settings.punishmentMessages.ban.message" class="template" :counter="1500"
-                     :disabled="!settings.punishmentMessages.ban.enabled"
-                     :variables="['member', 'guild', 'moderator', 'punishment']"/>
-      <EmbedInput v-model="settings.punishmentMessages.ban.embed" class="embed"
-                  :disabled="!settings.punishmentMessages.ban.enabled"
-                  :variables="['member', 'guild', 'moderator', 'punishment']"/>
-      <div class="subtitle-1">{{ $t('GuildModeration.subtitles.tests') }}</div>
-      <v-alert v-if="settings.useTimeout" class="alert" border="start" color="alert"
-               :title="$t('GuildModeration.subtitles.testsTitle')" variant="tonal">
-        {{ $t('GuildModeration.subtitles.testsDescription') }}
-      </v-alert>
-      <div class="test-buttons">
-        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.kick" prepend-icon="person_add"
-               @click="test('kick')">
-          <v-tooltip v-if="testsThrottle.kick" activator="parent" location="top" open-on-click>
-            {{ $t('GuildGreetings.subtitles.throttle') }}
-          </v-tooltip>
-          {{ $t('GuildModeration.subtitles.kickTest') }}
-        </v-btn>
-        <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.ban" prepend-icon="person_remove"
-               @click="test('ban')">
-          <v-tooltip v-if="testsThrottle.ban" activator="parent" location="top" open-on-click>
-            {{ $t('GuildGreetings.subtitles.throttle') }}
-          </v-tooltip>
-          {{ $t('GuildModeration.subtitles.banTest') }}
-        </v-btn>
-      </div>
-      <v-snackbar v-model="testSnackbar" color="block">
-        <div class="test-result">
-          {{ testSuccess ? $t('GuildModeration.subtitles.testCompleted') : $t('GuildModeration.subtitles.testError') }}
-        </div>
-        <template v-slot:actions>
-          <v-btn :color="testSuccess ? 'green' : 'pink'" variant="text" ripple @click="testSnackbar = false">
-            {{ $t('GuildModeration.subtitles.close') }}
+      <BoostAlert v-if="!guild.settings.boost" class="alert" :text="$t('GuildModeration.subtitles.boostDescription')"/>
+      <div v-else>
+        <div class="subtitle-1">{{ $t('GuildModeration.subtitles.kickMessage') }}</div>
+        <v-switch v-model="settings.punishmentMessages.kick.enabled" color="primary" hide-details
+                  :label="$t('GuildModeration.subtitles.enabled')"/>
+        <TemplateInput v-model="settings.punishmentMessages.kick.message" class="template" :counter="1500"
+                       :disabled="!settings.punishmentMessages.kick.enabled"
+                       :variables="['member', 'guild', 'moderator', 'punishment']"/>
+        <EmbedInput v-model="settings.punishmentMessages.kick.embed" class="embed"
+                    :disabled="!settings.punishmentMessages.kick.enabled"
+                    :variables="['member', 'guild', 'moderator', 'punishment']"/>
+        <div class="subtitle-1">{{ $t('GuildModeration.subtitles.banMessage') }}</div>
+        <v-switch v-model="settings.punishmentMessages.ban.enabled" color="primary" hide-details
+                  :label="$t('GuildModeration.subtitles.enabled')"/>
+        <TemplateInput v-model="settings.punishmentMessages.ban.message" class="template" :counter="1500"
+                       :disabled="!settings.punishmentMessages.ban.enabled"
+                       :variables="['member', 'guild', 'moderator', 'punishment']"/>
+        <EmbedInput v-model="settings.punishmentMessages.ban.embed" class="embed"
+                    :disabled="!settings.punishmentMessages.ban.enabled"
+                    :variables="['member', 'guild', 'moderator', 'punishment']"/>
+        <div class="subtitle-1">{{ $t('GuildModeration.subtitles.tests') }}</div>
+        <v-alert v-if="settings.useTimeout" class="alert" border="start" color="alert"
+                 :title="$t('GuildModeration.subtitles.testsTitle')" variant="tonal">
+          {{ $t('GuildModeration.subtitles.testsDescription') }}
+        </v-alert>
+        <div class="test-buttons">
+          <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.kick" prepend-icon="person_add"
+                 @click="test('kick')">
+            <v-tooltip v-if="testsThrottle.kick" activator="parent" location="top" open-on-click>
+              {{ $t('GuildGreetings.subtitles.throttle') }}
+            </v-tooltip>
+            {{ $t('GuildModeration.subtitles.kickTest') }}
           </v-btn>
-        </template>
-      </v-snackbar>
+          <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.ban" prepend-icon="person_remove"
+                 @click="test('ban')">
+            <v-tooltip v-if="testsThrottle.ban" activator="parent" location="top" open-on-click>
+              {{ $t('GuildGreetings.subtitles.throttle') }}
+            </v-tooltip>
+            {{ $t('GuildModeration.subtitles.banTest') }}
+          </v-btn>
+        </div>
+        <v-snackbar v-model="testSnackbar" color="block">
+          <div class="test-result">
+            {{
+              testSuccess ? $t('GuildModeration.subtitles.testCompleted') : $t('GuildModeration.subtitles.testError')
+            }}
+          </div>
+          <template v-slot:actions>
+            <v-btn :color="testSuccess ? 'green' : 'pink'" variant="text" ripple @click="testSnackbar = false">
+              {{ $t('GuildModeration.subtitles.close') }}
+            </v-btn>
+          </template>
+        </v-snackbar>
+      </div>
       <v-btn class="submit" :disabled="valid === false" :loading="submitting" size="large" color="secondary"
              @click="submit">
         <v-icon class="save-icon">save</v-icon>
@@ -115,6 +121,7 @@ import {SubmitResult} from "@/types/SubmitResult";
 import {Command} from "@/types/Command";
 import TemplateInput from "@/components/TemplateInput.vue";
 import EmbedInput from "@/components/EmbedInput.vue";
+import BoostAlert from "@/components/BoostAlert.vue";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])
@@ -143,7 +150,7 @@ const warnsRules = [
 ]
 
 function automodUpdated(result: SubmitResult, autoModeration: GuildAutoModeration) {
-  if(result === 'success') settings.autoModeration = autoModeration
+  if (result === 'success') settings.autoModeration = autoModeration
   emit('submitted', result, settings)
 }
 
@@ -198,11 +205,6 @@ async function test(type: 'kick' | 'ban') {
 
 .role-select {
   width: 220px;
-}
-
-.alert {
-  text-align: justify;
-  width: 95%;
 }
 
 .wp-list {
@@ -260,7 +262,6 @@ async function test(type: 'kick' | 'ban') {
 }
 
 .alert {
-  text-align: justify;
   width: 95%;
   margin-top: 5px;
 }

@@ -180,7 +180,6 @@ async function test(type: 'join' | 'leave') {
 }
 
 .alert {
-  text-align: justify;
   width: 95%;
   margin-top: 5px;
 }

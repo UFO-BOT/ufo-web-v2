@@ -84,13 +84,13 @@ export interface GuildSettings {
     language: GuildLanguage
     moneySymbol: string
     work: {
-        low: number
-        high: number
+        min: number
+        max: number
         cooldown: number
     }
     moneybags: {
-        low: number
-        high: number
+        min: number
+        max: number
         cooldown: number
     }
     commission: number

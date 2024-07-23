@@ -9,11 +9,6 @@
                      min-height="55">
           {{ $rt(link.name) }}
         </v-list-item>
-        <v-divider v-if="guild?.settings?.boost"/>
-        <v-list-item v-if="guild?.settings?.boost" :prepend-icon="$t('Guild.boost.icon')"
-                     :to="$t('Guild.boost.path')" min-height="55">
-          {{ $t('Guild.boost.name') }}
-        </v-list-item>
       </v-item-group>
     </v-list>
     <v-window class="guild-settings">

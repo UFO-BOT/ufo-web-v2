@@ -25,8 +25,16 @@
                           :rules="nameRules" :label="$t('Items.subtitles.name')"/>
             <v-textarea v-model="item.description" class="general-item-field" counter="200"
                         :rules="descriptionRules" :label="$t('Items.subtitles.description')"/>
+            <div v-if="!guild.settings.boost" class="thumbnail-description">
+              <router-link class="donate-link" to="/donate">
+                <v-icon>favorite</v-icon>
+                {{ $t('Items.subtitles.donate') }}
+              </router-link>
+              {{ $t('Items.subtitles.thumbnailDescription') }}
+            </div>
             <v-text-field v-model="item.thumbnailUrl" class="general-item-field" prepend-inner-icon="art_track"
-                        :rules="descriptionRules" :label="$t('Items.subtitles.thumbnailUrl')"/>
+                          :disabled="!guild.settings.boost" :rules="thumbnailRules"
+                          :label="$t('Items.subtitles.thumbnailUrl')"/>
             <div class="subtitle">{{ $t('Items.subtitles.values') }}</div>
             <div class="item-flex">
               <div>
@@ -90,6 +98,16 @@ let valid = ref(true)
 let loading = ref(false)
 let item: Reactive<Item> = reactive(props.item)
 
+function isUrl(str: string): boolean {
+  try {
+    let url = new URL(str)
+    return url.protocol == 'http:' || url.protocol == 'https:'
+  }
+  catch (e) {
+    return false
+  }
+}
+
 const positiveIntegerRules = [
   (number: number) => (number >= 0 && !(number % 1)) || i18n.global.t('Items.errors.invPosNumber')
 ]
@@ -99,6 +117,9 @@ const nameRules = [
 ]
 const descriptionRules = [
   (description: string) => (description.length <= 200) || i18n.global.t('Items.errors.invItemDescription')
+]
+const thumbnailRules = [
+  (thumbnail: string) => ((!thumbnail.length || isUrl(thumbnail)) || i18n.global.t('Items.errors.invUrl'))
 ]
 
 async function editItem() {
@@ -138,6 +159,21 @@ async function editItem() {
 
 .general-item-field {
   padding-top: 7px !important;
+}
+
+.donate-link {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+  transition-duration: 200ms;
+}
+
+.donate-link:active {
+  opacity: 0.7;
+  transition-duration: 200ms;
+}
+
+.thumbnail-description {
+  color: rgb(var(--v-theme-description));
 }
 
 .item-flex {
