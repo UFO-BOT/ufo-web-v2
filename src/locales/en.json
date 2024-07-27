@@ -157,7 +157,7 @@
         "list": [
           {
             "name": "guild.id",
-            "description": "Member ID"
+            "description": "Server ID"
           },
           {
             "name": "guild.name",
@@ -177,7 +177,7 @@
           },
           {
             "name": "guild.created",
-            "description": "Guild creation date"
+            "description": "Server creation date"
           }
         ]
       },
@@ -190,7 +190,7 @@
           },
           {
             "name": "channel.name",
-            "description": "Server name"
+            "description": "Channel name"
           },
           {
             "name": "channel.topic",
@@ -267,6 +267,23 @@
             "description": "Punishment reason"
           }
         ]
+      },
+      "work": {
+        "name": "Work",
+        "list": [
+          {
+            "name": "work.salary",
+            "description": "Amount of earned money"
+          },
+          {
+            "name": "work.balance",
+            "description": "Member balance after work"
+          },
+          {
+            "name": "work.moneySymbol",
+            "description": "Server money symbol"
+          }
+        ]
       }
     },
     "errors": {
@@ -327,7 +344,7 @@
     "variables": {
       "memberCreated": "Member account creation date",
       "memberJoined": "Member join date",
-      "guildCreated": "Guild creation date",
+      "guildCreated": "Server creation date",
       "punishmentEnds": "Punishment expiration date (null if not specified)"
     }
   },
@@ -342,6 +359,45 @@
   "BoostAlert": {
     "boost": "Boost",
     "donate": "Donate us"
+  },
+  "CustomJobs": {
+    "subtitles": {
+      "deleteItem": "Delete job",
+      "deleteConfirm": "Are you sure you want to delete custom job [J]? This action is irreversible",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "create": "Create",
+      "createItem": "Create job",
+      "general": "General",
+      "name": "Name",
+      "description": "Description",
+      "message": "Job ending message",
+      "messageHint": "If you want to set different messages for positive and negative salary values, use comparative conditions",
+      "thumbnailUrl": "Thumbnail Url",
+      "thumbnailDescription": "to set job picture that will be displayed when selecting it",
+      "hideOptions": "Hide options",
+      "hideOptionsDescription": "If selected, all job options will not be displayed to members",
+      "hide": "Hide",
+      "salary": "Salary",
+      "salaryDescription": "You can set both positive and negative salary values",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "values": "Values",
+      "cooldown": "Cooldown",
+      "requiredXp": "Required XP",
+      "requiredRoles": "Required roles",
+      "donate": "Donate us",
+      "increaseLimit": "to increase jobs limit to",
+      "limit": "Jobs limit reached",
+      "submit": "Submit"
+    },
+    "errors": {
+      "invNumber": "Enter an integer",
+      "invJobName": "Job must have a name not longer than 50 characters",
+      "invJobDescription": "Description may not be longer than 1000 characters",
+      "alreadyExists": "Another job has this name",
+      "invUrl": "Enter a valid Url"
+    }
   },
   "Items": {
     "subtitles": {
@@ -611,6 +667,7 @@
       "weekly": "Weekly",
       "resetBalance": "Reset all balances",
       "shop": "Shop",
+      "customJobs": "Custom jobs",
       "percent": "Percent",
       "from": "From",
       "to": "To"

@@ -52,6 +52,8 @@
                         type="number" color="primary" :label="$t('GuildEconomy.subtitles.weekly')"/>
         </div>
       </div>
+      <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.customJobs') }}</div>
+      <CustomJobs/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.shop') }}</div>
       <Items/>
       <div class="subtitle-1">{{ $t('GuildEconomy.subtitles.resetBalance') }}</div>
@@ -77,6 +79,7 @@ import DurationPicker from "@/components/DurationPicker.vue";
 import ResetBalance from "@/components/ResetBalance.vue";
 import Items from "@/components/items/Items.vue";
 import BoostAlert from "@/components/BoostAlert.vue";
+import CustomJobs from "@/components/customJobs/CustomJobs.vue";
 
 const props = defineProps<{ settings: GuildSettings }>()
 const emit = defineEmits(['submitted'])

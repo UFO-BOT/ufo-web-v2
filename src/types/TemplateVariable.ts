@@ -1,1 +1,1 @@
-export type TemplateVariable = 'member' | 'guild' | 'channel' | 'moderator' | 'punishment'
+export type TemplateVariable = 'member' | 'guild' | 'channel' | 'moderator' | 'punishment' | 'work'

@@ -6,7 +6,7 @@
     <v-dialog v-model="dialog" width="500px">
       <v-card color="modal">
         <v-card-title class="modal-header">
-          <div>{{ $t('DurationPicker.durationInput') }}</div>
+          <div>{{ title ?? $t('DurationPicker.durationInput') }}</div>
         </v-card-title>
         <v-card-text>
           <v-form v-model="valid">
@@ -30,13 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, reactive, ref} from "vue";
-import {LeaderboardMember} from "@/types/LeaderboardMember";
+import {reactive, ref} from "vue";
 import {useRoute} from "vue-router";
-import config from "@/config.json";
 import i18n from "@/plugins/i18n";
 
-const props = defineProps<{modelValue: number, limit?: number, label?: string}>()
+const props = defineProps<{modelValue: number, limit?: number, title?: string, label?: string}>()
 const emit = defineEmits(['update:modelValue'])
 const route = useRoute()
 let value = props.modelValue;

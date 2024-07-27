@@ -44,8 +44,10 @@
         <v-tooltip activator="parent" location="top">{{ $t(`TemplateInput.tooltips.docs`) }}</v-tooltip>
       </v-btn>
     </div>
+    <div v-if="props.hint" class="hint">{{ props.hint }}</div>
     <v-textarea v-model="template" ref="textarea" class="template" :disabled="props.disabled" :rules="rules"
-                :label="props.label ?? $t(`TemplateInput.template`)" color="primary" :counter="props.counter"/>
+                :color="props.color ?? 'primary'" :counter="props.counter"
+                :label="props.label ?? $t(`TemplateInput.template`)"/>
   </div>
 </template>
 
@@ -60,8 +62,8 @@ import {ListItemSelect} from "@/types/ListItemSelect";
 import {TemplateVariable} from "@/types/TemplateVariable";
 import i18n from "@/plugins/i18n";
 
-const props = defineProps<{ variables: Array<TemplateVariable>, counter?: number, label?: string, required?: boolean
-  disabled?: boolean }>()
+const props = defineProps<{ variables: Array<TemplateVariable>, color?: string, counter?: number, label?: string,
+  hint?: string, required?: boolean, disabled?: boolean }>()
 const route = useRoute()
 const store = useStore()
 let template = defineModel<string>({default: ''})
@@ -113,5 +115,10 @@ function variableAdd(variable: string) {
 
 .button {
   margin-right: 5px;
+}
+
+.hint {
+  color: rgb(var(--v-theme-description));
+  margin-bottom: 10px;
 }
 </style>
