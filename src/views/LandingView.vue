@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="name">{{ $t('Landing.name') }}</div>
-    <v-img src="@/assets/avatar.png" class="avatar item-center" max-width="260px" max-height="260px"></v-img>
+    <v-img src="@/assets/avatar-v2.png" class="avatar item-center" max-width="260px" max-height="260px"></v-img>
     <div class="buttons-container mt-2">
       <v-btn size="x-large" color="primary" class="action-button" to="/commands">
         <v-icon class="button-icon" size="large">list</v-icon>{{ $t('Landing.commands') }}

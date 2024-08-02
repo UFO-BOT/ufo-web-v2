@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import vuetify from "@/plugins/vuetify";
-import UFOLogo from "@/assets/logo.png";
+import UFOLogo from "@/assets/logo-v2-dark.png";
 import {ref} from "vue";
 
 const year = new Date().getFullYear();
@@ -71,10 +71,10 @@ function updateTheme() {
 }
 
 .main-icon {
-  width: 50px;
+  width: 45px;
   height: 27px;
   display: inline;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .bot-name {

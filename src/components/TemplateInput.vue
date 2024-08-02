@@ -38,7 +38,7 @@
           </v-list>
         </v-overlay>
       </v-btn>
-      <v-btn class="button" icon variant="text" size="40" href="https://docs.ufobot.ru/articles/variables"
+      <v-btn class="button" icon variant="text" size="40" href="https://docs.ufobot.ru/templates/usage"
              :disabled="props.disabled" target="_blank">
         <v-icon>help_outline</v-icon>
         <v-tooltip activator="parent" location="top">{{ $t(`TemplateInput.tooltips.docs`) }}</v-tooltip>

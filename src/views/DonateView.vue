@@ -6,6 +6,7 @@
       <v-expansion-panels variant="accordion">
         <v-expansion-panel v-for="feature of $tm('Donate.features')" bg-color="block">
           <v-expansion-panel-title class="feature-name" ripple>
+            <v-icon class="category-icon">{{ $rt(feature.icon) }}</v-icon>
             {{ $rt(feature.name) }}
           </v-expansion-panel-title>
           <v-expansion-panel-text class="feature-description" color="block">
@@ -64,6 +65,10 @@
 
 .feature-name {
   font-size: 1.4em;
+}
+
+.category-icon {
+  margin-right: 10px;
 }
 
 .feature-description {

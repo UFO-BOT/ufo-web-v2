@@ -67,19 +67,17 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, Reactive, reactive, Ref, ref} from "vue";
+import {computed, onMounted, reactive} from "vue";
 import {useStore} from "vuex";
-import config from "@/config.json";
 import {Command} from "@/types/Command";
 import GetUsage from "@/utils/GetUsage";
 import ParsePerms from "@/utils/ParsePerms";
-import i18n from "@/plugins/i18n";
-import {Guild} from "@/types/Guild";
 
 const store = useStore();
 const categories = ['general', 'economy', 'games', 'utilities', 'moderation'];
 const icons = ['public', 'attach_money', 'phone_iphone', 'build', 'security'];
 let commands = computed(() => (store.getters.commands as Array<Command>));
+let dialogs = reactive({})
 
 onMounted(async () => {
   if (!commands.value?.length) await store.dispatch('getCommands')
