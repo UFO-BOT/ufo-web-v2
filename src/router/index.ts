@@ -15,6 +15,8 @@ import GuildLogsView from "@/views/guild/GuildLogsView.vue"
 import GuildGreetingsView from "@/views/guild/GuildGreetingsView.vue"
 import LeaderboardView from "@/views/LeaderboardView.vue"
 import LeaderboardMemberView from "@/views/LeaderboardMemberView.vue"
+import TermsView from "@/views/TermsView.vue"
+import PrivacyView from "@/views/PrivacyView.vue"
 import LoginView from "@/views/LoginView.vue"
 import NotFoundView from "@/views/NotFoundView.vue"
 
@@ -95,6 +97,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/leaderboard/:id/:user',
     name: 'LeaderboardMember',
     component: LeaderboardMemberView
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: TermsView
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: PrivacyView
   },
   {
     path: '/login',

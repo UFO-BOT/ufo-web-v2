@@ -57,6 +57,11 @@ img {
   opacity: 1!important;
 }
 
+.primary-link {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+}
+
 code {
   padding: .3rem .5rem!important;
   font-size: .875em!important;

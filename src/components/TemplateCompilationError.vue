@@ -3,7 +3,7 @@
     <v-alert class="alert" border="start" color="error" variant="tonal"
              :title="$t(`TemplateCompilationError.title`)">
       {{ $t(`TemplateCompilationError.description`) }}
-      <a href="https://docs.ufobot.ru/articles/variables" target="_blank" class="link">
+      <a href="https://docs.ufobot.ru/articles/variables" target="_blank" class="primary-link">
         {{ $t(`TemplateCompilationError.link`) }}
       </a>
     </v-alert>
@@ -17,10 +17,5 @@
 <style scoped>
 .alert {
   text-align: justify;
-}
-
-.link {
-  color: rgb(var(--v-theme-primary));
-  text-decoration: none;
 }
 </style>

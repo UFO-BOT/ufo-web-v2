@@ -55,13 +55,15 @@
         "block": 1
       },
       {
-        "name": "Commands",
-        "path": "/commands",
+        "name": "Documentation",
+        "path": "https://docs.ufobot.ru",
+        "blank": true,
         "block": 2
       },
       {
-        "name": "Statistics",
-        "path": "/stats",
+        "name": "Support server",
+        "path": "https://discord.gg/qPrqVwR",
+        "blank": true,
         "block": 2
       },
       {
@@ -70,15 +72,13 @@
         "block": 2
       },
       {
-        "name": "Documentation",
-        "path": "https://docs.ufobot.ru",
-        "blank": true,
+        "name": "Terms of Service",
+        "path": "/terms",
         "block": 3
       },
       {
-        "name": "Support server",
-        "path": "https://discord.gg/qPrqVwR",
-        "blank": true,
+        "name": "Privacy Policy",
+        "path": "/privacy",
         "block": 3
       }
     ],
@@ -551,7 +551,7 @@
           "[R]on support server with permission to change nickname",
           "Access to secret channel"
         ],
-        "price": 39
+        "price": 59
       },
       "premium": {
         "name": "Premium",
@@ -560,7 +560,7 @@
           "[R]role on support server with permission to view audit log",
           "Access to secret channel"
         ],
-        "price": 69
+        "price": 99
       }
     },
     "perMonth": "/month",
@@ -874,6 +874,142 @@
     "submit": "Submit",
     "delete": "Delete",
     "cancel": "Cancel"
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "name": "Terms of Service",
+    "paragraphs": [
+      {
+        "name": "Introduction",
+        "items": [
+          "These Terms of Service (hereinafter referred to as the – «Terms») govern the use of the Discord bot UFO (hereinafter referred to as the – «Bot») and the website <a class='primary-link' href='https://ufobot.ru'>https://ufobot.ru</a> (hereinafter referred to as the – «Bot»). By using the Bot and/or the Site, you agree to these Terms.",
+          "The administration reserves the right to change these Terms at any time without prior notice. The updated Terms come into force from the moment they are published on the Site."
+        ]
+      },
+      {
+        "name": "Description of services",
+        "items": [
+          "The bot provides users with the opportunity to receive a variety of information and services within the Discord server. The functionality of the Bot may include, but is not limited to: informational notifications, entertainment functions, assistance in server management.",
+          "The Site provides information about the Bot, instructions for its use and helps to interact with users."
+        ]
+      },
+      {
+        "name": "Registration and account",
+        "items": [
+          "To use the Bot, you may need to log in with your Discord account. Using the Bot functionality implies that you agree to Discord's privacy policy.",
+          "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account."
+        ]
+      },
+      {
+        "name": "Disclaimer",
+        "items": [
+          "The administration of the Bot and the Site is not responsible for any direct or indirect damage caused to users as a result of the use or inability to use the services of the Bot and/or the Site.",
+          "The Administration does not guarantee uninterrupted and error-free operation of the Bot and the Site. All services are provided on an \"as is\" basis."
+        ]
+      },
+      {
+        "name": "User content",
+        "items": [
+          "Users are responsible for any content they post, upload or otherwise make available through the Bot and/or the Site.",
+          "The administration reserves the right to remove any content that, in its opinion, violates these Terms or is illegal, offensive, threatening or inappropriate."
+        ]
+      },
+      {
+        "name": "Privacy Policy",
+        "items": [
+          "All personal information provided by users is processed in accordance with the <a class='primary-link' href='/privacy'>Privacy Policy</a>, posted on the Site.",
+          "By using the Bot and/or the Site, you agree to the terms of our Privacy Policy."
+        ]
+      },
+      {
+        "name": "Intellectual property",
+        "items": [
+          "All materials and content available on the Site and through the Bot, including text, graphics, logos and software, are the property of the administration or its licensors and are protected by copyright and intellectual property laws.",
+          "Users do not have the right to copy, distribute or create derivative works based on the content without the written permission of the administration."
+        ]
+      },
+      {
+        "name": "Changes and termination of service",
+        "items": [
+          "The administration reserves the right to change, suspend or terminate the provision of services to the Bot and/or the Site at any time without prior notice.",
+          "The User may stop using the Bot and/or the Site at any time."
+        ]
+      },
+      {
+        "name": "Governing Law",
+        "items": [
+          "These Terms are governed by and construed in accordance with the laws of the Russian Federation."
+        ]
+      },
+      {
+        "name": "Contact information",
+        "items": [
+          "For any questions related to these Terms, you can contact us on our <a class='primary-link' href='https://discord.gg/qPrqVwR'>support server</a> on Discord."
+        ]
+      }
+    ]
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "name": "Privacy Policy",
+    "paragraphs": [
+      {
+        "name": "Introduction",
+        "items": [
+          "This Privacy Policy (hereinafter referred to as the “Policy”) determines the procedure for processing and protecting personal data of users of the Discord bot UFO (hereinafter referred to as the “Bot”) and the website <a class='primary-link' href='https://ufobot.ru' >https://ufobot.ru</a> (hereinafter referred to as the “Site”).",
+          "By using the Bot and/or the Site, you consent to the processing of your personal data in accordance with this Policy.",
+          "The administration reserves the right to change this Policy at any time without prior notice. The updated Policy comes into force from the moment it is published on the Site."
+        ]
+      },
+      {
+        "name": "Collection of personal data",
+        "items": [
+          "We collect the following categories of personal data: Discord account information (user ID); contact information provided by you; information about the Discord server (IDs of server, roles, channels, server members)",
+          "We do not collect special categories of personal data (for example, message content)"
+        ]
+      },
+      {
+        "name": "Use of personal data",
+        "items": [
+          "Personal data is used to provide the functionality of the Bot and the Website",
+          "We do not share your personal data with third parties, except as required by law or when necessary to provide services (for example, to process payments)."
+        ]
+      },
+      {
+        "name": "Protection of personal data",
+        "items": [
+          "We take all necessary organizational and technical measures to protect your personal data from unauthorized or accidental access, destruction, modification, blocking, copying and distribution.",
+          "Access to personal data is provided only to authorized employees who are required to maintain the confidentiality of this information."
+        ]
+      },
+      {
+        "name": "Storage of personal data",
+        "items": [
+          "Personal data is stored for the time necessary to achieve the purposes for which it was collected or for the period established by the law.",
+          "Once the purposes of processing have been achieved or at your request, personal data will be deleted."
+        ]
+      },
+      {
+        "name": "User rights",
+        "items": [
+          "You have the right to: erase your personal data; restrict the processing of your personal data.",
+          "To exercise your rights, you can contact us on the <a class='primary-link' href='https://discord.gg/qPrqVwR'>support server</a>."
+        ]
+      },
+      {
+        "name": "Cookies",
+        "items": [
+          "We use Cookies to improve the functionality of the Site.",
+          "You can customize the use of Cookies in your browser settings. However, disabling Cookies may affect the functionality of some features of the Site."
+        ]
+      },
+      {
+        "name": "Third party resources",
+        "items": [
+          "The Site and Bot may contain links to third-party resources, for the content and privacy policies of which we are not responsible."
+        ]
+      }
+    ]
   },
   "Login": {
     "title": "Log in",
