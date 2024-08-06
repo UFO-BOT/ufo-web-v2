@@ -964,14 +964,14 @@
       {
         "name": "Collection of personal data",
         "items": [
-          "We collect the following categories of personal data: Discord account information (user ID); contact information provided by you; information about the Discord server (IDs of server, roles, channels, server members)",
-          "We do not collect special categories of personal data (for example, message content)"
+          "We collect the following categories of personal data: Discord account information (user ID); contact information provided by you; information about the Discord server (IDs of server, roles, channels, server members).",
+          "We do not collect special categories of personal data (for example, message content)."
         ]
       },
       {
         "name": "Use of personal data",
         "items": [
-          "Personal data is used to provide the functionality of the Bot and the Website",
+          "Personal data is used to provide the functionality of the Bot and the Website.",
           "We do not share your personal data with third parties, except as required by law or when necessary to provide services (for example, to process payments)."
         ]
       },
@@ -1010,6 +1010,10 @@
         ]
       }
     ]
+  },
+  "V2": {
+    "title": "Version 2.0.0",
+    "name": "Version 2.0.0"
   },
   "Login": {
     "title": "Log in",
