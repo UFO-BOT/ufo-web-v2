@@ -548,7 +548,7 @@
         "name": "Standard",
         "perks": [
           "Boosts for 2 servers",
-          "[R]on support server with permission to change nickname",
+          "Role [R] on support server with permission to change nickname",
           "Access to secret channel"
         ],
         "price": 59
@@ -557,7 +557,7 @@
         "name": "Premium",
         "perks": [
           "Boosts for 4 servers",
-          "[R]role on support server with permission to view audit log",
+          "Role [R] on support server with permission to view audit log",
           "Access to secret channel"
         ],
         "price": 99
@@ -1013,7 +1013,8 @@
   },
   "V2": {
     "title": "Version 2.0.0",
-    "name": "Version 2.0.0"
+    "name": "Version 2.0.0",
+    "close": "Close"
   },
   "Login": {
     "title": "Log in",

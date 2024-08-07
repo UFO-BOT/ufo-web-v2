@@ -1,7 +1,7 @@
 import {Language} from "@/types/Language";
 import {CommandSettings} from "@/types/CommandSettings";
 import {Embed} from "@/types/Embed";
-import CustomJob from "@/types/CustomJob";
+import {CustomJob} from "@/types/CustomJob";
 
 export interface GuildLanguage {
     commands: Language
