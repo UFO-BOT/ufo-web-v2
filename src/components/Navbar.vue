@@ -12,9 +12,7 @@
       <v-spacer/>
       <v-toolbar-items>
         <v-btn @click="translate"><v-icon size="35" class="nav-icon">translate</v-icon></v-btn>
-        <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=` +
-          `${encodeURIComponent(location + '/login')}&response_type=`+
-          `code&scope=identify+guilds+applications.commands.permissions.update`"
+        <v-btn :href="loginUrl()"
                v-if="!loadingUser && !user?.username">
           <v-icon size="20" class="nav-icon">{{ $t('Nav.login.icon') }}</v-icon>{{ $t('Nav.login.name') }}
         </v-btn>
@@ -43,12 +41,11 @@ import {useStore} from "vuex";
 import i18n from "@/plugins/i18n";
 import vuetify from "@/plugins/vuetify";
 import UFOLogo from "@/assets/logo-v2-dark.png";
-import config from "@/config.json";
 import {useRoute} from "vue-router";
 import {Language} from "@/types/Language"
+import {loginUrl} from "@/utils/LoginUrl";
 
 const route = useRoute();
-const location = window.location.origin
 const mobileNav = ref(false);
 const loadingUser = ref(false);
 const store = useStore();

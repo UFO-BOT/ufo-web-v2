@@ -44,15 +44,18 @@ const prefixRules = [
 
 async function submit() {
   submitting.value = true;
-  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/general`,
+  let response = await fetch(`${config.API}/webhooks/yookassa`,
       {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token') as string,
           'Content-Type': 'application/json'
         }, body: JSON.stringify({
-          prefix: settings.prefix,
-          language: settings.language
+          type: 'notification',
+          event: 'payment.succeeded',
+          object: {
+            id: '2e46ed41-000f-5000-9000-1beaa5a0f739'
+          }
         })
       })
   if(response.ok) emit('submitted', 'success', settings)
