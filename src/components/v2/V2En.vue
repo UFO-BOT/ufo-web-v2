@@ -8,19 +8,19 @@
       <div class="subtitle">General</div>
       <div class="paragraph">1. New logo and bot avatar.</div>
       <div class="paragraph">2. Added
-        <image-overlay name="Slash commands" file="ru/slashes.png">slash commands</image-overlay>. Their language does
+        <image-overlay name="Slash commands" file="en/slashes.png">slash commands</image-overlay>. Their language does
         not depend on server commands language, it is set in accordance with your Discord client language: Russian, if
         your client language is Russian, in other cases English. Text commands remain in the bot.
       </div>
       <div class="paragraph">3. Now instead of reactions bot uses Discord
-        <image-overlay name="Interactions" file="ru/interactions.png">interactions</image-overlay> (buttons, selects,
+        <image-overlay name="Interactions" file="en/interactions.png">interactions</image-overlay> (buttons, selects,
         modals, etc.).</div>
       <div class="subtitle">Website</div>
       <div class="paragraph">1. Website has also been rewritten in Typescript and Vue 3 framework.</div>
       <div class="paragraph">2. Updated color palette of the website.</div>
       <div class="paragraph">3. Fixed bug where in some browsers some components were not centered.</div>
       <div class="paragraph">4. Now language changes without reloading the page.</div>
-      <div class="paragraph">5. New user <image-overlay name="Badges" file="ru/badges.png">badges</image-overlay>
+      <div class="paragraph">5. New user <image-overlay name="Badges" file="en/badges.png">badges</image-overlay>
         on profile page.
       </div>
       <div class="paragraph">6. Now all servers settings are cached. If you open server settings, they will load only
@@ -31,7 +31,7 @@
         commands
       </div>
       <div class="paragraph">8. Added new
-        <image-overlay name="Template input" file="ru/template.png">template input</image-overlay>. It contains text
+        <image-overlay name="Template input" file="en/template.png">template input</image-overlay>. It contains text
         field and buttons for inserting role mention, channel mention, template variable and link to templates
         documentation.
       </div>
@@ -52,8 +52,8 @@
         instead. You can set random amount of experience that will be given to members with specified chance when
         sending messages.
       </div>
-      <div class="paragraph">4. Now in <image-overlay name="Leaders" file="ru/leaders.png">leaders</image-overlay> and
-        <image-overlay name="Магазин" file="ru/shop.png">shop</image-overlay> commands you can switch pages using
+      <div class="paragraph">4. Now in <image-overlay name="Leaders" file="en/leaders.png">leaders</image-overlay> and
+        <image-overlay name="Магазин" file="en/shop.png">shop</image-overlay> commands you can switch pages using
         arrow buttons
       </div>
       <div class="paragraph">5. Shop</div>
@@ -86,12 +86,12 @@
         <a class="primary-link" href="https://docs.ufobot.ru/templates/usage" target="_blank">Documentation</a>.
       </div>
       <div class="subparagraph">6.5. If custom jobs are set on the server, member will see
-        <image-overlay name="Job selection" file="ru/job-menu.png">list </image-overlay> of all jobs names when using
+        <image-overlay name="Job selection" file="en/job-menu.png">list </image-overlay> of all jobs names when using
         <code>work</code> command. By selecting one of the jobs, member will see all its
-        <image-overlay name="Job options" file="ru/job-select.png">options</image-overlay>. If the job is available
+        <image-overlay name="Job options" file="en/job-select.png">options</image-overlay>. If the job is available
         for member (cooldown passed and they have required experience and roles), they will be able to click Work
         button. They will receive a random salary value between minimum and maximum value and job ending
-        <image-overlay name="Job ending" file="ru/job-ending.png">message</image-overlay> will be displayed.
+        <image-overlay name="Job ending" file="en/job-ending.png">message</image-overlay> will be displayed.
       </div>
       <div class="subparagraph">6.6. As a donate feature, you can set job icon (you have to set image URL in job
         settings). It will be displayed in job information and after work as embed thumbnail.
@@ -99,39 +99,39 @@
       <div class="subtitle">Games</div>
       <div class="paragraph">1. As mentioned above, games now use Discord interactions instead of reactions.
       </div>
-      <div class="paragraph">2. In <image-overlay name="Crash casino" file="ru/crash.png">crash-casino</image-overlay>
+      <div class="paragraph">2. In <image-overlay name="Crash casino" file="en/crash.png">crash-casino</image-overlay>
         you can now raise the multiplier with "Raise" button. To stop and take money, you need to click "Stop" button.
         Multiplier is now raised by 0.4 with each raising, and chance of losing is now 25%.
       </div>
-      <div class="paragraph">3. <image-overlay name="Minefield" file="ru/minefield.png">Minefield</image-overlay>
+      <div class="paragraph">3. <image-overlay name="Minefield" file="en/minefield.png">Minefield</image-overlay>
         now contains 3 arrow buttons for selecting cell and a button with "stop" icon to stop. Multipliers in minefield
         are now x1 and x2.
       </div>
-      <div class="paragraph">4. <image-overlay name="Jackpot" file="ru/jackpot.png">Jackpot</image-overlay> now contains
+      <div class="paragraph">4. <image-overlay name="Jackpot" file="en/jackpot.png">Jackpot</image-overlay> now contains
         "Enter" button, which opens
-        <image-overlay name="Modal window" file="ru/jackpot-modal.png">modal window</image-overlay> that contains
+        <image-overlay name="Modal window" file="en/jackpot-modal.png">modal window</image-overlay> that contains
         input field. You need to enter 7 numbers separated by space and click "Submit".
       </div>
       <div class="paragraph">5. Rock scissors paper</div>
       <div class="subparagraph">5.1. Contains
-        <image-overlay name="Rock scissors paper" file="ru/rsp.png">select menu</image-overlay> in which you can choose
+        <image-overlay name="Rock scissors paper" file="en/rsp.png">select menu</image-overlay> in which you can choose
         rock, scissors or paper.
       </div>
       <div class="subparagraph">5.2. Now you can play rock scissors paper with another member. To do this you need to
         specify member after the bet. They can
-        <image-overlay name="Accepting game" file="ru/rsp-accept.png">accept or decline</image-overlay> game using
+        <image-overlay name="Accepting game" file="en/rsp-accept.png">accept or decline</image-overlay> game using
         buttons. Then each member can
-        <image-overlay name="Select" file="ru/rsp-player.png">select</image-overlay> rock, scissors or paper.
-        <image-overlay name="Winner" file="ru/rsp-winner.png">Winner</image-overlay> will receive money.
+        <image-overlay name="Select" file="en/rsp-player.png">select</image-overlay> rock, scissors or paper.
+        <image-overlay name="Winner" file="en/rsp-winner.png">Winner</image-overlay> will receive money.
       </div>
-      <div class="paragraph">6. <image-overlay name="New duels" file="ru/duel.png">New duels</image-overlay></div>
+      <div class="paragraph">6. <image-overlay name="New duels" file="en/duel.png">New duels</image-overlay></div>
       <div class="subparagraph">6.1. Duel game has been fully reworked and improved. Not each player has 100 HP at
         start, each shot gives random amount of damage. Also added equipment: helmet, armor, scope, medkit and grenade.
         At start players can select 2 elements of equipment.
       </div>
       <div class="subparagraph">6.2. When using command, you need to specify member who you want to play with, they will
         be able to accept or decline the game. Then each player need to select up to 2 elements of
-        <image-overlay name="Equipment" file="ru/duel-equipment.png">equipment</image-overlay> from the list.
+        <image-overlay name="Equipment" file="en/duel-equipment.png">equipment</image-overlay> from the list.
         Then players damage each other. Whoever runs out of HP will lose.
       </div>
       <div class="subparagraph">6.3. Each shot can hit different part of the body with certain chance.
@@ -174,7 +174,7 @@
       <div class="paragraph">5. As a timestamp, you can select current time (time of event), select a specific date, or
         select a template variable from the list.
       </div>
-      <div class="paragraph">6. Added <image-overlay name="Tests" file="ru/greetings-tests.png">tests</image-overlay>
+      <div class="paragraph">6. Added <image-overlay name="Tests" file="en/greetings-tests.png">tests</image-overlay>
         for greetings. With them you can check that messages, embeds and all templates are filled correctly. Once the
         test is launched, a corresponding message will be sent to the appropriate channel or DM.
       </div>
