@@ -69,14 +69,14 @@
           {{ $t('GuildModeration.subtitles.testsDescription') }}
         </v-alert>
         <div class="test-buttons">
-          <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.kick" prepend-icon="person_add"
+          <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.kick" prepend-icon="person_remove"
                  @click="test('kick')">
             <v-tooltip v-if="testsThrottle.kick" activator="parent" location="top" open-on-click>
               {{ $t('GuildGreetings.subtitles.throttle') }}
             </v-tooltip>
             {{ $t('GuildModeration.subtitles.kickTest') }}
           </v-btn>
-          <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.ban" prepend-icon="person_remove"
+          <v-btn class="test-button" color="primary" variant="tonal" :loading="tests.ban" prepend-icon="block"
                  @click="test('ban')">
             <v-tooltip v-if="testsThrottle.ban" activator="parent" location="top" open-on-click>
               {{ $t('GuildGreetings.subtitles.throttle') }}

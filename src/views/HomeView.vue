@@ -1,6 +1,9 @@
 <template>
   <div class="center">
-    <div class="name"><b>UFO</b></div>
+    <div class="name">
+      UFO
+      <router-link class="primary-link" to="/v2">V2</router-link>
+    </div>
     <v-img v-if="$vuetify.theme.current.dark" :src="UFOLogoDark" class="logo item-center"></v-img>
     <v-img v-else :src="UFOLogoLight" class="logo item-center"></v-img>
     <span class="description"></span><br>
@@ -50,6 +53,7 @@ watch(() => (i18n.global.locale as WritableComputedRef<Language>).value, startTy
 .name {
   margin: 0 0 10px;
   font-size: 4em;
+  font-weight: bold;
 }
 
 .logo {

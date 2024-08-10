@@ -25,16 +25,16 @@
                           :rules="nameRules" :label="$t('Items.subtitles.name')"/>
             <v-textarea v-model="item.description" class="general-item-field" counter="200"
                         :rules="descriptionRules" :label="$t('Items.subtitles.description')"/>
-            <div v-if="!guild.settings.boost" class="thumbnail-description">
+            <div v-if="!guild.settings.boost" class="icon-description">
               <router-link class="donate-link" to="/donate">
                 <v-icon>favorite</v-icon>
                 {{ $t('Items.subtitles.donate') }}
               </router-link>
-              {{ $t('Items.subtitles.thumbnailDescription') }}
+              {{ $t('Items.subtitles.iconDescription') }}
             </div>
-            <v-text-field v-model="item.thumbnailUrl" class="general-item-field" prepend-inner-icon="art_track"
-                          :disabled="!guild.settings.boost" :rules="thumbnailRules"
-                          :label="$t('Items.subtitles.thumbnailUrl')"/>
+            <v-text-field v-model="item.iconUrl" class="general-item-field" prepend-inner-icon="art_track"
+                          :disabled="!guild.settings.boost" :rules="iconRules"
+                          :label="$t('Items.subtitles.iconUrl')"/>
             <div class="subtitle">{{ $t('Items.subtitles.values') }}</div>
             <div class="item-flex">
               <div>
@@ -118,8 +118,8 @@ const nameRules = [
 const descriptionRules = [
   (description: string) => (description.length <= 200) || i18n.global.t('Items.errors.invItemDescription')
 ]
-const thumbnailRules = [
-  (thumbnail: string) => ((!thumbnail.length || isUrl(thumbnail)) || i18n.global.t('Items.errors.invUrl'))
+const iconRules = [
+  (icon: string) => ((!icon.length || isUrl(icon)) || i18n.global.t('Items.errors.invUrl'))
 ]
 
 async function editItem() {
@@ -172,7 +172,7 @@ async function editItem() {
   transition-duration: 200ms;
 }
 
-.thumbnail-description {
+.icon-description {
   color: rgb(var(--v-theme-description));
 }
 

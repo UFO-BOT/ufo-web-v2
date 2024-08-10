@@ -2,7 +2,7 @@ export interface Item {
     name: string
     newName?: string
     description: string
-    thumbnailUrl?: string
+    iconUrl?: string
     requiredRoles: Array<string>
     requiredXp: number
     price: number

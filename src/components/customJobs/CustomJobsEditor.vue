@@ -37,11 +37,11 @@
                 <v-icon size="small">favorite</v-icon>
                 {{ $t('CustomJobs.subtitles.donate') }}
               </router-link>
-              {{ $t('CustomJobs.subtitles.thumbnailDescription') }}
+              {{ $t('CustomJobs.subtitles.iconDescription') }}
             </div>
-            <v-text-field v-model="job.thumbnailUrl" class="general-job-field" prepend-inner-icon="art_track"
-                          :disabled="!guild.settings.boost" :rules="thumbnailRules" :color="props.job ? '' : 'primary'"
-                          :label="$t('CustomJobs.subtitles.thumbnailUrl')"/>
+            <v-text-field v-model="job.iconUrl" class="general-job-field" prepend-inner-icon="art_track"
+                          :disabled="!guild.settings.boost" :rules="iconRules" :color="props.job ? '' : 'primary'"
+                          :label="$t('CustomJobs.subtitles.iconUrl')"/>
             <div class="subtitle">{{ $t('CustomJobs.subtitles.hideOptions') }}</div>
             <div class="subtitle-description">{{ $t('CustomJobs.subtitles.hideOptionsDescription') }}</div>
             <v-checkbox v-model="job.hideOptions" :label="$t('CustomJobs.subtitles.hide')"
@@ -123,8 +123,8 @@ const nameRules = [
 const descriptionRules = [
   (description: string) => (description.length <= 1000) || i18n.global.t('CustomJobs.errors.invJobDescription')
 ]
-const thumbnailRules = [
-  (thumbnail: string) => ((!thumbnail.length || isUrl(thumbnail)) || i18n.global.t('CustomJobs.errors.invUrl'))
+const iconRules = [
+  (icon: string) => ((!icon.length || isUrl(icon)) || i18n.global.t('CustomJobs.errors.invUrl'))
 ]
 
 function createJob() {
@@ -134,7 +134,7 @@ function createJob() {
     description: '',
     message: '',
     hideOptions: false,
-    thumbnailUrl: '',
+    iconUrl: '',
     salary: {min: 0, max: 0},
     cooldown: 0,
     requiredXp: 0,
