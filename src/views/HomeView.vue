@@ -6,7 +6,9 @@
     </div>
     <v-img v-if="$vuetify.theme.current.dark" :src="UFOLogoDark" class="logo item-center"></v-img>
     <v-img v-else :src="UFOLogoLight" class="logo item-center"></v-img>
-    <span class="description-text"></span><br>
+    <div class="description-field">
+      <span class="description-text"></span><br>
+    </div>
     <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=${encodeURIComponent
     (location + '/landing')}&response_type=code&permissions=1515519995134&scope=bot`"
            size="x-large" color="primary" class="invite">
@@ -61,10 +63,14 @@ watch(() => (i18n.global.locale as WritableComputedRef<Language>).value, startTy
   max-height: 300px;
 }
 
+.description-field {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
 .description-text {
   margin-top: 15px;
   font-size: 1.8em;
-  display: inline-block;
 }
 
 .invite {
