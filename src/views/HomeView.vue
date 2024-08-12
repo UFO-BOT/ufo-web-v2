@@ -6,7 +6,7 @@
     </div>
     <v-img v-if="$vuetify.theme.current.dark" :src="UFOLogoDark" class="logo item-center"></v-img>
     <v-img v-else :src="UFOLogoLight" class="logo item-center"></v-img>
-    <span class="description"></span><br>
+    <span class="description-text"></span><br>
     <v-btn :href="`https://discord.com/api/oauth2/authorize?client_id=${config.botID}&redirect_uri=${encodeURIComponent
     (location + '/landing')}&response_type=code&permissions=1515519995134&scope=bot`"
            size="x-large" color="primary" class="invite">
@@ -35,7 +35,7 @@ const location = window.location.origin
 let typed: Typed;
 function startTyped() {
   typed?.destroy();
-  typed = new Typed('.description', {
+  typed = new Typed('.description-text', {
     strings: i18n.global.tm('Home.descriptions').map(desc => i18n.global.rt(desc)),
     typeSpeed: 50,
     backSpeed: 50,
@@ -61,8 +61,10 @@ watch(() => (i18n.global.locale as WritableComputedRef<Language>).value, startTy
   max-height: 300px;
 }
 
-.description {
+.description-text {
+  margin-top: 15px;
   font-size: 1.8em;
+  display: inline-block;
 }
 
 .invite {
