@@ -126,7 +126,8 @@ async function editItem() {
   loading.value = true;
   let newItem = {...item}
   newItem.name = newItem.newName!
-  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/items/${item.name}`, {
+  let name = encodeURIComponent(item.name)
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/items/${name}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

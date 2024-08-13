@@ -20,9 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, reactive, Ref, ref} from "vue";
+import {ref} from "vue";
 import {useRoute} from "vue-router";
-import {useStore} from "vuex";
 import config from "@/config.json";
 import {Item} from "@/types/Item";
 
@@ -35,7 +34,8 @@ let item: Item = props.item
 
 async function deleteItem() {
   loading.value = true;
-  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/items/${item.name}`, {
+  let name = encodeURIComponent(item.name)
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/items/${name}`, {
     method: 'DELETE',
     headers: {
       Authorization: localStorage.getItem('token') as string

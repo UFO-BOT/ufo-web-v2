@@ -41,7 +41,8 @@ let job = props.job ? reactive(props.job) : {} as CustomJob
 
 async function deleteJob() {
   loading.value = true;
-  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/custom-jobs/${job.name}`, {
+  let name = encodeURIComponent(job.name)
+  let response = await fetch(`${config.API}/private/guilds/${route.params.id}/custom-jobs/${name}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

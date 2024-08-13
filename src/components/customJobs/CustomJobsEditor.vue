@@ -146,7 +146,7 @@ else job.newName = job.name
 
 async function saveJob() {
   loading.value = true;
-  let name = props.job ? `/${job.name}` : ''
+  let name = props.job ? `/${encodeURIComponent(job.name)}` : ''
   let newJob = {...job}
   newJob.name = newJob.newName!
   let response = await fetch(`${config.API}/private/guilds/${route.params.id}/custom-jobs${name}`, {
