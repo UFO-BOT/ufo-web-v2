@@ -32,7 +32,10 @@
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
 import config from "@/config.json";
+import {loginUrl} from "@/utils/LoginUrl";
 import i18n from "@/plugins/i18n";
+
+if(!localStorage.getItem('token')) window.location.replace(loginUrl());
 
 let loading = ref(true)
 let valid = ref(true)
