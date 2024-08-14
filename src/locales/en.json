@@ -1012,6 +1012,21 @@
       }
     ]
   },
+  "Appeal": {
+    "title": "Ban appeal",
+    "name": "Ban appeal",
+    "description": "Answer all the questions below. Please note that you can appeal only once. If it is declined, you will no longer be able to submit it.",
+    "answer": "Answer",
+    "submit": "Submit",
+    "submitted": "Appeal has been submitted, wait for it to be reviewed. If it is approved, the bot or moderator will notify you via DM.",
+    "errors": {
+      "notBanned": "You are not banned on support server",
+      "submitted": "Your have already submitted an appeal, wait for it to be reviewed",
+      "declined": "Your appeal has been declined",
+      "invalidAnswer": "Answer length must be from 1 to 500 characters",
+      "submitError": "An error occurred while submitting, please reload the page"
+    }
+  },
   "V2": {
     "title": "Version 2.0.0",
     "close": "Close"

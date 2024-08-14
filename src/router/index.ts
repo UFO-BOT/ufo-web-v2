@@ -17,6 +17,7 @@ import LeaderboardView from "@/views/LeaderboardView.vue"
 import LeaderboardMemberView from "@/views/LeaderboardMemberView.vue"
 import TermsView from "@/views/TermsView.vue"
 import PrivacyView from "@/views/PrivacyView.vue"
+import AppealView from "@/views/AppealView.vue"
 import V2View from "@/views/V2View.vue"
 import LoginView from "@/views/LoginView.vue"
 import NotFoundView from "@/views/NotFoundView.vue"
@@ -108,6 +109,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/privacy',
     name: 'Privacy',
     component: PrivacyView
+  },
+  {
+    path: '/support/appeal',
+    name: 'Appeal',
+    component: AppealView
   },
   {
     path: '/v2',

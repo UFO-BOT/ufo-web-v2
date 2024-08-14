@@ -9,7 +9,7 @@
         <div class="username">{{ user.username }}</div>
       </div>
       <div>
-        <v-tooltip v-for="badge in user.botBadges" location="top" color="black">
+        <v-tooltip v-for="badge in user.botBadges" location="top" color="black" open-on-click>
           <template v-slot:activator="{ props }">
             <img :src="require(`@/assets/badges/${badge}.png`)" class="user-badge" v-bind="props" alt="">
           </template>
