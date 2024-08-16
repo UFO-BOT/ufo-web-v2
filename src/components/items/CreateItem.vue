@@ -198,7 +198,7 @@ async function createItem() {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px;
+  column-gap: 20px;
 }
 
 .role-select {
