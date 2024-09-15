@@ -164,6 +164,10 @@ async function submit() {
   margin-bottom: 15px;
 }
 
+.save-icon {
+  margin-right: 5px;
+}
+
 .submit {
   margin: 10px 0 10px 0;
   font-size: 1.1em;

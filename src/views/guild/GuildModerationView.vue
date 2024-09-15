@@ -279,6 +279,10 @@ async function test(type: 'kick' | 'ban') {
   font-size: 1.4em;
 }
 
+.save-icon {
+  margin-right: 5px;
+}
+
 .submit {
   margin: 10px 0 10px 0;
   font-size: 1.1em;

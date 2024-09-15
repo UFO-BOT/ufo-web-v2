@@ -197,6 +197,10 @@ async function test(type: 'join' | 'leave') {
   font-size: 1.4em;
 }
 
+.save-icon {
+  margin-right: 5px;
+}
+
 .submit {
   margin: 10px 0 10px 0;
   font-size: 1.1em;
