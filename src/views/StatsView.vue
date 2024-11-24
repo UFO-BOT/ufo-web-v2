@@ -81,7 +81,7 @@ onMounted(async () => {
 
 <style scoped>
 .header {
-  margin: 5px 0 5px 0;
+  margin: 10px 0 5px 0;
   font-size: 2em;
 }
 
@@ -90,13 +90,14 @@ onMounted(async () => {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  row-gap: 20px;
+  column-gap: 20px;
 }
 
 .stats-element {
   background-color: rgb(var(--v-theme-block));
   padding: 15px 15px;
   text-align: center;
-  margin: 10px 10px 10px 10px;
   border-radius: 4px;
   width: 230px;
   word-break: break-all;
