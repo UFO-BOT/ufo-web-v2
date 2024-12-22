@@ -69,6 +69,7 @@ async function payment(type: SubscriptionType) {
   let token = localStorage.getItem('token')
   if (!token) window.location.replace(loginUrl())
   let locale = i18n.global.locale as WritableComputedRef<Language>
+  let language: Language = locale.value === "ru" ? "en" : "ru"
   loading.value = true
   let response = await fetch(`${config.API}/private/payments`,
       {
@@ -78,7 +79,7 @@ async function payment(type: SubscriptionType) {
           'Content-Type': 'application/json'
         }, body: JSON.stringify({
           type,
-          language: locale.value
+          language: language
         })
       })
   let body: PaymentResponse = await response.json()
