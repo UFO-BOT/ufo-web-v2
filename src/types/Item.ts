@@ -10,6 +10,6 @@ export interface Item {
         min: number
         max: number
     }
-    addRole: string | null
-    removeRole: string | null
+    addRoles: Array<string>
+    removeRoles: Array<string>
 }

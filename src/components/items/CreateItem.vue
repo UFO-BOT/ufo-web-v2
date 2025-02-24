@@ -59,18 +59,12 @@
               </div>
             </div>
             <div class="subtitle">{{ $t('Items.subtitles.roles') }}</div>
-            <div class="item-flex">
-              <div>
-                <v-select v-model="item.addRole" class="role-select" color="primary" :items="roles"
-                          :label="$t('Items.subtitles.addRole')"/>
-              </div>
-              <div>
-                <v-select v-model="item.removeRole" class="role-select" color="primary" :items="roles"
-                          :label="$t('Items.subtitles.removeRole')"/>
-              </div>
-            </div>
+            <v-select v-model="item.addRoles" class="roles-select" multiple chips closable-chips clearable
+                      color="primary" :items="roles" :rules="rolesRules" :label="$t('Items.subtitles.addRoles')"/>
+            <v-select v-model="item.removeRoles" class="roles-select" multiple chips closable-chips clearable
+                      color="primary" :items="roles" :rules="rolesRules" :label="$t('Items.subtitles.removeRoles')"/>
             <v-select v-model="item.requiredRoles" color="primary" :items="requiredRoles" multiple chips closable-chips
-                      :label="$t('Items.subtitles.requiredRoles')"/>
+                      clearable :label="$t('Items.subtitles.requiredRoles')"/>
           </v-form>
         </div>
       </v-card>
@@ -93,7 +87,7 @@ const emit = defineEmits(['create'])
 const route = useRoute()
 const store = useStore()
 let guild = computed(() => (store.getters.guilds as Array<Guild>).find(g => g.id === route.params.id));
-let roles = SelectItems.roles(guild.value!.roles!)
+let roles = SelectItems.roles(guild.value!.roles!, false)
 let requiredRoles = SelectItems.roles(guild.value!.roles!, false, false)
 let dialog = ref(false)
 let valid = ref(true)
@@ -123,6 +117,9 @@ const descriptionRules = [
 const iconRules = [
   (icon: string) => ((!icon.length || isUrl(icon)) || i18n.global.t('Items.errors.invUrl'))
 ]
+const rolesRules = [
+  (roles: Array<string>) => (roles.length <= 5 || i18n.global.t('Items.errors.maxRoles'))
+]
 
 function newItem() {
   item = reactive({
@@ -133,8 +130,8 @@ function newItem() {
     requiredXp: 0,
     price: 0,
     xp: {min: 0, max: 0},
-    addRole: null,
-    removeRole: null
+    addRoles: [],
+    removeRoles: []
   })
 }
 newItem()
@@ -201,8 +198,8 @@ async function createItem() {
   column-gap: 20px;
 }
 
-.role-select {
-  width: 200px;
+.roles-select {
+  margin-bottom: 5px;
 }
 
 .btn-icon {

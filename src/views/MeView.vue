@@ -107,7 +107,6 @@ async function logout() {
 }
 
 onMounted(async () => {
-  store.dispatch('getUserBadges').then();
   if(guilds.value.length <= 1) await loadGuilds();
 })
 </script>

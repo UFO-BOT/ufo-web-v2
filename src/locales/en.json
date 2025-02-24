@@ -419,9 +419,9 @@
       "minimum": "Minimum",
       "maximum": "Maximum",
       "roles": "Roles",
-      "addRole": "Add role",
+      "addRoles": "Add roles (max. 5)",
+      "removeRoles": "Remove roles (max. 5)",
       "requiredRoles": "Required roles",
-      "removeRole": "Remove role",
       "donate": "Donate us",
       "increaseLimit": "to increase items limit to",
       "limit": "Items limit reached",
@@ -432,7 +432,8 @@
       "invItemName": "Item must have a name not longer than 50 characters",
       "invItemDescription": "Description may not be longer than 200 characters",
       "alreadyExists": "Another item has this name",
-      "invUrl": "Enter a valid Url"
+      "invUrl": "Enter a valid Url",
+      "maxRoles": "Maximum 5 roles"
     }
   },
   "Home": {
