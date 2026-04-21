@@ -61,7 +61,7 @@ async function deleteJob() {
 <style scoped>
 .modal-header {
   font-size: 1.4em;
-  background-color: rgb(var(--v-theme-modalHeader));
+  background-color: rgb(var(--v-theme-header));
   padding: 15px 20px 10px;
   display: flex;
   justify-content: space-between;

@@ -14,6 +14,25 @@
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
+      <div v-if="subscriptions.length > 0" class="subscriptions-section">
+        <div class="subscriptions-title">{{ $t('Donate.activeSubscriptions') }}</div>
+        <v-divider opacity="0.3"/>
+        <div class="subscriptions-list">
+          <template v-for="(sub, index) in subscriptions" :key="sub.id">
+            <div :class="`subscription-item subscription-item-${sub.type}`">
+              <div class="subscription-info">
+                <div class="subscription-type">{{ $t(`Donate.cards.${sub.type}.name`) }}</div>
+                <div class="subscription-ends">{{ $t(`Donate.expires`) }} {{ formatEndsDate(sub.ends) }}</div>
+              </div>
+              <v-btn class="subscription-extend" theme="dark" :color="sub.type === 'premium' ? '#007bff' : '#4caf50'"
+                     :to="`/subscriptions/${sub.id}`">
+                {{ $t('Donate.extend') }}
+              </v-btn>
+            </div>
+            <v-divider v-if="index < subscriptions.length - 1" opacity="0.3" class="subscriptions-divider"></v-divider>
+          </template>
+        </div>
+      </div>
     </div>
     <div class="cards-container">
       <div v-for="(card, i) in $tm('Donate.cards')" :class="`donate-card donate-card-${i}`">
@@ -35,60 +54,54 @@
         <div>
           <v-divider class="donate-card-divider"></v-divider>
           <v-btn class="donate-buy" theme="dark" :color="i === 'premium' ? '#007bff' : '#4caf50'" :width="220"
-                 :height="40" :loading="loading" @click="payment(i)">
+                 :height="40" :to="`/subscriptions/new?type=${i}`">
             {{ $rt(card.price) }}₽<span class="per">{{ $t('Donate.perMonth') }}</span>
           </v-btn>
         </div>
       </div>
     </div>
-    <v-snackbar v-model="snackbar" color="block">
-      <div class="error-text">{{ $t('Donate.error') }}</div>
-      <template v-slot:actions>
-        <v-btn color="pink" variant="text" ripple @click="snackbar = false">
-          {{ $t('Donate.close') }}
-        </v-btn>
-      </template>
-    </v-snackbar>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref, WritableComputedRef} from "vue";
-import {SubscriptionType} from "@/types/SubscriptionType";
+import {onMounted, ref} from "vue";
+
 import config from "@/config.json";
-import i18n from "@/plugins/i18n";
 import {loginUrl} from "@/utils/LoginUrl";
-import {PaymentResponse} from "@/types/PaymentResponse";
-
 import {Language} from "@/types/Language";
+import {WritableComputedRef} from "vue";
+import i18n from "@/plugins/i18n";
 
-let loading = ref(false)
-let snackbar = ref(false)
+interface Subscription {
+  id: string
+  type: 'standard' | 'premium'
+  ends: string
+}
 
-async function payment(type: SubscriptionType) {
+let subscriptions = ref<Array<Subscription>>([])
+
+async function loadSubscriptions() {
   let token = localStorage.getItem('token')
-  if (!token) window.location.replace(loginUrl())
-  let locale = i18n.global.locale as WritableComputedRef<Language>
-  let language: Language = locale.value === "ru" ? "en" : "ru"
-  loading.value = true
-  let response = await fetch(`${config.API}/private/payments`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: token as string,
-          'Content-Type': 'application/json'
-        }, body: JSON.stringify({
-          type,
-          language: language
-        })
-      })
-  let body: PaymentResponse = await response.json()
-  if (response.ok) window.location.replace(body.confirmationUrl)
-  else {
-    snackbar.value = true
-    loading.value = false
+  if (!token) return
+
+  let response = await fetch(`${config.API}/private/subscriptions`, {
+    headers: {
+      Authorization: token
+    }
+  })
+
+  if (response.ok) {
+    let body = await response.json()
+    subscriptions.value = body.subscriptions || []
   }
 }
+
+function formatEndsDate(ends: string): string {
+  let locale = i18n.global.locale as WritableComputedRef<Language>
+  return new Date(ends).toLocaleString(locale.value === 'ru' ? 'ru-RU' : 'en-US')
+}
+
+onMounted(loadSubscriptions)
 </script>
 
 <style scoped>
@@ -118,6 +131,66 @@ async function payment(type: SubscriptionType) {
 .feature-description {
   text-align: left;
   font-size: 1.1em;
+  background-color: rgb(var(--v-theme-block));
+}
+
+.subscriptions-section {
+  max-width: 1100px;
+  margin: 20px 0 0;
+  background-color: rgb(var(--v-theme-block));
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgb(var(--v-theme-outline));
+  box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.subscriptions-title {
+  font-size: 1.4em;
+  padding: 15px 20px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(var(--v-theme-outline));
+}
+
+.subscriptions-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.subscription-item:hover {
+  background-color: rgb(var(--v-theme-on-surface), 0.05);
+}
+
+.subscription-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.subscription-type {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rgb(var(--v-theme-on-surface));
+}
+
+.subscription-ends {
+  font-size: 0.9em;
+  color: rgb(var(--v-theme-on-surface), 0.7);
+}
+
+.subscription-extend {
+  min-width: 120px;
+  height: 36px;
+  font-size: 0.95em;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
 }
 
 .cards-container {
@@ -198,9 +271,5 @@ async function payment(type: SubscriptionType) {
 
 .per {
   font-size: 0.8em;
-}
-
-.error-text {
-  font-size: 1.4em;
 }
 </style>

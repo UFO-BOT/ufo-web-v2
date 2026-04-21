@@ -41,7 +41,7 @@
               {{ guild.name.length <= 25 ? guild.name : guild.name.slice(0, 25) + '...' }}
             </div>
             <div>
-              <v-divider class="guild-divider"></v-divider>
+              <v-divider opacity="0.3" class="guild-divider"></v-divider>
               <div class="guild-buttons">
                 <v-btn v-if="!guild.invited && guild.manageable" class="action-button" color="blue"
                        variant="outlined" :href="generateInvite(guild.id)">{{ $t('Me.invite') }}

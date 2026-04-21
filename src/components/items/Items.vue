@@ -10,7 +10,7 @@
             <DeleteItem :item="item" @delete="deleted" class="item-action"/>
           </div>
         </div>
-        <v-divider/>
+        <v-divider opacity="0.3"/>
       </div>
       <div class="items-bottom" v-if="!loading">
         <div>

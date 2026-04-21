@@ -8,7 +8,7 @@
         <v-card-title class="modal-header">{{ $t('Items.subtitles.deleteItem') }}</v-card-title>
         <v-card-text v-html="$t('Items.subtitles.deleteConfirm').replace('[I]',
         `<code>${item.name}</code>`)"/>
-        <v-divider/>
+        <v-divider opacity="0.3"/>
         <v-card-actions>
           <v-spacer/>
           <v-btn color="red" :loading="loading" text @click="deleteItem">{{ $t('Items.subtitles.delete') }}</v-btn>
@@ -52,7 +52,7 @@ async function deleteItem() {
 <style scoped>
 .modal-header {
   font-size: 1.4em;
-  background-color: rgb(var(--v-theme-modalHeader));
+  background-color: rgb(var(--v-theme-header));
   padding: 15px 20px 10px;
   display: flex;
   justify-content: space-between;

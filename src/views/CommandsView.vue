@@ -47,7 +47,7 @@
                     </div>
                   </v-card-text>
 
-                  <v-divider class="blue-grey darken-3"></v-divider>
+                  <v-divider opacity="0.3"/>
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -58,7 +58,7 @@
 
               </v-dialog>
             </div>
-            <v-divider v-if="j < commands.filter(c => c.category === category).length-1"/>
+            <v-divider v-if="j < commands.filter(c => c.category === category).length-1" opacity="0.3"/>
           </div>
         </v-expansion-panel-text>
       </v-expansion-panel>
@@ -123,7 +123,7 @@ onMounted(async () => {
 
 .cmd-name {
   font-size: 1.8em;
-  background-color: rgb(var(--v-theme-modalHeader));
+  background-color: rgb(var(--v-theme-header));
   padding: 15px 20px 10px;
 }
 

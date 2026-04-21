@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <v-divider/>
+        <v-divider opacity="0.3"/>
         <div class="ma-2">Smoky © {{ year }} | {{ $t("Footer.rights") }}</div>
       </div>
     </v-footer>

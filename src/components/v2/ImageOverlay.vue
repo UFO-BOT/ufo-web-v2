@@ -8,7 +8,7 @@
       <v-card-text>
         <img class="image" :src="require(`@/assets/v2/${file}`)" alt=""/>
       </v-card-text>
-      <v-divider class="blue-grey darken-3"></v-divider>
+      <v-divider opacity="0.3" class="blue-grey darken-3"></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text @click="image = false">{{ $t('V2.close') }}</v-btn>
@@ -40,7 +40,7 @@ let image = ref(false)
 
 .image-name {
   font-size: 1.8em;
-  background-color: rgb(var(--v-theme-modalHeader));
+  background-color: rgb(var(--v-theme-header));
   padding: 15px 20px 10px;
 }
 </style>

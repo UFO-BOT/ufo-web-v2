@@ -65,8 +65,8 @@ let user = computed(() => store.getters.user)
 onMounted(async () => {
   loadingUser.value = true;
   await store.dispatch('getUser');
-  await store.dispatch('getUserBadges');
   loadingUser.value = false;
+  await store.dispatch('getUserBadges');
 })
 </script>
 

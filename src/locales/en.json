@@ -517,6 +517,9 @@
     "title": "Donate",
     "name": "Donate",
     "description": "Support us to get UFO Boosts! You can activate them on servers with command <code>boost</code><br>Activating the boost on the server opens bonus features on it:",
+    "activeSubscriptions": "Active Subscriptions",
+    "expires": "Expires:",
+    "extend": "Extend",
     "features": [
       {
         "icon": "chat",
@@ -568,6 +571,30 @@
     "unauthorized": "Unauthorized",
     "error": "Error",
     "close": "Close"
+  },
+  "Subscription": {
+    "title": "Subscription",
+    "buyTitle": "Buy subscription",
+    "extendTitle": "Extend subscription",
+    "buyDescription": "Select subscription type and payment period. After payment your subscription will be activated automatically.",
+    "extendDescription": "Select extension period and continue to payment.",
+    "type": "Subscription",
+    "period": "Period",
+    "summary": "Summary",
+    "selectedType": "Selected subscription",
+    "selectedPeriod": "Selected period",
+    "price": "Price",
+    "boosts": "Boosts count",
+    "ends": "Current expiration date",
+    "perks": "Bonuses",
+    "back": "Back",
+    "buy": "Buy",
+    "extend": "Extend",
+    "error": "Failed to create payment",
+    "close": "Close"
+  },
+  "SubscriptionById": {
+    "title": "Extend subscription"
   },
   "Landing": {
     "title": "Thanks for inviting!",

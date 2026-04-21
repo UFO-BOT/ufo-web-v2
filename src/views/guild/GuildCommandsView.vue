@@ -23,7 +23,7 @@
               <GuildCommand :name="settings.prefix + command.config[settings.language.commands].name"
                             :command="settings.commands[command.config.en.name]" @update="commandUpdated"/>
             </div>
-            <v-divider v-if="j < commands.filter(c => c.category === category).length-1"/>
+            <v-divider v-if="j < commands.filter(c => c.category === category).length-1" opacity="0.3"/>
           </div>
         </v-expansion-panel-text>
       </v-expansion-panel>

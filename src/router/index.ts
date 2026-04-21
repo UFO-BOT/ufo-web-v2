@@ -4,6 +4,7 @@ import HomeView from "@/views/HomeView.vue"
 import CommandsView from "@/views/CommandsView.vue"
 import StatsView from "@/views/StatsView.vue"
 import DonateView from "@/views/DonateView.vue"
+import SubscriptionView from "@/views/SubscriptionView.vue"
 import LandingView from "@/views/LandingView.vue"
 import MeView from "@/views/MeView.vue"
 import GuildView from "@/views/GuildView.vue"
@@ -42,6 +43,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/donate',
     name: 'Donate',
     component: DonateView
+  },
+  {
+    path: '/subscriptions/new',
+    name: 'Subscription',
+    component: SubscriptionView
+  },
+  {
+    path: '/subscriptions/:id',
+    name: 'SubscriptionById',
+    component: SubscriptionView
   },
   {
     path: '/landing',

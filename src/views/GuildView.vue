@@ -3,7 +3,7 @@
     <v-list class="guild-menu" color="primary" bg-color="mobileNav" elevation="5">
       <v-list-subheader v-if="!guild" class="guild-name">{{ $t('Guild.loading') }}</v-list-subheader>
       <v-list-subheader v-else class="guild-name text-truncate">{{ guild.name }}</v-list-subheader>
-      <v-divider/>
+      <v-divider opacity="0.3"/>
       <v-item-group>
         <v-list-item v-for="link in $tm('Guild.links')" :to="$rt(link.path)" :prepend-icon="$rt(link.icon)"
                      min-height="55">

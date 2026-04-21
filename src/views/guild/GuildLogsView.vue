@@ -19,7 +19,7 @@
                     <v-switch v-model="settings.logs.list[log].enabled" hide-details color="primary" class="switch"/>
                   </div>
                 </div>
-                <v-divider v-if="categories[category].indexOf(log) < categories[category].length - 1"/>
+                <v-divider v-if="categories[category].indexOf(log) < categories[category].length - 1" opacity="0.3"/>
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>

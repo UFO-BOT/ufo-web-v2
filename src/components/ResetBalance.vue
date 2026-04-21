@@ -12,7 +12,7 @@
           <v-text-field v-model="name" class="mt-3" color="red" :label="$t('ResetBalance.name')"
                         :placeholder="guild.name" variant="outlined"/>
         </v-card-text>
-        <v-divider></v-divider>
+        <v-divider opacity="0.3"></v-divider>
         <v-card-actions>
           <v-spacer/>
           <v-btn color="red" @click="reset" :disabled="name !== guild.name" :loading="loading" text>
@@ -58,7 +58,7 @@ async function reset() {
 <style scoped>
 .modal-header {
   font-size: 1.4em;
-  background-color: rgb(var(--v-theme-modalHeader));
+  background-color: rgb(var(--v-theme-header));
   padding: 15px 20px 10px;
   display: flex;
   justify-content: space-between;

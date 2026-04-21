@@ -17,7 +17,7 @@
             </div>
           </v-form>
         </v-card-text>
-        <v-divider></v-divider>
+        <v-divider opacity="0.3"></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue-grey" :disabled="valid === false" @click="submit">
@@ -83,7 +83,7 @@ function submit() {
 <style scoped>
 .modal-header {
   font-size: 1.4em;
-  background-color: rgb(var(--v-theme-modalHeader));
+  background-color: rgb(var(--v-theme-header));
   padding: 15px 20px 10px;
   display: flex;
   justify-content: space-between;

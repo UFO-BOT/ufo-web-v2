@@ -33,7 +33,7 @@
                             v-model="warnsPunishment.punishment.duration" class="punishment-duration"
                             :limit="315360000000"/>
           </div>
-          <v-divider/>
+          <v-divider opacity="0.3"/>
         </div>
         <v-btn class="wp-add" color="primary" variant="outlined"
                v-if="settings.warnsPunishments?.length < 10"

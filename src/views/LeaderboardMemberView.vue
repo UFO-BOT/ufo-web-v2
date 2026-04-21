@@ -24,7 +24,7 @@
             <div>{{ Number(member.xp).toLocaleString($i18n.locale) }}</div>
           </div>
         </div>
-        <v-divider class="mt-2 mb-2"></v-divider>
+        <v-divider opacity="0.3" class="mt-2 mb-2"></v-divider>
         <div class="member-flex">
           <v-btn icon variant="text" color="primary" size="40" :to="`/leaderboard/${route.params.id}`">
             <v-icon>keyboard_return</v-icon>
