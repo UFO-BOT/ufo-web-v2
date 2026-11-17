@@ -958,50 +958,56 @@
         "name": "Introduction",
         "items": [
           "This Privacy Policy (hereinafter referred to as the “Policy”) determines the procedure for processing and protecting personal data of users of the Discord bot UFO (hereinafter referred to as the “Bot”) and the website <a class='primary-link' href='https://ufobot.ru' >https://ufobot.ru</a> (hereinafter referred to as the “Site”).",
-          "By using the Bot and/or the Site, you consent to the processing of your personal data in accordance with this Policy.",
+          "This Policy describes data processing by the current UFO V2 bot and the Site. Last updated: November 17, 2026.",
           "The administration reserves the right to change this Policy at any time without prior notice. The updated Policy comes into force from the moment it is published on the Site."
         ]
       },
       {
         "name": "Collection of personal data",
         "items": [
-          "We collect the following categories of personal data: Discord account information (user ID); contact information provided by you; information about the Discord server (IDs of server, roles, channels, server members).",
-          "We do not collect special categories of personal data (for example, message content)."
+          "We process Discord user, server, role, channel and message identifiers, account names and avatars, membership and role information, and information you provide when contacting support or using the Bot and Site.",
+          "We process message content and relevant message metadata to provide automated moderation, prefix-based commands, and configured message edit and deletion logs. These features may also process attachment names and links. Receiving and processing message content is distinct from keeping a permanent message archive.",
+          "Our database stores server settings and feature-related records, including moderation cases and reasons, active punishments, virtual economy balances and related feature records, experience points, and information submitted through support or appeal features. When you sign in through Discord, authentication tokens are stored to support your authorized website session."
         ]
       },
       {
         "name": "Use of personal data",
         "items": [
-          "Personal data is used to provide the functionality of the Bot and the Website.",
-          "We do not share your personal data with third parties, except as required by law or when necessary to provide services (for example, to process payments)."
+          "Data is used to provide the Bot and Site features, including moderation, invite filtering, welcome and departure messages, role assignment, restoration of active mute roles, community features, and support.",
+          "Administrators configure automated moderation and its exemptions. Individual members do not have a separate opt-out from moderation checks where those checks are enabled. Disabling one feature does not necessarily stop processing by other enabled features.",
+          "When message logging is configured, the Bot sends message content or excerpts, attachment links and relevant metadata to administrator-selected channels within the same Discord server. Bulk-deletion logs may be sent as a text attachment. Access to these logs depends on the destination channel's permissions; administrators should restrict access appropriately.",
+          "Message content is not used to train machine learning or AI models. We do not sell API data. Service providers process data as needed to operate the service, including hosting and MongoDB Atlas database storage; payment providers process information required for payments. Other disclosure may occur where required by law or expressly directed by the user."
         ]
       },
       {
         "name": "Protection of personal data",
         "items": [
-          "We take all necessary organizational and technical measures to protect your personal data from unauthorized or accidental access, destruction, modification, blocking, copying and distribution.",
-          "Access to personal data is provided only to authorized employees who are required to maintain the confidentiality of this information."
+          "We use technical and organizational safeguards to protect data against unauthorized access, alteration, loss and disclosure, and restrict administrative access to those who need it to operate the service.",
+          "The production database uses MongoDB Atlas, which provides encryption at rest and encrypted connections. This database protection is separate from the Bot's operational in-memory message cache."
         ]
       },
       {
         "name": "Storage of personal data",
         "items": [
           "Personal data is stored for the time necessary to achieve the purposes for which it was collected or for the period established by the law.",
-          "Once the purposes of processing have been achieved or at your request, personal data will be deleted."
+          "Message objects are retained in a bounded in-memory cache of up to 200 messages per channel. This cache supports features such as edit and deletion logs. It is discarded when the Bot process stops and is not restored from a message archive after a restart. The current cache has no time-based expiration, so a maximum retention period of 30 days is not guaranteed.",
+          "The moderation and message-logging features do not maintain a persistent message-content archive in our database. Moderation reasons and information deliberately submitted to other features may nevertheless contain text provided by users. Configured message logs and log attachments are stored within Discord and are not removed merely because the Bot's memory cache is cleared.",
+          "Server settings, moderation history, active punishments, economy and other feature records can remain for more than 30 days while needed for their stated purpose. We delete API data when it is no longer necessary or when deletion is requested by the applicable user or Discord, except where retention is required by applicable law."
         ]
       },
       {
         "name": "User rights",
         "items": [
-          "You have the right to: erase your personal data; restrict the processing of your personal data.",
-          "To exercise your rights, you can contact us on the <a class='primary-link' href='https://discord.gg/qPrqVwR'>support server</a>."
+          "You can request access to, correction of, or deletion of data associated with your account by contacting us on the <a class='primary-link' href='https://discord.gg/qPrqVwR'>official UFO support server</a>. This link is also available in the Site navigation and footer.",
+          "Provide your Discord user ID and, where relevant, the server or message IDs needed to identify the records. We may ask you to verify that the request concerns your own account. Never send us your Discord password or account token.",
+          "Requests cover data held by UFO, including its operational cache. For logs posted within a Discord server, include the relevant message links so we can identify them and address the request with the server administrators where necessary. A deletion request does not automatically exempt future messages from moderation on servers where it remains enabled."
         ]
       },
       {
-        "name": "Cookies",
+        "name": "Cookies and browser storage",
         "items": [
-          "We use Cookies to improve the functionality of the Site.",
-          "You can customize the use of Cookies in your browser settings. However, disabling Cookies may affect the functionality of some features of the Site."
+          "The Site uses browser local storage for the authentication token, language and theme preferences. Infrastructure or third-party services may also use cookies.",
+          "You can clear or restrict cookies and local storage through your browser settings. Doing so may sign you out, reset preferences or affect some Site features."
         ]
       },
       {
